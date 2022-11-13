@@ -1,0 +1,18 @@
+body {
+  font-family: "Poppins", sans-serif;
+  margin: 0;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(13, 1fr);
+  grid-template-rows: repeat(4, 25%);
+} 
+
+@media (max-width: 820px) {
+    .grid-container{
+    display: flex;
+    flex-direction: column;
+    padding-top: 3rem;
+    }
+   }

@@ -1,25 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import Welcome from "./home/components/Welcome";
 
-function App() {
+import MainNavigation from "./shared/components/Navigation/MainNavigation";
+
+const App = () => {
+  // We wrap this aroung everthing that is part of the app that should be able to use the router.
+  // See Notion - React/Router-dom-v6 for Router usage in version 6
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <MainNavigation></MainNavigation>
+      <main>
+        <Routes>
+          <Route path="/" element={<Welcome />} />
+        </Routes>
+      </main>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;

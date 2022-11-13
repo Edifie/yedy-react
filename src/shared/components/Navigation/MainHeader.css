@@ -1,0 +1,22 @@
+.main-header {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    position: fixed;
+    top: 0;
+
+    left: 0;
+    background: #ffffff;
+    background: -webkit-linear-gradient(0deg, #ffffff 0%, #e6edfc 100%);
+    background: linear-gradient(0deg, #ffffff 0%, #e6edfc 100%);
+    
+
+    padding: 0 1rem;
+    z-index: 5;
+  }
+  
+  main {
+    margin-top: 5rem;
+  }
+  
