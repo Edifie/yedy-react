@@ -3,6 +3,8 @@ import "./MainForm.css";
 import name from "./name.jpg";
 
 export class FormName extends Component {
+
+
   continue = (e) => {
     e.preventDefault();
     this.props.nextStep();
@@ -26,6 +28,7 @@ export class FormName extends Component {
           <input
             type="text"
             placeholder="Company name"
+            name="name"
             onChange={handleChange}
             required
           ></input>

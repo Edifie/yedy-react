@@ -6,11 +6,7 @@ import FormName from "./FormName";
 import FormArea from "./FormArea";
 import Confirm from "./Confirm";
 
-
-export class UserForm extends Component {
-
-
-
+export class MainForm extends Component {
   state = {
     step: 1,
     tema: "",
@@ -36,19 +32,24 @@ export class UserForm extends Component {
   };
 
   // Handle fields change (text)
-  handleChange = (input) => (e) => {
-    this.setState({ [input]: e.target.value });
-    console.log(e.target.value)
+  // handleChange = (input) => (e) => {
+  //   const target = e.target;
+  //   this.setState({ [target.value]: target.value });
+  //   console.log(input);
+  // };
+
+  handleChange = (e) => {
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+    console.log(e.target.value);
   };
 
   // Handle fields change (radio)
-  handleRadioChange = (e) =>{
-    const target = e.target;
-    this.setState({ [target.name] : target.value})
-    console.log(target.value)
-  }
-
-  
+  handleRadioChange = (e) => {
+    this.setState({ [e.target.name]: e.target.value });
+    console.log(e.target.value);
+  };
 
   render() {
     const { step } = this.state;
@@ -60,7 +61,7 @@ export class UserForm extends Component {
         return (
           <FormArea
             nextStep={this.nextStep}
-            handleChange={this.handleRadioChange}
+            handleRadioChange={this.handleRadioChange}
             values={values}
           />
         );
@@ -69,25 +70,25 @@ export class UserForm extends Component {
           <FormTema
             nextStep={this.nextStep}
             prevStep={this.prevStep}
-            handleChange={this.handleRadioChange}
+            handleRadioChange={this.handleRadioChange}
             values={values}
           />
         );
       case 3:
         return (
+          <FormType
+            nextStep={this.nextStep}
+            prevStep={this.prevStep}
+            handleRadioChange={this.handleRadioChange}
+            values={values}
+          />
+        );
+      case 4:
+        return (
           <FormName
             nextStep={this.nextStep}
             prevStep={this.prevStep}
             handleChange={this.handleChange}
-            values={values}
-          />
-        );
-        case 4:
-        return (
-          <FormType
-            nextStep={this.nextStep}
-            prevStep={this.prevStep}
-            handleChange={this.handleRadioChange}
             values={values}
           />
         );
@@ -100,9 +101,9 @@ export class UserForm extends Component {
           />
         );
       default:
-          <FormArea />
+        <FormArea />;
     }
   }
 }
 
-export default UserForm;
+export default MainForm;

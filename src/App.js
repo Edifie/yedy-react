@@ -9,6 +9,7 @@ import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import UserPages from "./page/pages/UserPages";
 
 
+
 const App = () => {
   // We wrap this aroung everthing that is part of the app that should be able to use the router.
   // See Notion - React/Router-dom-v6 for Router usage in version 6

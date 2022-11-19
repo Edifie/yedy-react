@@ -73,8 +73,9 @@
   
 }
 
-input {
-
+a{
+  text-decoration: none;
+  color: white;
 }
 
 button:hover {

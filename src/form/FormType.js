@@ -15,9 +15,9 @@ export class FormType extends Component {
   }
 
   render() {
-    const { handleRadioChange } = this.props;
+    const { handleRadioChange, values } = this.props;
     return (
-      
+
       <div className="wrapper">
         <div className="box item1">
           <label>What is your design of choice?</label>
@@ -32,6 +32,7 @@ export class FormType extends Component {
                 name="type"
                 value='basic'
                 onChange={handleRadioChange}
+                checked={values.type === 'basic'}
               />
               Basic
             </label>
@@ -44,6 +45,7 @@ export class FormType extends Component {
                 name="type"
                 value="responsive"
                 onChange={handleRadioChange}
+                checked={values.type === 'responsive'}
               />
               Responsive
             </label>

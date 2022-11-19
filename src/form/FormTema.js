@@ -1,9 +1,8 @@
 import React, { Component } from "react";
 import "./MainForm.css";
-import tema from './tema.jpg'
+import tema from "./tema.jpg";
 
 export class FormTema extends Component {
-
   continue = (e) => {
     e.preventDefault();
     this.props.nextStep();
@@ -12,10 +11,10 @@ export class FormTema extends Component {
   back = (e) => {
     e.preventDefault();
     this.props.prevStep();
-  }
+  };
 
   render() {
-    const { handleRadioChange } = this.props;
+    const { handleRadioChange, values } = this.props;
     return (
       <div className="wrapper">
         <div className="box item1">
@@ -29,8 +28,9 @@ export class FormTema extends Component {
               <input
                 type="radio"
                 name="tema"
-                value='basic'
+                value="basic"
                 onChange={handleRadioChange}
+                checked={values.tema === "basic"}
               />
               Basic
             </label>
@@ -41,8 +41,9 @@ export class FormTema extends Component {
               <input
                 type="radio"
                 name="tema"
-                value='boho'
+                value="boho"
                 onChange={handleRadioChange}
+                checked={values.tema === "boho"}
               />
               Boho
             </label>
@@ -55,6 +56,7 @@ export class FormTema extends Component {
                 name="tema"
                 value="minimal"
                 onChange={handleRadioChange}
+                checked={values.tema === "minimal"}
               />
               Minimal
             </label>
