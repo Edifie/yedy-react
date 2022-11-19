@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+# Yedy
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+In this project, a website will be developed with MERN stack in order to allow business owners to create a website in an easier way.
+Initially, in the interface, the website creator can choose in which area wants to create it, and with the pre-made layouts, the database will be able to easily detect the necessary fields. Finally, just need to fill in the necessary fields to create the site.
 
-## Available Scripts
 
-In the project directory, you can run:
+In order to run the project,
 
-### `npm start`
+## Install node.js
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Can be downloaded in [here](https://nodejs.org/en/download/).
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Install the LTS version of Node to get both the **node** and **npm** commands in your command line.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Install dependencies of the project
 
-### `npm run build`
+``npm install``
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This will install all of the dependencies that project depends on. Dependencies can be seen on **package.json** file. 
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Install MongoDB
 
-### `npm run eject`
+Can be downloaded in [here](https://www.mongodb.com/try/download/community).
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Install MongoDB Compass (GUI for MongoDB)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Compass allows to explore and manipulate database in MongoDB. Can be downloaded in [here](https://www.mongodb.com/try/download/compass).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+To login to MongoDB write this URI for a new connection,
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+``mongodb://localhost:27017``
 
-## Learn More
+All of the data will be stored under the **yedy database**.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## npm start
 
-### Code Splitting
+``npm start`` runs the app in the development mode. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+The page will reload when you make changes.
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
