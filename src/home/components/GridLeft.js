@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 
 import './GridLeft.css'
@@ -14,7 +15,8 @@ const GridLeft = () => {
             promoting your small business, opening your store - you can do it
             all with the Yedy website builder.</p>
         </div>
-        <button className='grid-left__button' type='submit'>Get Started</button>
+        <button className='grid-left__button' type='submit'>
+            <Link to='/users'>Get Started</Link></button>
     </div>
   )
 }

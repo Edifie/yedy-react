@@ -1,6 +1,6 @@
 import React from 'react'
-import GridLeft from './GridLeft'
-import GridRight from './GridRight'
+import GridLeft from '../components/GridLeft'
+import GridRight from '../components/GridRight'
 
 import './Welcome.css'
 

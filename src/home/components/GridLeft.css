@@ -1,6 +1,7 @@
 .grid-left {
   grid-column: 3/7;
   grid-row: 2;
+  margin-top: 3rem;
 }
 
 .grid-left__text {
@@ -36,6 +37,11 @@
   margin: 0 auto;
   display: block;
   text-align: center;
+}
+
+.grid-left__button a{
+    text-decoration: none;
+    color: white;
 }
 
 .grid-left__button:hover {

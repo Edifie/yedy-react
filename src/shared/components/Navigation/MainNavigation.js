@@ -39,9 +39,6 @@ const MainNavigation = (props) => {
 
     <MainHeader>
       <button className="main-navigation__menu-btn" onClick={openDrawerHandler}>
-        {/* Hamburger item */}
-        <span />
-        <span />
         <span />
       </button>
       <h1 className="main-navigation__title">

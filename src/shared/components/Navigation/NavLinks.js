@@ -15,6 +15,9 @@ const NavLinks = () => {
     <li>
         <NavLink to='/resources'>Resources</NavLink>
     </li>
+    <li>
+        <NavLink to='/forms'>Forms</NavLink>
+    </li>
    </ul>
   )
 }
