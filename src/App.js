@@ -7,6 +7,7 @@ import MainForm from "./form/MainForm";
 import Users from './user/pages/Users';
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import UserPages from "./page/pages/UserPages";
+import NewPage from "./page/pages/NewPage";
 
 
 
@@ -20,6 +21,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path='/users' element={<Users/>}/>
+          <Route path="/pages/new" element={<NewPage />} />
           <Route path="/:userId/pages" element={<UserPages />}/>
           <Route path="/forms" element={<MainForm />} />
         </Routes>

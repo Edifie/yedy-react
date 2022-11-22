@@ -6,13 +6,13 @@ import FormName from "./FormName";
 import FormArea from "./FormArea";
 import Confirm from "./Confirm";
 
+
 export class MainForm extends Component {
   state = {
     step: 1,
     tema: "",
     area: "",
     type: "",
-    name: "",
   };
 
   // Proceed to next step
