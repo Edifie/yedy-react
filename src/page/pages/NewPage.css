@@ -1,0 +1,90 @@
+.overall--form {
+  margin-top: 5rem;
+}
+
+.wrapper {
+  display: grid;
+  grid-gap: 10px;
+  grid-template-columns: repeat(8, 100px);
+  grid-template-rows: auto;
+  justify-content: center;
+
+  margin-bottom: 5rem;
+}
+
+.box {
+  color: black;
+  font-size: 18px;
+}
+
+.item1 {
+  grid-column: 1 / 8;
+}
+
+.item2 {
+  grid-column: 1/4;
+  margin-top: 2rem;
+}
+
+.item3 {
+  grid-column: 4/9;
+}
+
+.item4 {
+  grid-column: 4/5;
+}
+
+.text--form {
+  height: 40px;
+  font-size: 14px;
+  box-shadow: 0 0 10px rgb(199 198 207 / 60%);
+  width: 200px;
+  padding-left: 2rem;
+  letter-spacing: 0.5px;
+  border-radius: 10px;
+  border: solid;
+  border-color: lightgray;
+  margin-left: 2rem;
+}
+
+.textarea--form {
+  margin-bottom: 2rem;
+}
+
+.box img {
+  width: auto;
+  height: 250px;
+}
+
+.item1 label {
+  font-size: 35px;
+  margin-left: 1rem;
+}
+
+.radio {
+  padding-top: 2rem;
+}
+
+.radio label {
+  font-weight: 300;
+  margin-left: 2rem;
+}
+
+.btn--form {
+  width: 150px;
+  height: 50px;
+  background: #7d97f4;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 22px;
+  box-shadow: rgb(0 0 0 / 25%) 0px 4px 12px;
+  display: block;
+  text-align: center;
+}
+
+.btn--form:hover{
+  background-color: #160d89;
+}
+

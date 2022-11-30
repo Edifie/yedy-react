@@ -16,10 +16,10 @@ const NavLinks = () => {
         <NavLink to='/resources'>Resources</NavLink>
     </li>
     <li>
-        <NavLink to='/forms'>Forms</NavLink>
+        <NavLink to='/pages/new'>Add new page</NavLink>
     </li>
     <li>
-        <NavLink to='/pages/new'>Add new page</NavLink>
+        <NavLink to='/register'>Register</NavLink>
     </li>
    </ul>
   )
