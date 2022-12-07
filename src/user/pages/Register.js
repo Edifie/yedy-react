@@ -1,27 +1,36 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Formik, Field, Form } from "formik";
+import Axios from "axios";
+import * as Yup from "yup";
+
 import "./Auth.css";
 import register from "./register.png";
 
-const Register = () => {
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+const Signup = () => {
+  const LoginSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email").required("Email required"),
+    password: Yup.string()
+      .min(6, "Password should contain minimum 6 characters.")
+      .required("Password required."),
+    name: Yup.string().required("Name required."),
+  });
 
-    try {
-      await fetch("http://localhost:8080/api/users/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: name,
-          email: email,
-          password: password,
-        }),
+
+  const handleSubmit = async (values) => {
+    await Axios({
+      method: "POST",
+      url: "http://localhost:8080/api/users/signup",
+      data: values,
+    })
+      .then((res) => {
+        console.log(res);
+        alert("Succesffuly registered!");
+      })
+      .catch((res) => {
+        console.log(res);
       });
-    } catch (err) {
-      console.log("err", err);
-    }
+    console.log(values);
   };
 
   // after submitting the form redirect to /users
@@ -32,81 +41,94 @@ const Register = () => {
     }, 2000);
   };
 
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
   return (
-    <div className="grid-container__auth">
-      <div className="grid-left__auth">
-        <img src={register} alt="register" />
-      </div>
+    <div>
+      <Formik
+        initialValues={{
+          email: "",
+          password: "",
+          name: ""
+        }}
+        validationSchema={LoginSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ errors, touched }) => (
+          <div className="grid-container__auth">
+            <div className="grid-left__auth" id="login">
+              <img src={register} alt="register" />
+            </div>
 
-      <div className="grid-right__auth ">
-        <br />
-        <br />
+            <div className="grid-right__auth ">
+              <br />
 
-        <form onSubmit={handleSubmit} className="form__auth">
-          <h1>Create your account</h1>
+              <Form className="form__auth">
+                <h1>Create your account</h1>
 
-          <input
-            className="input__auth input-field"
-            value={name}
-            name="name"
-            id="name"
-            placeholder="Full name"
-            onChange={(e) => setName(e.target.value)}
-          ></input>
-          <br />
-          <br />
+                <div className="field--margin">
+                  <Field
+                    className="input__auth"
+                    type="text"
+                    name="name"
+                    placeholder="Full name"
+                  />
 
-          <input
-            className="input__auth input-field"
-            value={email}
-            name="email"
-            id="email"
-            placeholder="email@email.com"
-            onChange={(e) => setEmail(e.target.value)}
-          ></input>
-          <br />
-          <br />
+                  {errors.name && touched.name ? (
+                    <div className="error--form">{errors.name}</div>
+                  ) : null}
+                </div>
 
-          <input
-            className="input__auth input-field"
-            value={password}
-            name="password"
-            id="password"
-            type="password"
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-          ></input>
+                <div className="field--margin">
+                  <Field
+                    className="input__auth"
+                    type="email"
+                    name="email"
+                    placeholder="Email"
+                  />
 
-          <br />
-          <br />
+                  {errors.email && touched.email ? (
+                    <div className="error--form">{errors.email}</div>
+                  ) : null}
+                </div>
 
-          <button
-            onClick={RedirecToHome}
-            className="btn--auth"
-            id="register"
-            type="submit"
-          >
-            Register
-          </button>
+                <div className="field--margin">
+                  <Field
+                    className="input__auth"
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                  />
+                  {errors.password && touched.password ? (
+                    <div className="error--form">{errors.password}</div>
+                  ) : null}
+                </div>
 
-          <br />
-          <br />
-        </form>
+                <div className="field--margin">
+                  <button
+                    onClick={RedirecToHome}
+                    className="btn--auth"
+                    id="register"
+                    type="submit"
+                  >
+                    Register
+                  </button>
+                </div>
+              </Form>
 
-        <div className="login-user">
-          <hr />
-          <p>Have an account?</p>
-          <Link id="create-href" to="/login">
-            Login here
-          </Link>
-        </div>
-      </div>
+              <div className="field--margin">
+                <div className="login-user">
+                  <hr />
+                  <p>Have an account?</p>
+                  <Link id="create-href" to="/login">
+                    Login here
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+      </Formik>
     </div>
   );
 };
 
-export default Register;
+export default Signup;

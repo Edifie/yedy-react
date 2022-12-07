@@ -1,26 +1,34 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Formik, Field, Form } from "formik";
+import Axios from "axios";
+import * as Yup from "yup";
+
 import "./Auth.css";
 import login from "./login.png";
 
 const Login = () => {
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const LoginSchema = Yup.object().shape({
+    email: Yup.string().email("Invalid email").required("Email required"),
+    password: Yup.string()
+      .min(6, "Password should contain minimum 6 characters.")
+      .required("Password required."),
+  });
 
-    try {
-      await fetch("http://localhost:8080/api/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: email,
-          password: password,
-        }),
+  const handleSubmit = async (values) => {
+    await Axios({
+      method: "POST",
+      url: "http://localhost:8080/api/users/login",
+      data: values,
+    })
+      .then((res) => {
+        console.log(res);
+        alert("Succesffuly logged in!");
+      })
+      .catch((res) => {
+        console.log(res);
       });
-    } catch (err) {
-      console.log("err", err);
-    }
+    console.log(values);
   };
 
   // after submitting the form redirect to /users
@@ -31,67 +39,75 @@ const Login = () => {
     }, 2000);
   };
 
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
   return (
-    <div className="grid-container__auth">
-      <div className="grid-left__auth" id="login">
-        <img src={login} alt="register" />
-      </div>
+    <div>
+      <Formik
+        initialValues={{
+          email: "",
+          password: "",
+        }}
+        validationSchema={LoginSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ errors, touched }) => (
+          <div className="grid-container__auth">
+            <div className="grid-left__auth" id="login">
+              <img src={login} alt="register" />
+            </div>
 
-      <div className="grid-right__auth ">
-        <br />
-        <br />
+            <div className="grid-right__auth ">
+              <br />
 
-        <form onSubmit={handleSubmit} className="form__auth">
-          <h1>Log in to your account</h1>
+              <Form className="form__auth">
+                <h1>Log in to your account</h1>
 
-          <input
-            className="input__auth input-field"
-            value={email}
-            name="email"
-            id="email"
-            placeholder="email@email.com"
-            onChange={(e) => setEmail(e.target.value)}
-          ></input>
-          <br />
-          <br />
+                <div className="field--margin">
+                  <Field
+                    className="input__auth"
+                    type="email"
+                    name="email"
+                    placeholder="Please enter your email"
+                  />
 
-          <input
-            className="input__auth input-field"
-            value={password}
-            name="password"
-            id="password"
-            type="password"
-            placeholder="Password"
-            onChange={(e) => setPassword(e.target.value)}
-          ></input>
+                  {errors.email && touched.email ? (
+                    <div className="error--form">{errors.email}</div>
+                  ) : null}
+                </div>
 
-          <br />
-          <br />
 
-          <button
-            onClick={RedirecToHome}
-            className="btn--auth"
-            id="register"
-            type="submit"
-          >
-            Login
-          </button>
+                <div className="field--margin">
+                <Field
+                  className="input__auth input-field"
+                  type="password"
+                  name="password"
+                  placeholder="Please enter your password"
+                />
+                {errors.password && touched.password ? (
+                  <div className="error--form">{errors.password}</div>
+                ) : null}
+                </div>
 
-          <br />
-          <br />
-        </form>
+                <button
+                  onClick={RedirecToHome}
+                  className="btn--auth"
+                  id="register"
+                  type="submit"
+                >
+                  Login
+                </button>
+              </Form>
 
-        <div className="login-user">
-          <hr />
-          <p>Don't have an account?</p>
-          <Link id="create-href" to="/register">
-            Register here
-          </Link>
-        </div>
-      </div>
+              <div className="login-user">
+                <hr />
+                <p>Don't have an account?</p>
+                <Link id="create-href" to="/register">
+                  Register here
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
+      </Formik>
     </div>
   );
 };

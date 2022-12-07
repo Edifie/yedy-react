@@ -1,22 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+
+import axios from "axios";
 import UsersList from "../components/UsersList";
 
 const Users = () => {
-  //dummy data because we don't have backend to fecth data yet!
-  // Every user needs to have an ID, Image, Name and Forms (UserList.js)
+  const [loadedUsers, setloadedUsers] = useState([]);
 
-  const USERS = [
-    {
-      id: "u1",
-      name: "dilan taskin",
-      image:
-        "https://pbs.twimg.com/profile_images/1585926348153004033/72DM34bT_400x400.jpg",
-      pages: 1,
-    },
-  ];
+  const getUsers = async () => {
+    await axios({
+      method: "GET",
+      url: "http://localhost:8080/api/users/",
+      header: "Content Type: application/json",
+    })
+      .then((res) => {
+        console.log(res);
+        setloadedUsers(res.data.users);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-  /* It requires a item prop that should be an array, because we expect from UserList.js */
-  return <UsersList items={USERS} />;
+  useEffect(() => {
+    getUsers();
+  }, []);
+
+  return <UsersList items={loadedUsers} />;
 };
 
 export default Users;

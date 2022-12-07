@@ -11,7 +11,7 @@ const PagesList = (props) => {
       <div className="place-list center">
         <Card>
           <h2>No pages found. Maybe create one?</h2>
-          <button>Add Page</button>
+          <button >Add Page</button>
         </Card>
       </div>
     );

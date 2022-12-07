@@ -9,6 +9,8 @@ import UpdatePage from "./page/pages/UpdatePage";
 import Register from "./user/pages/Register";
 import Login from "./user/pages/Login";
 import NewPage from "./page/pages/NewPage";
+import Template from "./template/pages/Template";
+
 
 const App = () => {
   // We wrap this aroung everthing that is part of the app that should be able to use the router.
@@ -26,6 +28,8 @@ const App = () => {
           <Route path="/pages/:pageId" element={<UpdatePage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/template" element={<Template />} />
+
         </Routes>
       </main>
     </BrowserRouter>

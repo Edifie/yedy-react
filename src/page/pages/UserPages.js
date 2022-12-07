@@ -1,38 +1,34 @@
-import React from 'react'
-import { useParams } from 'react-router-dom'
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
-
-import PagesList from '../components/PagesList'
-
-
-
-const PAGES = [
-    {
-        id: 'p1',
-        name: "Webinar Butique",
-        tema: "Boho",
-        area: "Hardware Store",
-        type: "Basic",
-        imageUrl: "https://i.ytimg.com/vi/U72Aoxuv5d8/maxresdefault.jpg",
-        creator: "u1"
-
-    }
-]
+import PagesList from "../components/PagesList";
 
 const UserPages = () => {
-    //it has access to dynamic segments (:/userId in App.js)
+  const [loadedPages, setLoadedPages] = useState([]);
 
-    /* useParams will return an object which has dynamic segments that set up in the route config as properties */
-    const userId = useParams().userId
+  const userId = useParams().userId;
 
-    //We can use a built-in filter method to run a filter on every element in PAGES and have a look at evey element and only keep it in the newly returned array
+  const getPages = async () => {
+    await axios({
+      method: "GET",
+      url: `http://localhost:8080/api/pages/user/${userId}`,
+      header: "Content Type: application/json"
+    })
+      .then((res) => {
+        console.log(res);
+        setLoadedPages(res.data.pages);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
-    /* Filter will return a new array if the creator of that page we+re looking at is equal to userId and then we want to forward loaded as return */
-    const loadedPages = PAGES.filter((page) => page.creator === userId)
+  useEffect(() => {
+    getPages();
+  }, [userId]);
 
-  return (
-   <PagesList items={loadedPages} />
-  )
-}
+  return <PagesList items={loadedPages} />;
+};
 
-export default UserPages
+export default UserPages;

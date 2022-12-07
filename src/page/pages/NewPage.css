@@ -88,3 +88,10 @@
   background-color: #160d89;
 }
 
+.error--form{
+  font-size: 15px;
+  color: #D63301;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
