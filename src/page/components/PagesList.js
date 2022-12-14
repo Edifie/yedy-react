@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import Card from "../../shared/components/UIElements/Card";
 import PageItem from "./PageItem";
@@ -11,7 +12,9 @@ const PagesList = (props) => {
       <div className="place-list center">
         <Card>
           <h2>No pages found. Maybe create one?</h2>
-          <button >Add Page</button>
+          <button>
+            <Link to='/pages/new'>Add page</Link>
+          </button>
         </Card>
       </div>
     );
