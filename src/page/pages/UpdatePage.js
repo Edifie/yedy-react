@@ -3,9 +3,9 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 import Card from "../../shared/components/UIElements/Card";
-import BaseTemplateRealEstate from "../../template/components/BaseTemplateRealEstate";
-import BaseTemplateSellClothes from "../../template/components/BaseTemplateSellClothes";
-import BaseTemplateHardwareStore from "../../template/components/BaseTemplateHardwareStore";
+import TemplateRealEstate from "../../template/pages/TemplateRealEstate";
+import TemplateSellClothes from "../../template/pages/TemplateSellClothes";
+import TemplateHardwareStore from "../../template/pages/TemplateHardwareStore";
 
 import "./PageForm.css";
 import "./Template.css";
@@ -60,11 +60,11 @@ const UpdatePage = () => {
     >
       <div>
         {area === "Real Estate" ? (
-          <BaseTemplateRealEstate />
+          <TemplateRealEstate />
         ) : area === "Sell Clothes" ? (
-          <BaseTemplateSellClothes />
+          <TemplateSellClothes />
         ) : (
-          <BaseTemplateHardwareStore />
+          <TemplateHardwareStore />
         )}
       </div>
     </div>

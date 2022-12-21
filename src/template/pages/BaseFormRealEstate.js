@@ -1,8 +1,16 @@
 import React from "react";
+import { useNavigate, useParams } from "react-router-dom"
 import { Formik, Field, Form } from "formik";
+import Axios from "axios"
 import * as Yup from "yup";
 
-const BaseTemplate = () => {
+import FileInput from "../components/FileInput";
+
+const BaseFormRealEstate = () => {
+
+  const pageId = useParams().pageId;
+  const navigate = useNavigate();
+
   const FormSchema = Yup.object().shape({
     price: Yup.number().required("Cannot leave blank this field."),
     location: Yup.string()
@@ -18,25 +26,45 @@ const BaseTemplate = () => {
       .required("Cannot leave blank this field."),
   });
 
-  const submitImgHandler = (values) => {
-    console.log(values.photo);
+  const submitHandler = async (values) => {
+
+
+    const formData = new FormData();
+
+    formData.append('price', values.price);
+    formData.append('location', values.location);
+    formData.append('category', values.category);
+    formData.append('numberOfRooms', values.numberOfRooms);
+    formData.append('adStatus', values.adStatus);
+    formData.append('metreSquare', values.metreSquare);
+    formData.append('description', values.description);
+    formData.append('adTitle', values.adTitle);
+    formData.append('pageId', pageId)
+
+    for (const image of values.images) {
+      formData.append('images', image);
+  }
+
+    await Axios({
+      method: "POST",
+      url: "http://localhost:8080/api/RE/template",
+      data: formData,
+      headers: {
+        'Content-Type': 'multipart/form-data'
+      }
+    })
+      .then((res) => {
+        console.log(res);
+        alert("Succesffuly created the form!");
+      })
+      .catch((res) => {
+        console.log(res);
+      });
+
+    console.log(values);
+    navigate(`/pages/${pageId}`);
   };
 
-  const submitHandler = (values) => {
-    // await Axios({
-    //   method: "POST",
-    //   url: "http://localhost:8080/api/pages/",
-    //   data: values,
-    // })
-    //   .then((res) => {
-    //     console.log(res);
-    //     alert("Succesffuly created the form!");
-    //   })
-    //   .catch((res) => {
-    //     console.log(res);
-    //   });
-    console.log(values);
-  };
 
   return (
     <div>
@@ -50,15 +78,14 @@ const BaseTemplate = () => {
           metreSquare: "", //150m2
           description: "",
           adTitle: "",
-          photo: "",
+          images: [],
         }}
         validationSchema={FormSchema}
         onSubmit={(values) => submitHandler(values)}
       >
         {({ errors, touched }) => (
           <Form>
-            {/* Ilan kategorisi */}
-            <div>
+            <div className="main">
               <div>
                 <label>Category</label>
                 <div>
@@ -143,13 +170,17 @@ const BaseTemplate = () => {
 
               <div>
                 <label>Upload photos</label>
-                <Field type="file" name="photo" accept="image/*" />
-                <button type="submit" onSubmit={submitImgHandler}>
-                  Submit image
-                </button>
+                <FileInput
+                  name="images"
+                  multiple
+                  type="file"
+                  value={undefined}
+                />
               </div>
 
-              <button type="submit">Submit</button>
+              <button className="btn--form" type="submit">
+                Submit
+              </button>
             </div>
           </Form>
         )}
@@ -158,4 +189,4 @@ const BaseTemplate = () => {
   );
 };
 
-export default BaseTemplate;
+export default BaseFormRealEstate;

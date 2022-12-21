@@ -9,6 +9,8 @@ import UpdatePage from "./page/pages/UpdatePage";
 import Register from "./user/pages/Register";
 import Login from "./user/pages/Login";
 import NewPage from "./page/pages/NewPage";
+import BaseFormRealEstate from "./template/pages/BaseFormRealEstate"
+import ExampleImageUpload from "./template/pages/ExampleImageUpload";
 
 
 const App = () => {
@@ -27,6 +29,8 @@ const App = () => {
           <Route path="/pages/:pageId" element={<UpdatePage />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/pages/:pageId/formRE" element={<BaseFormRealEstate />} />
+
 
         </Routes>
       </main>
