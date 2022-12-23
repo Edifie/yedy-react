@@ -16,26 +16,39 @@ const Login = () => {
   });
 
   const handleSubmit = async (values) => {
-    await Axios({
-      method: "POST",
-      url: "http://localhost:8080/api/users/login",
-      data: values,
-    })
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
+    await Axios(
+      {
+        method: "POST",
+        url: "http://localhost:8080/api/users/login",
+        data: values,
+      },
+      config
+    )
       .then((res) => {
         console.log(res);
-        alert("Succesffuly logged in!");
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem("userId", res.data.userId);
+        console.log("userID --> ", res.data.userId);
       })
       .catch((res) => {
         console.log(res);
       });
     console.log(values);
+    console.log(localStorage.getItem("token"));
   };
 
-  // after submitting the form redirect to /users
+  // after submitting the form redirect to user's page
   const navigate = useNavigate();
-  const RedirecToHome = () => {
+  const userPagesUrl = () => {
     setTimeout(() => {
-      navigate("/users");
+      navigate(`/${localStorage.getItem("userId")}/pages`);
     }, 2000);
   };
 
@@ -74,21 +87,20 @@ const Login = () => {
                   ) : null}
                 </div>
 
-
                 <div className="field--margin">
-                <Field
-                  className="input__auth input-field"
-                  type="password"
-                  name="password"
-                  placeholder="Please enter your password"
-                />
-                {errors.password && touched.password ? (
-                  <div className="error--form">{errors.password}</div>
-                ) : null}
+                  <Field
+                    className="input__auth input-field"
+                    type="password"
+                    name="password"
+                    placeholder="Please enter your password"
+                  />
+                  {errors.password && touched.password ? (
+                    <div className="error--form">{errors.password}</div>
+                  ) : null}
                 </div>
 
                 <button
-                  onClick={RedirecToHome}
+                  onClick={userPagesUrl}
                   className="btn--auth"
                   id="register"
                   type="submit"
