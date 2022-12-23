@@ -16,28 +16,37 @@ const Signup = () => {
     name: Yup.string().required("Name required."),
   });
 
-
   const handleSubmit = async (values) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    };
+
     await Axios({
       method: "POST",
       url: "http://localhost:8080/api/users/signup",
       data: values,
-    })
+    }, config)
       .then((res) => {
         console.log(res);
-        alert("Succesffuly registered!");
+        localStorage.setItem("token", res.data.token);
+        localStorage.setItem('userId', res.data.userId);
+        console.log("userID --> ", res.data.userId)
       })
       .catch((res) => {
         console.log(res);
       });
     console.log(values);
+    console.log(config)
   };
 
-  // after submitting the form redirect to /users
+  // after submitting the form redirect to user's page
   const navigate = useNavigate();
-  const RedirecToHome = () => {
+  const userPagesUrl = () => {
     setTimeout(() => {
-      navigate("/users");
+      navigate(`/${localStorage.getItem("userId")}/pages`);
     }, 2000);
   };
 
@@ -47,7 +56,7 @@ const Signup = () => {
         initialValues={{
           email: "",
           password: "",
-          name: ""
+          name: "",
         }}
         validationSchema={LoginSchema}
         onSubmit={handleSubmit}
@@ -104,7 +113,7 @@ const Signup = () => {
 
                 <div className="field--margin">
                   <button
-                    onClick={RedirecToHome}
+                    onClick={userPagesUrl}
                     className="btn--auth"
                     id="register"
                     type="submit"
