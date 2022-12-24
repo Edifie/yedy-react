@@ -9,6 +9,7 @@ import tema from "./tema.jpg";
 import name from "./name.jpg";
 
 import "./NewPage.css";
+import { useNavigate } from "react-router-dom";
 
 const NewPage = () => {
   const FormSchema = Yup.object().shape({
@@ -18,20 +19,32 @@ const NewPage = () => {
       .required("Cannot leave blank this field."),
   });
 
+  const token = localStorage.getItem("token");
+  console.log(token);
+
   const submitHandler = async (values) => {
     await Axios({
       method: "POST",
       url: "http://localhost:8080/api/pages/",
       data: values,
+      headers: { Authorization: "Bearer " + localStorage.getItem("token") },
     })
       .then((res) => {
         console.log(res);
-        alert("Succesffuly created the form!");
       })
       .catch((res) => {
         console.log(res);
       });
     console.log(values);
+  };
+
+  let userId = localStorage.getItem("userId");
+
+  const navigate = useNavigate();
+  const redirectToUsersPage = () => {
+    setTimeout(() => {
+      navigate(`/${userId}/pages`);
+    }, 2000);
   };
 
   return (
@@ -42,12 +55,12 @@ const NewPage = () => {
           name: "",
           type: "Basic",
           tema: "Boho",
-          creator: "",
+          creator: userId,
         }}
         validationSchema={FormSchema}
         onSubmit={(values) => submitHandler(values)}
       >
-        {({ errors, touched }) => (
+        {({ errors, touched, values, setFieldValue }) => (
           <Form>
             <div className="overall--form">
               {/* AREA */}
@@ -184,9 +197,11 @@ const NewPage = () => {
                   ) : null}
                 </div>
 
-                <div className="textarea--form">
+                <div className="textarea--form hidden">
                   <Field
                     id="creator"
+                    value={userId}
+                    onChange={setFieldValue}
                     className="text--form"
                     name="creator"
                     placeholder="Creator"
@@ -201,7 +216,11 @@ const NewPage = () => {
 
             <div className="wrapper">
               <div className="box item4">
-                <button className="btn--form" type="submit">
+                <button
+                  onClick={redirectToUsersPage}
+                  className="btn--form"
+                  type="submit"
+                >
                   Submit
                 </button>
               </div>

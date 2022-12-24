@@ -5,6 +5,7 @@ import "./NavLinks.css";
 
 const NavLinks = () => {
   const [token, setToken] = useState(localStorage.getItem("token"));
+  const userId = localStorage.getItem("userId");
 
   const logout = () => {
     // remove the token from the local storage
@@ -32,6 +33,10 @@ const NavLinks = () => {
           <NavLink to="/pages/new">Add new page</NavLink>
         </li>
       )}
+
+      <li>
+        <NavLink to={"/" + userId + "/pages"}>Profile</NavLink>
+      </li>
       {!token && (
         <li>
           <NavLink to="/login">Login</NavLink>

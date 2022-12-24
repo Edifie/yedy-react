@@ -7,11 +7,17 @@ const PageItem = (props) => {
   const redirectToPage = () => {
     window.location = `/pages/${props.id}`;
   };
+
   return (
     <li className="place-item">
       <Card className="place-item__content">
         <div className="place-item__image">
-          <img src={props.image} alt={props.name} />
+          <iframe
+          title="display"
+            className="iframe"
+            scrolling="no"
+            src={`/pages/${props.id}`}
+          />
         </div>
 
         <div className="place-item__info">
@@ -23,7 +29,6 @@ const PageItem = (props) => {
 
         <div className="place-item__actions">
           <button onClick={redirectToPage}>EDIT</button>
-          <button>DELETE</button>
         </div>
       </Card>
     </li>

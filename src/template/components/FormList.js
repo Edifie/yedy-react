@@ -1,6 +1,7 @@
 import React from "react";
 import { Link, useParams } from "react-router-dom";
 
+
 import Card from "../../shared/components/UIElements/Card";
 import FormItem from "./FormItem";
 
@@ -22,8 +23,9 @@ const FormList = (props) => {
     );
   }
 
+  //Map every item into a jsx element so can be rendered as jsx here
   return (
-    //Map every item into a jsx element so can be rendered as jsx here
+    <div>
     <ul className="place-list">
       {props.items.map((template) => (
         <FormItem
@@ -41,6 +43,7 @@ const FormList = (props) => {
         />
       ))}
     </ul>
+    </div>
   );
 };
 

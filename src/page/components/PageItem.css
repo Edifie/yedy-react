@@ -48,8 +48,17 @@
   margin: 0.5rem;
 }
 
+.iframe {
+  border: 0px none;
+  margin-left: -185px;
+  height: 859px;
+  margin-top: -533px;
+  width: 926px;
+  
+}
+
 @media (min-width: 768px) {
   .place-item__image {
     height: 20rem;
-  } 
+  }
 }

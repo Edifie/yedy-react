@@ -13,7 +13,7 @@ const UserPages = () => {
     await axios({
       method: "GET",
       url: `http://localhost:8080/api/pages/user/${userId}`,
-      header: "Content Type: application/json"
+      header: "Content Type: multipart/form-data",
     })
       .then((res) => {
         console.log(res);
@@ -28,7 +28,7 @@ const UserPages = () => {
     getPages();
   }, [userId]);
 
-  return <PagesList items={loadedPages} />;
+  return <PagesList items={loadedPages}  />;
 };
 
 export default UserPages;

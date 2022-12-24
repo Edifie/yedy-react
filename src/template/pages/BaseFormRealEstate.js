@@ -1,13 +1,15 @@
 import React from "react";
-import { useNavigate, useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
-import Axios from "axios"
+import Axios from "axios";
 import * as Yup from "yup";
+
 
 import FileInput from "../components/FileInput";
 
-const BaseFormRealEstate = () => {
+import "./Template.css";
 
+const BaseFormRealEstate = () => {
   const pageId = useParams().pageId;
   const navigate = useNavigate();
 
@@ -27,31 +29,33 @@ const BaseFormRealEstate = () => {
   });
 
   const submitHandler = async (values) => {
-
-
     const formData = new FormData();
 
-    formData.append('price', values.price);
-    formData.append('location', values.location);
-    formData.append('category', values.category);
-    formData.append('numberOfRooms', values.numberOfRooms);
-    formData.append('adStatus', values.adStatus);
-    formData.append('metreSquare', values.metreSquare);
-    formData.append('description', values.description);
-    formData.append('adTitle', values.adTitle);
-    formData.append('pageId', pageId)
+    formData.append("price", values.price);
+    formData.append("location", values.location);
+    formData.append("category", values.category);
+    formData.append("numberOfRooms", values.numberOfRooms);
+    formData.append("adStatus", values.adStatus);
+    formData.append("metreSquare", values.metreSquare);
+    formData.append("description", values.description);
+    formData.append("adTitle", values.adTitle);
+    formData.append("pageId", pageId);
 
     for (const image of values.images) {
-      formData.append('images', image);
-  }
+      formData.append("images", image);
+    }
+
+    const token = localStorage.getItem("token");
+    console.log("token: ", token);
 
     await Axios({
       method: "POST",
       url: "http://localhost:8080/api/RE/template",
       data: formData,
       headers: {
-        'Content-Type': 'multipart/form-data'
-      }
+        "Content-Type": "multipart/form-data",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
     })
       .then((res) => {
         console.log(res);
@@ -178,7 +182,10 @@ const BaseFormRealEstate = () => {
                 />
               </div>
 
-              <button className="btn--form" type="submit">
+              <button
+                className="btn--form"
+                type="submit"
+              >
                 Submit
               </button>
             </div>
