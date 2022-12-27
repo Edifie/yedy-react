@@ -6,6 +6,7 @@ import UsersList from "../components/UsersList";
 const Users = () => {
   const [loadedUsers, setloadedUsers] = useState([]);
 
+
   const getUsers = async () => {
     await axios({
       method: "GET",
@@ -21,9 +22,11 @@ const Users = () => {
       });
   };
 
+ 
   useEffect(() => {
     getUsers();
   }, []);
+
 
   return <UsersList items={loadedUsers} />;
 };

@@ -7,8 +7,14 @@ import "./TemplateRealEstate.css";
 
 const TemplateRealEstate = () => {
   const [loadedTemplates, setLoadedTemplates] = useState([]);
+  const [loadedPages, setLoadedPages] = useState([]);
+  const [loadedUser, setLoadedUser] = useState(null);
+
+  const userId = localStorage.getItem("userId");
 
   const pageId = useParams().pageId;
+
+  
 
   const getTemplates = async () => {
     await axios({
@@ -31,9 +37,44 @@ const TemplateRealEstate = () => {
     console.log("Loaded Templates --> ", loadedTemplates);
   };
 
+  const getPageById = async () => {
+    await axios({
+      method: "GET",
+      url: `http://localhost:8080/api/pages/${pageId}`,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((res) => {
+        setLoadedPages(res.data.page);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    console.log("Pages --> ", loadedPages);
+  };
+
+  const getUserById = async () => {
+    await axios({
+      method: "GET",
+      url: `http://localhost:8080/api/users/${userId}`,
+      header: "Content Type: application/json",
+    })
+      .then((res) => {
+        console.log("Respond from getUserByID", res);
+        setLoadedUser(res.data.user);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    console.log("User -> ", loadedUser);
+  };
+
   useEffect(() => {
-    console.log("Inside of useEffect ->", loadedTemplates);
     getTemplates();
+    getPageById();
+    getUserById();
   }, []);
 
   const redirectToForm = () => {
@@ -56,16 +97,39 @@ const TemplateRealEstate = () => {
       });
   };
 
+  const tema = loadedPages.tema;
+
   return (
-      <div>
-        <div id="form-list">
-          <FormList items={loadedTemplates} />
+    <>
+      <button onClick={redirectToForm}>Add house</button>
+
+      <button onClick={handleDelete}>Delete Page</button>
+      <div id="container">
+        <div
+          className={
+            tema === "Boho"
+              ? "boho"
+              : tema === "Minimalist"
+              ? "minimal"
+              : "basic"
+          }
+        >
+          <div id="sidebar">
+            <div id>
+              {loadedPages ? loadedPages.name : "Loading..."}
+
+              <div id="username">
+                {loadedUser ? loadedUser.name : "Loading..."}
+                <br />
+              </div>
+            </div>
+          </div>
+          <div id="form-list">
+            <FormList items={loadedTemplates} />
+          </div>
         </div>
-
-        <button onClick={redirectToForm}>Add house</button>
-
-        <button onClick={handleDelete}>Delete Page</button>
       </div>
+    </>
   );
 };
 

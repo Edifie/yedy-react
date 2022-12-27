@@ -24,29 +24,33 @@ const Signup = () => {
       },
     };
 
-    await Axios({
-      method: "POST",
-      url: "http://localhost:8080/api/users/signup",
-      data: values,
-    }, config)
+    await Axios(
+      {
+        method: "POST",
+        url: "http://localhost:8080/api/users/signup",
+        data: values,
+      },
+      config
+    )
       .then((res) => {
         console.log(res);
         localStorage.setItem("token", res.data.token);
-        localStorage.setItem('userId', res.data.userId);
-        console.log("userID --> ", res.data.userId)
+        localStorage.setItem("userId", res.data.userId);
+        console.log("userID --> ", res.data.userId);
       })
       .catch((res) => {
         console.log(res);
       });
     console.log(values);
-    console.log(config)
+    console.log(config);
+    console.log(localStorage.getItem("token"));
   };
 
   // after submitting the form redirect to user's page
   const navigate = useNavigate();
   const userPagesUrl = () => {
     setTimeout(() => {
-      navigate(`/${localStorage.getItem("userId")}/pages`);
+      navigate('/login');
     }, 2000);
   };
 

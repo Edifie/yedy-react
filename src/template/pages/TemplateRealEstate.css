@@ -1,178 +1,21 @@
-/* Left sidebar */
-.sidebar {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 200px;
-    background-color: #f1f1f1;
+.boho {
+  background-color: #eee0cb;
+
 }
 
-/* Business image */
-.sidebar img {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    margin-bottom: 20px;
+#sidebar {
+  width: 400px;
+  height: 700px;
+  background: #bcbcbc;
+  border-radius: 10px;
+
+  position: -webkit-sticky;
+  position: absolute;
+  text-align: center;
+
+
 }
 
-/* Business info */
-.sidebar .info {
-    text-align: center;
-}
-
-.sidebar .info h1 {
-    margin-bottom: 5px;
-}
-
-.sidebar .info p {
-    margin: 0;
-    font-size: 14px;
-    color: #666;
-}
-
-/* Right section */
-.houses {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
-
-/* House cards */
-.house {
-    width: 300px;
-    height: 300px;
-    margin-bottom: 20px;
-    border: 1px solid #ccc;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-.house img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.house .description {
-    padding: 10px;
-}
-
-.house .description h2 {
-    margin-bottom: 5px;
-}
-
-.house .description p {
-    margin: 0;
-    font-size: 14px;
-    color: #666;
-}
-
-/* Modal */
-.modal {
-    display: none
-}
-
-/* Modal overlay */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 9999;
-}
-
-/* Modal content */
-.modal-content {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background-color: #fff;
-    width: 500px;
-    height: 500px;
-    padding: 20px;
-    box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
-    overflow-y: scroll;
-}
-
-/* Modal header */
-.modal-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-}
-
-.modal-header h1 {
-    margin: 0;
-}
-
-.modal-header .close-button {
-    background-color: transparent;
-    border: none;
-    color: #666;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-/* Modal body */
-.modal-body {
-    display: flex;
-    flex-direction: column;
-}
-
-.modal-body img {
-    width: 100%;
-    height: 300px;
-    object-fit: cover;
-    margin-bottom: 20px;
-}
-
-.modal-body p {
-    margin: 0;
-    font-size: 14px;
-    color: #666;
-}
-
-/* Modal footer */
-.modal-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.modal-footer .price {
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.modal-footer .contact-button {
-    background-color: #333;
-    color: #fff;
-    font-size: 16px;
-    padding: 10px 20px;
-    border-radius: 4px;
-    cursor: pointer;
-}
-
-/* Responsive design */
-@media screen and (max-width: 768px) {
-    .sidebar {
-        width: 100%;
-    }
-
-    .houses {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .house {
-        width: 80%;
-    }
-
-    .modal-content {
-        width: 80%;
-    }
+#container {
+  position: absolute;
 }

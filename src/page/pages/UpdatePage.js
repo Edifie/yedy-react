@@ -8,7 +8,7 @@ import TemplateSellClothes from "../../template/pages/TemplateSellClothes";
 import TemplateHardwareStore from "../../template/pages/TemplateHardwareStore";
 
 import "./PageForm.css";
-import "./Template.css";
+
 
 const UpdatePage = () => {
   const [updatedPage, setUpdatedPage] = useState();
@@ -45,19 +45,11 @@ const UpdatePage = () => {
       </div>
     );
   }
-
-  const tema = updatedPage.tema;
-  console.log(tema);
-
   const area = updatedPage.area;
   console.log(area);
 
   return (
-    <div
-      className={
-        tema === "Boho" ? "boho" : tema === "Minimalist" ? "minimal" : "basic"
-      }
-    >
+
       <div>
         {area === "Real Estate" ? (
           <TemplateRealEstate />
@@ -67,7 +59,7 @@ const UpdatePage = () => {
           <TemplateHardwareStore />
         )}
       </div>
-    </div>
+
   );
 };
 

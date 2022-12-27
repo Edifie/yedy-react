@@ -1,35 +1,49 @@
 import React from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import Card from "../../shared/components/UIElements/Card";
 
 import "./FormItem.css";
 
 const FormItem = (props) => {
-  return (
-    <div className="main">
-      <li className="place-item">
-        <div className="place-item__image">
-          {props.images &&
-            props.images.length > 0 &&
-            props.images.map((image, index) => (
-              <img
-                key={image.id || index}
-                src={`data:${image.contentType};base64,${image.imageBase64}`}
-                alt={image.filename}
-              />
-            ))}
-        </div>
+  const pageId = useParams().pageId;
+  const navigate = useNavigate();
 
-        <div className="place-item__info">
-          <h2>{props.category}</h2>
-          <h4>{props.price}</h4>
+  const handleTemplateClick = () => {
+    navigate(`/pages/${pageId}/${props.id}`);
+  };
+
+  console.log("id of template --> ",props.id)
+
+  const images =
+    props.images &&
+    props.images
+      .slice(0, 1)
+      .map((image, index) => (
+        <img
+          key={image.id || index}
+          src={`data:${image.contentType};base64,${image.imageBase64}`}
+          alt={image.filename}
+        />
+      ));
+
+  return (
+    <li
+     className="real-estate-item">
+      <Card className="real-estate-item__content" >
+        <div className="real-estate-item__image">{images}</div>
+
+        <div className="real-estate-item__info">
+          <h1>{props.price} €</h1>
+          <h3>
+            {props.category}, {props.adStatus}, {props.numberOfRooms}+1,{" "}
+            {props.metreSquare}m²
+          </h3>
           <h4>{props.location}</h4>
-          <h4>{props.numberOfRooms}</h4>
-          <h4>{props.adStatus}</h4>
-          <h4>{props.metreSquare}</h4>
-          <h4>{props.description}</h4>
-          <h4>{props.adTitle}</h4>
+         
         </div>
-      </li>
-    </div>
+        <button onClick={handleTemplateClick}>Edit</button>
+      </Card>
+    </li>
   );
 };
 
