@@ -1,0 +1,3 @@
+- add edit feature to templates
+- add customize link to show pages
+- add open modal to display details about templates
