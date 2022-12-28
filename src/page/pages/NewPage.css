@@ -96,6 +96,12 @@
   padding: 0;
 }
 
+.page-name__img img{
+  width: 23rem;
+  height: auto;
+  margin-left: 1.5rem;
+}
+
 
 .hidden{
  display: none;

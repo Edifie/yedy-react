@@ -7,6 +7,7 @@ import area from "./area.jpg";
 import responsive from "./responsive.jpg";
 import tema from "./tema.jpg";
 import name from "./name.jpg";
+import url from "./url.jpg"
 
 import "./NewPage.css";
 import { useNavigate } from "react-router-dom";
@@ -16,6 +17,10 @@ const NewPage = () => {
     name: Yup.string()
       .min(2, "Company name should be at least two characters.")
       .max(50, "Company name cannot pass to 50 characters.")
+      .required("Cannot leave blank this field."),
+    url: Yup.string()
+      .min(2, "URL should be at least two characters.")
+      .max(20, "URL name cannot pass to 20 characters.")
       .required("Cannot leave blank this field."),
   });
 
@@ -55,6 +60,7 @@ const NewPage = () => {
           name: "",
           type: "Basic",
           tema: "Boho",
+          url: "",
           creator: userId,
         }}
         validationSchema={FormSchema}
@@ -209,8 +215,37 @@ const NewPage = () => {
                 </div>
               </div>
 
-              <div className="box item3">
+              <div className="box item3 page-name__img">
                 <img src={name} alt="name" />
+              </div>
+            </div>
+
+            {/* URL */}
+
+            <div className="wrapper">
+              <div className="box item1">
+                <label htmlFor="URL">
+                  5. Give a customised URL to your company
+                </label>
+                <hr />
+              </div>
+
+              <div className="box item2">
+                <div className="textarea--form">
+                  <Field
+                    id="url"
+                    name="url"
+                    className="text--form"
+                    placeholder="Enter your customised URL"
+                  />
+                  {errors.url && touched.url ? (
+                    <div className="error--form">{errors.url}</div>
+                  ) : null}
+                </div>
+              </div>
+
+              <div className="box item3">
+                <img src={url} alt="url" />
               </div>
             </div>
 

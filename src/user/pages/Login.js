@@ -4,7 +4,6 @@ import { Formik, Field, Form } from "formik";
 import Axios from "axios";
 import * as Yup from "yup";
 
-
 import "./Auth.css";
 import login from "./login.png";
 
@@ -50,6 +49,7 @@ const Login = () => {
   const userPagesUrl = () => {
     setTimeout(() => {
       navigate(`/${localStorage.getItem("userId")}/pages`);
+      window.location.reload();
     }, 2000);
   };
 

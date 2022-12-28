@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import FormList from "../components/FormList";
 
@@ -10,11 +10,10 @@ const TemplateRealEstate = () => {
   const [loadedPages, setLoadedPages] = useState([]);
   const [loadedUser, setLoadedUser] = useState(null);
 
+
   const userId = localStorage.getItem("userId");
 
   const pageId = useParams().pageId;
-
-  
 
   const getTemplates = async () => {
     await axios({
@@ -47,6 +46,7 @@ const TemplateRealEstate = () => {
     })
       .then((res) => {
         setLoadedPages(res.data.page);
+        localStorage.setItem("url", res.data.page.url);
       })
       .catch((err) => {
         console.log(err);
@@ -54,6 +54,8 @@ const TemplateRealEstate = () => {
 
     console.log("Pages --> ", loadedPages);
   };
+
+  console.log(localStorage.getItem("url"));
 
   const getUserById = async () => {
     await axios({
@@ -70,6 +72,7 @@ const TemplateRealEstate = () => {
       });
     console.log("User -> ", loadedUser);
   };
+
 
   useEffect(() => {
     getTemplates();
@@ -97,6 +100,10 @@ const TemplateRealEstate = () => {
       });
   };
 
+  const handleShare = async () => {
+    window.open(`http://localhost:3000/DT/${localStorage.getItem("url")}`);
+  };
+
   const tema = loadedPages.tema;
 
   return (
@@ -104,6 +111,7 @@ const TemplateRealEstate = () => {
       <button onClick={redirectToForm}>Add house</button>
 
       <button onClick={handleDelete}>Delete Page</button>
+      <button onClick={handleShare}>Share Page</button>
       <div id="container">
         <div
           className={
@@ -115,7 +123,7 @@ const TemplateRealEstate = () => {
           }
         >
           <div id="sidebar">
-            <div id>
+            <div >
               {loadedPages ? loadedPages.name : "Loading..."}
 
               <div id="username">

@@ -10,11 +10,11 @@ import Register from "./user/pages/Register";
 import Login from "./user/pages/Login";
 import NewPage from "./page/pages/NewPage";
 import BaseFormRealEstate from "./template/pages/BaseFormRealEstate";
-import UpdateTemplate from "./template/pages/UpdateRealEstate"
+import UpdateTemplate from "./template/pages/UpdateRealEstate";
+import SharedRealEstate from "./shared template/pages/SharedRealEstate.js"
 
 import "./App.css";
 import ProtectedRoutes from "./ProtectedRoute";
-
 
 const App = () => {
   // See Notion - React/Router-dom-v6 for Router usage in version 6
@@ -34,12 +34,15 @@ const App = () => {
               path="/pages/:pageId/formRE"
               element={<BaseFormRealEstate />}
             />
-            <Route path="/pages/:pageId/:templateId" element={<UpdateTemplate />}/>
-
+            <Route
+              path="/pages/:pageId/:templateId"
+              element={<UpdateTemplate />}
+            />
+            <Route path="/DT/:url" element={<SharedRealEstate />} />
           </Route>
 
           <Route path="/home" element={<Welcome />} />
-         
+
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
         </Routes>

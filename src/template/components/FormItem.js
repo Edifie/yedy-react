@@ -1,3 +1,4 @@
+import axios from "axios";
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Card from "../../shared/components/UIElements/Card";
@@ -12,7 +13,25 @@ const FormItem = (props) => {
     navigate(`/pages/${pageId}/${props.id}`);
   };
 
-  console.log("id of template --> ",props.id)
+  console.log("id of template --> ", props.id);
+  const handleDelete = async () => {
+    await axios({
+      method: "DELETE",
+      url: `http://localhost:8080/api/RE/template/${props.id}`,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((res) => {
+        console.log("Respond from the request -->", res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  };
 
   const images =
     props.images &&
@@ -27,9 +46,8 @@ const FormItem = (props) => {
       ));
 
   return (
-    <li
-     className="real-estate-item">
-      <Card className="real-estate-item__content" >
+    <li className="real-estate-item">
+      <Card className="real-estate-item__content">
         <div className="real-estate-item__image">{images}</div>
 
         <div className="real-estate-item__info">
@@ -39,9 +57,9 @@ const FormItem = (props) => {
             {props.metreSquare}m²
           </h3>
           <h4>{props.location}</h4>
-         
         </div>
         <button onClick={handleTemplateClick}>Edit</button>
+        <button onClick={handleDelete}>Delete</button>
       </Card>
     </li>
   );

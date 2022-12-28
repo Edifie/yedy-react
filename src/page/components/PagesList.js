@@ -35,7 +35,7 @@ const PagesList = (props) => {
           area={page.area}
           creatorId={page.creator}
           type={page.type}
-          screenshot={page.screenshot}
+          url={page.url}
         />
       ))}
     </ul>
