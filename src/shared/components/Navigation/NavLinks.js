@@ -35,7 +35,7 @@ const NavLinks = () => {
       )}
 
       <li>
-        <NavLink to={"/" + userId + "/pages"}>Profile</NavLink>
+        <NavLink to={"/profile" + "/" + userId}>Profile</NavLink>
       </li>
       {!token && (
         <li>

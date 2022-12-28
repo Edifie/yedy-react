@@ -58,7 +58,6 @@ const NewPage = () => {
         initialValues={{
           area: "Real Estate",
           name: "",
-          type: "Basic",
           tema: "Boho",
           url: "",
           creator: userId,
@@ -110,43 +109,10 @@ const NewPage = () => {
               </div>
             </div>
 
-            {/* TYPE */}
-            <div className="wrapper">
-              <div className="box item1">
-                <label> 2. What type of website of your choice?</label>
-                <hr />
-              </div>
-
-              <div className="box item2">
-                <div className="radio">
-                  <label>
-                    <Field
-                      checked={true}
-                      type="radio"
-                      name="type"
-                      value="Basic"
-                    />{" "}
-                    Basic
-                  </label>
-                </div>
-
-                <div className="radio">
-                  <label>
-                    <Field type="radio" name="type" value="Responsive" />{" "}
-                    Responsive
-                  </label>
-                </div>
-              </div>
-
-              <div className="box item3">
-                <img src={tema} alt="tema" />
-              </div>
-            </div>
-
             {/* TEMA */}
             <div className="wrapper">
               <div className="box item1">
-                <label>3. What is your tema of choice?</label>
+                <label>2. What is your tema of choice?</label>
                 <hr />
               </div>
 
@@ -186,7 +152,7 @@ const NewPage = () => {
 
             <div className="wrapper">
               <div className="box item1">
-                <label htmlFor="Name">4. Give a name to your company</label>
+                <label htmlFor="Name">3. Give a name to your company</label>
                 <hr />
               </div>
 
@@ -225,7 +191,7 @@ const NewPage = () => {
             <div className="wrapper">
               <div className="box item1">
                 <label htmlFor="URL">
-                  5. Give a customised URL to your company
+                  4. Give customised URL to your company
                 </label>
                 <hr />
               </div>

@@ -11,7 +11,8 @@ const PageItem = (props) => {
   return (
     <li className="place-item">
       <Card className="place-item__content">
-        <div className="place-item__image">
+        <div className="place-item__image ">
+
           <iframe
           title="display"
             className="iframe"

@@ -15,6 +15,7 @@ import SharedRealEstate from "./shared template/pages/SharedRealEstate.js"
 
 import "./App.css";
 import ProtectedRoutes from "./ProtectedRoute";
+import Profile from "./user/pages/Profile";
 
 const App = () => {
   // See Notion - React/Router-dom-v6 for Router usage in version 6
@@ -39,6 +40,7 @@ const App = () => {
               element={<UpdateTemplate />}
             />
             <Route path="/DT/:url" element={<SharedRealEstate />} />
+            <Route path="/profile/:userId" element={<Profile />} />
           </Route>
 
           <Route path="/home" element={<Welcome />} />
