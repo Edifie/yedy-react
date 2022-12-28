@@ -1,3 +1,6 @@
-- add edit feature to templates
+- add edit feature to templates / DONE
 - add customize link to show pages
 - add open modal to display details about templates
+- add delete feture to templates / DONE
+- add image and location to user profile
+- add authentication when sharing page in terms of edit and delete
