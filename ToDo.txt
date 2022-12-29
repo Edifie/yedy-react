@@ -2,4 +2,5 @@
 - add customize link to show pages / DONE
 - add open modal to display details about templates
 - add delete feture to templates / DONE
-- add image and location to user profile
+- add image and location to user profile /DONE
+- finish design of Real Estate
