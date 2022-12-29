@@ -5,7 +5,7 @@ import Axios from "axios";
 import * as Yup from "yup";
 
 
-import FileInput from "../components/FileInput";
+import FileInput from "../../shared/components/UIElements/FileInput"
 
 import "./Template.css";
 

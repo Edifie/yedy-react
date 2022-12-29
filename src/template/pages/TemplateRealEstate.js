@@ -108,11 +108,11 @@ const TemplateRealEstate = () => {
 
   return (
     <>
+     
+      <div id="container">
       <button onClick={redirectToForm}>Add house</button>
-
       <button onClick={handleDelete}>Delete Page</button>
       <button onClick={handleShare}>Share Page</button>
-      <div id="container">
         <div
           className={
             tema === "Boho"

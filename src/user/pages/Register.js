@@ -50,7 +50,7 @@ const Signup = () => {
   const navigate = useNavigate();
   const userPagesUrl = () => {
     setTimeout(() => {
-      navigate('/login');
+      navigate("/login");
     }, 2000);
   };
 

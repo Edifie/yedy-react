@@ -6,7 +6,6 @@ import FormItem from "./FormItem";
 
 import "./FormList.css";
 
-
 const FormList = (props) => {
   const pageId = useParams().pageId;
 
@@ -23,27 +22,26 @@ const FormList = (props) => {
     );
   }
 
-
-
   //Map every item into a jsx element so can be rendered as jsx here
   return (
-      <ul className="form-list">
-        {props.items.map((template) => (
-          <FormItem
+    <ul className="form-list">
+      {props.items.map((template) => (
+        <FormItem
+          showButton={true}
           key={template._id}
-            id={template.id}
-            price={template.price}
-            location={template.location}
-            category={template.category}
-            numberOfRooms={template.numberOfRooms}
-            adStatus={template.adStatus}
-            metreSquare={template.metreSquare}
-            description={template.description}
-            adTitle={template.adTitle}
-            images={template.images}
-          />
-        ))}
-      </ul>
+          id={template.id}
+          price={template.price}
+          location={template.location}
+          category={template.category}
+          numberOfRooms={template.numberOfRooms}
+          adStatus={template.adStatus}
+          metreSquare={template.metreSquare}
+          description={template.description}
+          adTitle={template.adTitle}
+          images={template.images}
+        />
+      ))}
+    </ul>
   );
 };
 

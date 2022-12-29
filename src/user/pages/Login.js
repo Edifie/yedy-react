@@ -48,7 +48,7 @@ const Login = () => {
   const navigate = useNavigate();
   const userPagesUrl = () => {
     setTimeout(() => {
-      navigate(`/${localStorage.getItem("userId")}/pages`);
+      navigate(`/profile/${localStorage.getItem("userId")}`);
       window.location.reload();
     }, 2000);
   };

@@ -9,7 +9,7 @@ const GridLeft = () => {
     // after submitting the form redirect to user's page
     const navigate = useNavigate();
     const userPagesUrl = () => {
-        navigate(`/${localStorage.getItem("userId")}/pages`);
+        navigate(`/profile/${localStorage.getItem("userId")}`);
     };
 
     const navigateLogin = () => {

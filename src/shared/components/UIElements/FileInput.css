@@ -1,0 +1,54 @@
+.input__auth-upload {
+  height: 40px;
+
+  font-size: 14px;
+  font-weight: 300;
+
+  width: 400px;
+
+  margin-left: 3%;
+}
+
+.btn--auth-edit {
+  width: 100px;
+  height: 30px;
+
+  background: #a4b8ff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+
+  font-weight: 500;
+  font-size: 15px;
+
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px;
+
+  margin: 5px 0 40px 20px;
+
+  text-align: center;
+}
+
+.edit-button {
+  display: flex;
+  justify-content: space-between;
+}
+
+.input__auth-upload::-webkit-file-upload-button {
+  width: 100px;
+  height: 30px;
+
+  background: #a4b8ff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+
+  font-weight: 500;
+  font-size: 15px;
+
+
+
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px;
+
+  margin: 5px 15px 16px 20px;
+  text-align: center;
+}

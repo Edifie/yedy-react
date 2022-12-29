@@ -48,7 +48,7 @@ const NewPage = () => {
   const navigate = useNavigate();
   const redirectToUsersPage = () => {
     setTimeout(() => {
-      navigate(`/${userId}/pages`);
+      navigate(`/profile/${userId}`);
     }, 2000);
   };
 

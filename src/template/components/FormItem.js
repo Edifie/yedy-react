@@ -33,6 +33,10 @@ const FormItem = (props) => {
     }, 1000);
   };
 
+  const handleDetails = () => {
+    navigate(`/pages/details/${props.id}`)
+  }
+
   const images =
     props.images &&
     props.images
@@ -60,6 +64,8 @@ const FormItem = (props) => {
         </div>
         <button onClick={handleTemplateClick}>Edit</button>
         <button onClick={handleDelete}>Delete</button>
+
+        <button onClick={handleDetails}>Details</button>
       </Card>
     </li>
   );

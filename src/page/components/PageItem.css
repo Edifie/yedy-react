@@ -1,14 +1,19 @@
 .place-item {
-  margin: 1rem 0;
+
+  grid-row: span 1;
+  grid-column: span 1;
+
 }
 
 .place-item__content {
-  padding: 0;
+  padding: auto;
+ 
 }
 
 .place-item__info {
-  padding: 0.5rem;
+  padding: 1rem;
   text-align: center;
+  line-height: 15px;
 }
 
 .place-item__image {
@@ -23,10 +28,17 @@
   object-fit: cover;
 }
 
-.place-item__info h2,
-.place-item__info h4,
-.place-item__info p {
-  margin: 0 0 0.5rem 0;
+.place-item__info h1 {
+  font-size: 25px;
+  font-weight: 800;
+}
+.place-item__info h3 {
+  font-size: 18px;
+  font-weight: 500;
+}
+.place-item__info h4 {
+  font-size: 15px;
+  font-weight: 300;
 }
 
 .place-item__actions {
@@ -55,6 +67,36 @@
   margin-top: -533px;
   width: 806px;
   
+}
+
+.place-item__button{
+  width: 100px;
+  height: 30px;
+
+  background: #7d97f4;
+  color: white;
+  border: none;
+  border-radius: 25px;
+
+  font-weight: 500;
+  font-size: 12px;
+
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px;
+}
+
+.place-item__button:hover{
+  width: 100px;
+  height: 30px;
+
+  background: #160d89;
+  color: white;
+  border: none;
+  border-radius: 25px;
+
+  font-weight: 500;
+  font-size: 12px;
+
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px;
 }
 
 @media (min-width: 768px) {

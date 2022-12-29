@@ -1,9 +1,9 @@
 import React from "react";
 
 import UserItem from "./UserItem";
-import Card from '../../shared/components/UIElements/Card';
+import Card from "../../shared/components/UIElements/Card";
 
-import './UsersList.css';
+import "./UsersList.css";
 
 const UsersList = (props) => {
   if (props.items.length === 0) {
@@ -19,19 +19,18 @@ const UsersList = (props) => {
   //else
   return (
     //Map every item into a jsx element so can be rendered as jsx here.
-    <ul className="users-list">
-
-      {props.items.map((user) => (
-        /* These props are data that we expect from Users.js */
-        <UserItem
-          key={user.id}
-          id={user.id}
-          image={user.image}
-          name={user.name}
-        />
-
-      ))}
-    </ul>
+    <div>
+      {props.items &&
+        Object.values(props.items).map((user) => (
+          /* These props are data that we expect from Users.js */
+          <UserItem
+            key={user.id}
+            id={user.id}
+            image={user.image}
+            name={user.name}
+          />
+        ))}
+    </div>
   );
 };
 
