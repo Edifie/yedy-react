@@ -1,13 +1,19 @@
 import axios from "axios";
 import React from "react";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Card from "../../shared/components/UIElements/Card";
+import FormItemDetail from "./FormItemDetail";
+import SideDrawerTemplate from "./SideDrawerTemplate";
 
 import "./FormItem.css";
+import Backdrop from "../../shared/components/UIElements/Backdrop";
 
 const FormItem = (props) => {
   const pageId = useParams().pageId;
   const navigate = useNavigate();
+
+  const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
   const handleTemplateClick = () => {
     navigate(`/pages/${pageId}/${props.id}`);
@@ -34,8 +40,16 @@ const FormItem = (props) => {
   };
 
   const handleDetails = () => {
-    navigate(`/pages/details/${props.id}`)
-  }
+    navigate(`/pages/details/${props.id}`);
+  };
+
+  const openDrawerHandler = () => {
+    setDrawerIsOpen(true);
+  };
+
+  const closeDrawerHandler = () => {
+    setDrawerIsOpen(false);
+  };
 
   const images =
     props.images &&
@@ -50,24 +64,47 @@ const FormItem = (props) => {
       ));
 
   return (
-    <li className="real-estate-item">
-      <Card className="real-estate-item__content">
-        <div className="real-estate-item__image">{images}</div>
+    <>
+      {drawerIsOpen && <Backdrop onClick={closeDrawerHandler}></Backdrop>}
 
-        <div className="real-estate-item__info">
-          <h1>{props.price} €</h1>
-          <h3>
-            {props.category}, {props.adStatus}, {props.numberOfRooms}+1,{" "}
-            {props.metreSquare}m²
-          </h3>
-          <h4>{props.location}</h4>
+      <SideDrawerTemplate show={drawerIsOpen} onClick={closeDrawerHandler}>
+        <div className="check-if-exists">
+          <FormItemDetail
+            showButton={true}
+            key={props._id}
+            id={props._id}
+            price={props.price}
+            location={props.location}
+            category={props.category}
+            numberOfRooms={props.numberOfRooms}
+            adStatus={props.adStatus}
+            metreSquare={props.metreSquare}
+            description={props.description}
+            adTitle={props.adTitle}
+            images={props.images}
+          />
         </div>
-        <button onClick={handleTemplateClick}>Edit</button>
-        <button onClick={handleDelete}>Delete</button>
+      </SideDrawerTemplate>
 
-        <button onClick={handleDetails}>Details</button>
-      </Card>
-    </li>
+      <li className="real-estate-item">
+        <Card className="real-estate-item__content">
+          <div className="real-estate-item__image">{images}</div>
+
+          <div className="real-estate-item__info">
+            <h1>{props.price} €</h1>
+            <h3>
+              {props.category}, {props.adStatus}, {props.numberOfRooms}+1,{" "}
+              {props.metreSquare}m²
+            </h3>
+            <h4>{props.location}</h4>
+          </div>
+          <button onClick={handleTemplateClick}>Edit</button>
+          <button onClick={handleDelete}>Delete</button>
+
+          <button onClick={openDrawerHandler}>Details</button>
+        </Card>
+      </li>
+    </>
   );
 };
 

@@ -1,0 +1,19 @@
+.side-drawer__template {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+
+  height: auto;
+  max-height: 40rem;
+  background-color: white;
+  z-index: 200;
+
+  border-radius: 10px;
+  overflow-y: scroll;
+
+}
+.side-drawer__template-button{
+  display: none;
+}

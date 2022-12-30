@@ -12,7 +12,7 @@ import NewPage from "./page/pages/NewPage";
 import BaseFormRealEstate from "./template/pages/BaseFormRealEstate";
 import UpdateTemplate from "./template/pages/UpdateRealEstate";
 import SharedRealEstate from "./shared template/pages/SharedRealEstate.js"
-import FormItemDetail from "./template/components/FormItemDetal"
+import FormItemDetail from "./template/components/FormItemDetail"
 
 import "./App.css";
 import ProtectedRoutes from "./ProtectedRoute";

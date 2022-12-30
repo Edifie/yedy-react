@@ -4,16 +4,20 @@ import axios from "axios";
 import FormList from "../components/FormList";
 
 import "./TemplateRealEstate.css";
+import SideDrawerTemplate from "../components/SideDrawerTemplate";
+import Backdrop from "../../shared/components/UIElements/Backdrop";
+import FormItemDetail from "../components/FormItemDetail";
 
 const TemplateRealEstate = () => {
   const [loadedTemplates, setLoadedTemplates] = useState([]);
   const [loadedPages, setLoadedPages] = useState([]);
   const [loadedUser, setLoadedUser] = useState(null);
-
-
+ 
   const userId = localStorage.getItem("userId");
 
   const pageId = useParams().pageId;
+
+  const tema = loadedPages.tema;
 
   const getTemplates = async () => {
     await axios({
@@ -73,7 +77,6 @@ const TemplateRealEstate = () => {
     console.log("User -> ", loadedUser);
   };
 
-
   useEffect(() => {
     getTemplates();
     getPageById();
@@ -104,15 +107,14 @@ const TemplateRealEstate = () => {
     window.open(`http://localhost:3000/DT/${localStorage.getItem("url")}`);
   };
 
-  const tema = loadedPages.tema;
+  
 
   return (
     <>
-     
       <div id="container">
-      <button onClick={redirectToForm}>Add house</button>
-      <button onClick={handleDelete}>Delete Page</button>
-      <button onClick={handleShare}>Share Page</button>
+        <button onClick={redirectToForm}>Add house</button>
+        <button onClick={handleDelete}>Delete Page</button>
+        <button onClick={handleShare}>Share Page</button>
         <div
           className={
             tema === "Boho"
@@ -123,7 +125,7 @@ const TemplateRealEstate = () => {
           }
         >
           <div id="sidebar">
-            <div >
+            <div>
               {loadedPages ? loadedPages.name : "Loading..."}
 
               <div id="username">
