@@ -1,6 +1,12 @@
 - add edit feature to templates / DONE
 - add customize link to show pages / DONE
-- add open drawer to display details about templates
+- add open drawer to display details about templates /DONE
 - add delete feture to templates / DONE
 - add image and location to user profile /DONE
 - finish design of Real Estate
+    -> finish add template design / DONE
+    -> finish profile design / DONE
+    -> finish portfolio design
+
+- add page edit to change style etc / DONE
+- take alert when submitting tempaltes /DONE
