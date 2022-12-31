@@ -93,15 +93,23 @@ const FormItem = (props) => {
           <div className="real-estate-item__info">
             <h1>{props.price} €</h1>
             <h3>
-              {props.category}, {props.adStatus}, {props.numberOfRooms}+1,{" "}
+              {props.category}, {props.adStatus}, T{props.numberOfRooms},{" "}
               {props.metreSquare}m²
             </h3>
             <h4>{props.location}</h4>
           </div>
-          <button onClick={handleTemplateClick}>Edit</button>
-          <button onClick={handleDelete}>Delete</button>
-
-          <button onClick={openDrawerHandler}>Details</button>
+          <div className="real-estate-item__buttons-boho">
+            <button onClick={handleTemplateClick}>Edit</button>
+            <button onClick={handleDelete}>Delete</button>
+            <br />
+            <hr></hr>
+            <button
+              id="real-estate-item__buttonDetail-boho"
+              onClick={openDrawerHandler}
+            >
+              Details
+            </button>
+          </div>
         </Card>
       </li>
     </>

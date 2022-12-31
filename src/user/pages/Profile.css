@@ -5,7 +5,8 @@
 .main-profile {
   display: block;
   text-align: center;
-  height: 24rem;
+  height: 30rem;
+  max-height: 35rem;
   background: rgba(164, 184, 254, 0.5);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
@@ -41,7 +42,7 @@
 }
 
 .profile-button {
-  text-align: right;
+  float: right;
   margin-right: 2rem;
 }
 
@@ -82,11 +83,12 @@
 .profile-text {
   font-size: 30px;
   margin-left: 1rem;
+  
 }
 
 .profile-button__add-page {
   text-align: right;
-padding-top: 1rem;
+  padding-top: 1rem;
 }
 
 .profile-button__add-page button {
@@ -94,11 +96,12 @@ padding-top: 1rem;
   background-color: white;
   color: #7d97f4;
   border: none;
-
-
 }
-
 
 .profile-button__add-page button:hover {
   color: #160d89;
+}
+
+.main-profile__capitalize{
+  text-transform: capitalize;
 }

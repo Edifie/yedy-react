@@ -78,7 +78,7 @@ const SharedRealEstate = () => {
 
   return (
     <>
-      <div id="container">
+      <div className="container">
         <div
           className={
             tema === "Boho"
@@ -88,16 +88,32 @@ const SharedRealEstate = () => {
               : "basic"
           }
         >
-          <div id="sidebar">
-            <div>
-              {loadedSharePages ? loadedSharePages.name : "Loading..."}
-
-              <div id="username">
-                {loadedUser ? loadedUser.name : "Loading..."}
-                <br />
+          <div className="sidebar-boho">
+            <div className="profile-picture">
+              <div>
+                {loadedUser
+                  ? loadedUser.images &&
+                    loadedUser.images
+                      .slice(0, 1)
+                      .map((image, index) => (
+                        <img
+                          key={image.id || index}
+                          src={`data:${image.contentType};base64,${image.imageBase64}`}
+                          alt={image.filename}
+                        />
+                      ))
+                  : "Loading.."}
               </div>
+              <br />
+            </div>
+            <div>{loadedSharePages ? loadedSharePages.name : "Loading..."}</div>
+
+            <div id="username">
+              {loadedUser ? loadedUser.name : "Loading..."}
+              <br />
             </div>
           </div>
+
           <div id="form-list">
             <SharedFormList items={loadedTemplates} />
           </div>

@@ -1,4 +1,5 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect } from "react";
 import Card from "../../shared/components/UIElements/Card";
 
 import "./PageItem.css";
@@ -8,8 +9,23 @@ const PageItem = (props) => {
     window.location = `/pages/${props.id}`;
   };
 
-  const redirectToPageDetails = (props) => {
-    window.location = `/pages/details/${props.id}`;
+  const handleDelete = async () => {
+    await axios({
+      method: "DELETE",
+      url: `http://localhost:8080/api/pages/${props.id}`,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((res) => {
+        console.log("Respond from the request -->", res);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
   };
 
   return (
@@ -33,9 +49,10 @@ const PageItem = (props) => {
 
         <div className="place-item__actions">
           <button className="place-item__button" onClick={redirectToPage}>
-            EDIT
+            VIEW
           </button>
         </div>
+        <button onClick={handleDelete} className="place-item__delete">Delete</button>
       </Card>
     </li>
   );

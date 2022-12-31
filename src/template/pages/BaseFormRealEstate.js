@@ -4,10 +4,9 @@ import { Formik, Field, Form } from "formik";
 import Axios from "axios";
 import * as Yup from "yup";
 
+import FileInput from "../../shared/components/UIElements/FileInput";
 
-import FileInput from "../../shared/components/UIElements/FileInput"
-
-import "./Template.css";
+import "./BaseFormRealEstate.css";
 
 const BaseFormRealEstate = () => {
   const pageId = useParams().pageId;
@@ -59,7 +58,6 @@ const BaseFormRealEstate = () => {
     })
       .then((res) => {
         console.log(res);
-        alert("Succesffuly created the form!");
       })
       .catch((res) => {
         console.log(res);
@@ -68,7 +66,6 @@ const BaseFormRealEstate = () => {
     console.log(values);
     navigate(`/pages/${pageId}`);
   };
-
 
   return (
     <div>
@@ -89,105 +86,124 @@ const BaseFormRealEstate = () => {
       >
         {({ errors, touched }) => (
           <Form>
-            <div className="main">
-              <div>
-                <label>Category</label>
-                <div>
-                  <Field
-                    type="radio"
-                    name="category"
-                    value="House"
-                    checked={true}
-                  />
-                  House
-                </div>
-                <div>
-                  <Field type="radio" name="category" value="Workplace" />
-                  Workplace
-                </div>
-              </div>
+            <div className="base-form-real-estate__main">
+              <table className="base-form-real-estate__table">
+                <tr>
+                  <th>Category</th>
+                  <td>
+                    <div>
+                      <Field
+                        type="radio"
+                        name="category"
+                        value="House"
+                        checked={true}
+                      />
+                      House
+                    </div>
 
-              <div>
-                <label>Status</label>
-                <div>
-                  <Field
-                    type="radio"
-                    name="adStatus"
-                    value="Rent"
-                    checked={true}
-                  />
-                  Rent
-                </div>
-                <div>
-                  <Field type="radio" name="adStatus" value="Sell" />
-                  Sell
-                </div>
-              </div>
+                    <div>
+                      <Field type="radio" name="category" value="Workplace" />
+                      Workplace
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th>Status</th>
+                  <td>
+                    <div>
+                      <Field
+                        type="radio"
+                        name="adStatus"
+                        value="Rent"
+                        checked={true}
+                      />
+                      Rent
+                    </div>
+                    <div>
+                      <Field type="radio" name="adStatus" value="Sell" />
+                      Sell
+                    </div>
+                  </td>
+                </tr>
 
-              <div>
-                <label>Advertisement Title</label>
-                <Field type="text" name="adTitle" />
-                {errors.adTitle && touched.adTitle ? (
-                  <div className="error--form">{errors.adTitle}</div>
-                ) : null}
-              </div>
+                <tr>
+                  <th>Advertisement Title</th>
+                  <td>
+                    <Field type="text" name="adTitle" />
+                    {errors.adTitle && touched.adTitle ? (
+                      <div className="error--form">{errors.adTitle}</div>
+                    ) : null}
+                  </td>
+                </tr>
 
-              <div>
-                <label>Description</label>
-                <Field type="textarea" name="description" />
-                {errors.description && touched.description ? (
-                  <div className="error--form">{errors.description}</div>
-                ) : null}
-              </div>
+               
 
-              <div>
-                <label>Price</label>
-                <Field type="number" name="price" />
-                {errors.price && touched.price ? (
-                  <div className="error--form">{errors.price}</div>
-                ) : null}
-              </div>
+                <tr>
+                  <th>Price</th>
+                  <td>
+                    <Field type="number" name="price" />
+                    {errors.price && touched.price ? (
+                      <div className="error--form">{errors.price}</div>
+                    ) : null}
+                  </td>
+                </tr>
 
-              <div>
-                <label>Number of rooms</label>
-                <Field type="number" name="numberOfRooms" />
-                {errors.numberOfRooms && touched.numberOfRooms ? (
-                  <div className="error--form">{errors.numberOfRooms}</div>
-                ) : null}
-              </div>
+                <tr>
+                  <th>Number of rooms</th>
+                  <td>
+                    <Field type="number" name="numberOfRooms" />
+                    {errors.numberOfRooms && touched.numberOfRooms ? (
+                      <div className="error--form">{errors.numberOfRooms}</div>
+                    ) : null}
+                  </td>
+                </tr>
 
-              <div>
-                <label>Net M2</label>
-                <Field type="number" name="metreSquare" />
-                {errors.metreSquare && touched.metreSquare ? (
-                  <div className="error--form">{errors.metreSquare}</div>
-                ) : null}
-              </div>
+                <tr>
+                  <th>Net M2</th>
+                  <td>
+                    <Field type="number" name="metreSquare" />
+                    {errors.metreSquare && touched.metreSquare ? (
+                      <div className="error--form">{errors.metreSquare}</div>
+                    ) : null}
+                  </td>
+                </tr>
 
-              <div>
-                <label>Address</label>
-                <Field type="text" name="location" />
-                {errors.location && touched.location ? (
-                  <div className="error--form">{errors.location}</div>
-                ) : null}
-              </div>
+                <tr>
+                  <th>Address</th>
+                  <td>
+                    <Field type="text" name="location" />
+                    {errors.location && touched.location ? (
+                      <div className="error--form">{errors.location}</div>
+                    ) : null}
+                  </td>
+                </tr>
 
-              <div>
-                <label>Upload photos</label>
-                <FileInput
-                  name="images"
-                  multiple
-                  type="file"
-                  value={undefined}
-                />
-              </div>
+                <tr>
+                  <th>Description</th>
+                  <td>
+                    <Field className="base-form-real-estate__textarea" component="textarea" name="description" />
+                    {errors.description && touched.description ? (
+                      <div className="error--form">{errors.description}</div>
+                    ) : null}
+                  </td>
+                </tr>
 
-              <button
-                className="btn--form"
-                type="submit"
-              >
-                Submit
-              </button>
+                <tr>
+                  <th>Upload photos</th>
+                  <td>
+                    <FileInput
+                      name="images"
+                      multiple
+                      type="file"
+                      value={undefined}
+                    />
+                  </td>
+                </tr>
+                <div className="base-form-real-estate__button" type="submit">
+                <button>Submit</button>
+              </div>
+              </table>
+              
             </div>
           </Form>
         )}

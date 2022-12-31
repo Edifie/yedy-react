@@ -26,35 +26,35 @@ const FormItemDetail = (props) => {
         <Card className="form-item-detail__card">
           <div>
             <h1>{props.adTitle}</h1>
-            <table>
+            <table className="form-item-detail__table ">
               <tr>
                 <th>Category</th>
-                <td>{props.category}</td>
+                <td clas>{props.category}</td>
               </tr>
 
               <tr>
                 <th>Status</th>
-                <td>{props.adStatus}</td>
+                <td clas>{props.adStatus}</td>
               </tr>
 
               <tr>
                 <th>Price</th>
-                <td>{props.price} €</td>
+                <td clas>{props.price} €</td>
               </tr>
 
               <tr>
                 <th>Address</th>
-                <td>{props.location} </td>
+                <td clas>{props.location} </td>
               </tr>
 
               <tr>
                 <th>Number of rooms</th>
-                <td>{props.numberOfRooms}</td>
+                <td clas>{props.numberOfRooms}</td>
               </tr>
 
               <tr>
                 <th>M²</th>
-                <td>{props.metreSquare}m²</td>
+                <td clas>{props.metreSquare}m²</td>
               </tr>
             </table>
             <div className="form-item-detail__paragh">

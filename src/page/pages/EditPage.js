@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Field, Form } from "formik";
 import Axios from "axios";
 import * as Yup from "yup";
+import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 import area from "./area.jpg";
 import responsive from "./responsive.jpg";
 import tema from "./tema.jpg";
 import name from "./name.jpg";
-import url from "./url.jpg"
+import url from "./url.jpg";
 
 import "./NewPage.css";
-import { useNavigate } from "react-router-dom";
 
-const NewPage = () => {
+
+const EditPage = () => {
   const FormSchema = Yup.object().shape({
     name: Yup.string()
       .min(2, "Company name should be at least two characters.")
@@ -20,17 +22,21 @@ const NewPage = () => {
       .required("Cannot leave blank this field."),
     url: Yup.string()
       .min(2, "URL should be at least two characters.")
-      .max(35, "URL name cannot pass to 35 characters.")
+      .max(20, "URL name cannot pass to 20 characters.")
       .required("Cannot leave blank this field."),
   });
+
+  const [initialValues, setInitialValues] = useState({});
+
+  const {pageId} = useParams();
 
   const token = localStorage.getItem("token");
   console.log(token);
 
   const submitHandler = async (values) => {
     await Axios({
-      method: "POST",
-      url: "http://localhost:8080/api/pages/",
+      method: "PATCH",
+      url: `http://localhost:8080/api/pages/${pageId}`,
       data: values,
       headers: { Authorization: "Bearer " + localStorage.getItem("token") },
     })
@@ -43,6 +49,27 @@ const NewPage = () => {
     console.log(values);
   };
 
+  const getPageById = async () => {
+    await axios({
+      method: "GET",
+      url: `http://localhost:8080/api/pages/${pageId}`,
+      header: "Content Type: application/json",
+    })
+      .then((res) => {
+        console.log(res);
+        setInitialValues(res.data.page);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  console.log("initial values from EditPage -> ",initialValues)
+
+  useEffect(() => {
+    getPageById();
+  }, []);
+
   let userId = localStorage.getItem("userId");
 
   const navigate = useNavigate();
@@ -52,16 +79,14 @@ const NewPage = () => {
     }, 2000);
   };
 
+  if (!Object.keys(initialValues).length) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div>
       <Formik
-        initialValues={{
-          area: "Real Estate",
-          name: "",
-          tema: "Boho",
-          url: "",
-          creator: userId,
-        }}
+        initialValues={initialValues}
         validationSchema={FormSchema}
         onSubmit={(values) => submitHandler(values)}
       >
@@ -222,7 +247,7 @@ const NewPage = () => {
                   className="btn--form"
                   type="submit"
                 >
-                  Submit
+                  Save
                 </button>
               </div>
             </div>
@@ -233,4 +258,4 @@ const NewPage = () => {
   );
 };
 
-export default NewPage;
+export default EditPage;

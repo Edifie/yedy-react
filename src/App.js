@@ -11,13 +11,14 @@ import Login from "./user/pages/Login";
 import NewPage from "./page/pages/NewPage";
 import BaseFormRealEstate from "./template/pages/BaseFormRealEstate";
 import UpdateTemplate from "./template/pages/UpdateRealEstate";
-import SharedRealEstate from "./shared template/pages/SharedRealEstate.js"
-import FormItemDetail from "./template/components/FormItemDetail"
+import SharedRealEstate from "./shared template/pages/SharedRealEstate.js";
+import FormItemDetail from "./template/components/FormItemDetail";
 
 import "./App.css";
 import ProtectedRoutes from "./ProtectedRoute";
 import Profile from "./user/pages/Profile";
 import ProfileEdit from "./user/pages/ProfileEdit";
+import EditPage from "./page/pages/EditPage"
 
 const App = () => {
   // See Notion - React/Router-dom-v6 for Router usage in version 6
@@ -44,7 +45,11 @@ const App = () => {
             <Route path="/DT/:url" element={<SharedRealEstate />} />
             <Route path="/profile/:userId" element={<Profile />} />
             <Route path="/:userId/edit-profile" element={<ProfileEdit />} />
-            <Route path="/pages/details/:templateId" element={<FormItemDetail />} />
+            <Route
+              path="/pages/details/:templateId"
+              element={<FormItemDetail />}
+            />
+            <Route path="pages/edit/:pageId" element={<EditPage />} />
           </Route>
 
           <Route path="/home" element={<Welcome />} />

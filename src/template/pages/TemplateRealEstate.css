@@ -1,22 +1,38 @@
-.boho {
-  background-color: #eee0cb;
-
+.container {
+  position: absolute;
+  margin-top: 5rem;
 }
 
-#sidebar {
+.boho {
+  background-color: white;
+}
+.sidebar-boho {
   width: 400px;
   height: 700px;
-  background: #bcbcbc;
+  background: #3a5a40;
   border-radius: 10px;
 
   position: -webkit-sticky;
   position: absolute;
   text-align: center;
-
-
 }
 
-#container {
-  position: absolute;
-  margin-top: 5rem;
+.sidebar-boho__name,
+.sidebar-boho__username {
+  color: white;
+  text-transform: capitalize;
+}
+
+.sidebar-boho__profile-picture {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 2rem auto;
+}
+
+.sidebar-boho__profile-picture img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }

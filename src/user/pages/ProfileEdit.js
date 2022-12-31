@@ -47,6 +47,9 @@ const ProfileEdit = () => {
       .min(6, "Password should contain minimum 6 characters.")
       .required("Password required."),
     name: Yup.string().required("Name required."),
+    location: Yup.string().required("Location required"),
+    phoneNumber: Yup.number().required("Phone number required"),
+    name: Yup.string().required("Name required."),
   });
 
   const submitHandler = async (values) => {
@@ -62,6 +65,14 @@ const ProfileEdit = () => {
 
     if (values.name !== initialValues.name) {
       formData.append("name", values.name);
+    }
+
+    if (values.phoneNumber !== initialValues.phoneNumber) {
+      formData.append("phoneNumber", values.phoneNumber);
+    }
+
+    if (values.location !== initialValues.location) {
+      formData.append("location", values.location);
     }
 
     if (values.images !== initialValues.images) {
@@ -139,6 +150,34 @@ const ProfileEdit = () => {
 
                     {errors.email && touched.email ? (
                       <div className="error--form">{errors.email}</div>
+                    ) : null}
+                  </div>
+
+                  <div className="field--margin">
+                    <Field
+                      className="input__auth"
+                      type="text"
+                      name="location"
+                      placeholder="Location"
+                    />
+
+                    {errors.location && touched.location ? (
+                      <div className="error--form">{errors.location}</div>
+                    ) : null}
+                  </div>
+
+                  <div className="field--margin">
+                    <Field
+                      className="input__auth"
+                      type="number"
+                      name="phoneNumber"
+                      placeholder="Phone Number"
+                    />
+
+                    {errors.phoneNumber && touched.phoneNumber ? (
+                      <div className="error--form">
+                        {errors.locatphoneNumberion}
+                      </div>
                     ) : null}
                   </div>
 

@@ -49,23 +49,26 @@ const Profile = () => {
           alt={image.filename}
         />
       ));
+
+  const navigateToAddNewPage = () => {
+    navigate("/pages/new")
+  };
+
   return (
     <>
       <div className="main">
         <div className="main-profile">
           <div className="profile-picture-margin">
             <div className="profile-picture">
-              {loadedUser.images && loadedUser.images.length === 0 ? (
-                <div className="circle">
-                  <img src={profilePic} />
-                </div>
-              ) : (
-                <div>{images}</div>
-              )}
+              <div>{images}</div>
             </div>
           </div>
 
+          <div className="main-profile__capitalize">
           <h1>{loadedUser.name}</h1>
+          <h3>{loadedUser.location}</h3>
+          </div>
+          <h4>+ {loadedUser.phoneNumber}</h4>
           <div className="profile-button">
             <button onClick={redirectToProfile}>Edit profil</button>
           </div>
@@ -76,9 +79,7 @@ const Profile = () => {
             <div className="profile-text">My sites</div>
             <hr className="profile-hr"></hr>
             <div className="profile-button__add-page">
-              <button>
-                Add new page ➕
-              </button>
+              <button onClick={navigateToAddNewPage}>Add new page ➕</button>
             </div>
 
             <div>

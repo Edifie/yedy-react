@@ -1,19 +1,18 @@
 .place-item {
-
   grid-row: span 1;
   grid-column: span 1;
-
 }
 
 .place-item__content {
   padding: auto;
- 
+  min-height: 42rem;
 }
 
 .place-item__info {
   padding: 1rem;
   text-align: center;
   line-height: 15px;
+  min-height: 13rem;
 }
 
 .place-item__image {
@@ -32,6 +31,13 @@
   font-size: 25px;
   font-weight: 800;
 }
+
+.place-item__info h2 {
+ text-transform: capitalize;
+ font-size: 25px;
+ font-weight: 800;
+ line-height: 40px;
+}
 .place-item__info h3 {
   font-size: 18px;
   font-weight: 500;
@@ -39,6 +45,7 @@
 .place-item__info h4 {
   font-size: 15px;
   font-weight: 300;
+
 }
 
 .place-item__actions {
@@ -60,18 +67,15 @@
   margin: 0.5rem;
 }
 
-
-
 .iframe {
   border: 0px none;
   margin-left: -185px;
   height: 100px;
   margin-top: -533px;
   width: 206px;
-  
 }
 
-.place-item__button{
+.place-item__button {
   width: 100px;
   height: 30px;
 
@@ -86,7 +90,20 @@
   box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px;
 }
 
-.place-item__button:hover{
+.place-item__delete {
+  width: 100px;
+  height: 30px;
+
+  color: red;
+  border: none;
+  border-radius: px;
+  background-color: white;
+
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.place-item__button:hover {
   width: 100px;
   height: 30px;
 

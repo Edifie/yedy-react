@@ -1,0 +1,82 @@
+.base-form-real-estate__main {
+  border: 1px solid #ddd;
+  margin: 5rem 20rem;
+  border-radius: 5px;
+}
+
+.base-form-real-estate__table {
+  width: 100%;
+  border-spacing: 5px;
+  table-layout: fixed;
+
+  border-collapse: collapse;
+}
+
+.base-form-real-estate__table td {
+  text-align: left;
+
+  padding: 1rem 2rem;
+
+  height: 60px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* .base-form-real-estate__table tr:nth-child(odd) {
+  background-color: #f2f2f2;
+} */
+
+.base-form-real-estate__table tr {
+  width: 50rem;
+}
+
+.base-form-real-estate__table th {
+  color: #7d97f4;
+  border-radius: 5px;
+  width: 15rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  padding-left: 2rem;
+}
+
+.base-form-real-estate__button {
+  display: flex;
+  justify-content: right;
+}
+
+.base-form-real-estate__button button {
+  width: 130px;
+  height: 40px;
+
+  background: #7d97f4;
+  color: white;
+  border: none;
+  border-radius: 25px;
+
+  font-weight: 500;
+  font-size: 18px;
+
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px;
+
+  margin: 2rem;
+}
+
+.base-form-real-estate__textarea {
+  width: 100%;
+  height: 200px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  resize: none;
+  padding: 10px;
+
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  text-align: left;
+  vertical-align: top;
+}
+
+@media screen and (max-width: 600px) {
+  .base-form-real-estate__textarea {
+    width: 100%; /* sets the width to 100% on screens smaller than 600px */
+  }
+}

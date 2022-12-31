@@ -28,7 +28,7 @@ const FileInput = ({ label, ...props }) => {
             formik.setFieldValue(props.name, fileInputRef.current.files, true);
           }}
         >
-          Set File
+          Upload
         </button>
       </div>
     </>

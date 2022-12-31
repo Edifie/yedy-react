@@ -7,13 +7,16 @@ import "./TemplateRealEstate.css";
 import SideDrawerTemplate from "../components/SideDrawerTemplate";
 import Backdrop from "../../shared/components/UIElements/Backdrop";
 import FormItemDetail from "../components/FormItemDetail";
+import ProfileDetails from "../components/ProfileDetails";
 
 const TemplateRealEstate = () => {
   const [loadedTemplates, setLoadedTemplates] = useState([]);
   const [loadedPages, setLoadedPages] = useState([]);
   const [loadedUser, setLoadedUser] = useState(null);
- 
+
   const userId = localStorage.getItem("userId");
+
+  const navigate = useNavigate();
 
   const pageId = useParams().pageId;
 
@@ -107,36 +110,32 @@ const TemplateRealEstate = () => {
     window.open(`http://localhost:3000/DT/${localStorage.getItem("url")}`);
   };
 
-  
+  const handleEdit = async () => {
+    navigate(`/pages/edit/${pageId}`);
+  };
 
   return (
     <>
-      <div id="container">
+      <div className="container">
         <button onClick={redirectToForm}>Add house</button>
         <button onClick={handleDelete}>Delete Page</button>
         <button onClick={handleShare}>Share Page</button>
-        <div
-          className={
-            tema === "Boho"
-              ? "boho"
-              : tema === "Minimalist"
-              ? "minimal"
-              : "basic"
-          }
-        >
-          <div id="sidebar">
-            <div>
-              {loadedPages ? loadedPages.name : "Loading..."}
+        <button onClick={handleEdit}>Edit</button>
+        <div>
+          {loadedUser ? (
+            <ProfileDetails
+              name={loadedUser.name}
+              email={loadedUser.email}
+              images={loadedUser.images}
+              namePage={loadedPages.name}
+            />
+          ) : (
+            "loading"
+          )}
+        </div>
 
-              <div id="username">
-                {loadedUser ? loadedUser.name : "Loading..."}
-                <br />
-              </div>
-            </div>
-          </div>
-          <div id="form-list">
-            <FormList items={loadedTemplates} />
-          </div>
+        <div>
+          <FormList items={loadedTemplates} />
         </div>
       </div>
     </>
