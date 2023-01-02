@@ -10,44 +10,30 @@ import responsive from "./responsive.jpg";
 import tema from "./tema.jpg";
 import name from "./name.jpg";
 import url from "./url.jpg";
+import images from "./images.jpg";
 
 import "./NewPage.css";
-
+import FileInput from "../../shared/components/UIElements/FileInput";
 
 const EditPage = () => {
-  const FormSchema = Yup.object().shape({
-    name: Yup.string()
-      .min(2, "Company name should be at least two characters.")
-      .max(50, "Company name cannot pass to 50 characters.")
-      .required("Cannot leave blank this field."),
-    url: Yup.string()
-      .min(2, "URL should be at least two characters.")
-      .max(20, "URL name cannot pass to 20 characters.")
-      .required("Cannot leave blank this field."),
-  });
+  // const FormSchema = Yup.object().shape({
+  //   name: Yup.string()
+  //     .min(2, "Company name should be at least two characters.")
+  //     .max(50, "Company name cannot pass to 50 characters.")
+  //     .required("Cannot leave blank this field."),
+  //   url: Yup.string()
+  //     .min(2, "URL should be at least two characters.")
+  //     .max(20, "URL name cannot pass to 20 characters.")
+  //     .required("Cannot leave blank this field."),
+  // });
 
   const [initialValues, setInitialValues] = useState({});
+  const { pageId } = useParams();
 
-  const {pageId} = useParams();
+  let userId = localStorage.getItem("userId");
 
   const token = localStorage.getItem("token");
   console.log(token);
-
-  const submitHandler = async (values) => {
-    await Axios({
-      method: "PATCH",
-      url: `http://localhost:8080/api/pages/${pageId}`,
-      data: values,
-      headers: { Authorization: "Bearer " + localStorage.getItem("token") },
-    })
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((res) => {
-        console.log(res);
-      });
-    console.log(values);
-  };
 
   const getPageById = async () => {
     await axios({
@@ -64,19 +50,55 @@ const EditPage = () => {
       });
   };
 
-  console.log("initial values from EditPage -> ",initialValues)
-
   useEffect(() => {
     getPageById();
   }, []);
 
-  let userId = localStorage.getItem("userId");
+  const submitHandler = async (values) => {
+    const formData = new FormData();
+
+    if (values.name !== initialValues.name) {
+      formData.append("name", values.name);
+    }
+
+    if (values.tema !== initialValues.tema) {
+      formData.append("tema", values.tema);
+    }
+
+    if (values.area !== initialValues.area) {
+      formData.append("area", values.area);
+    }
+
+    if (values.url !== initialValues.url) {
+      formData.append("url", values.url);
+    }
+
+    if (values.images !== initialValues.images) {
+      for (const image of values.images) {
+        formData.append("images", image);
+      }
+    }
+
+    await Axios({
+      method: "PATCH",
+      url: `http://localhost:8080/api/pages/${pageId}`,
+      data: formData,
+      headers: { Authorization: "Bearer " + localStorage.getItem("token") },
+    })
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((res) => {
+        console.log(res);
+      });
+    console.log(values);
+  };
 
   const navigate = useNavigate();
-  const redirectToUsersPage = () => {
+  const navigateToPage = () => {
     setTimeout(() => {
-      navigate(`/profile/${userId}`);
-    }, 2000);
+      navigate(`/pages/${pageId}`);
+    }, 1000);
   };
 
   if (!Object.keys(initialValues).length) {
@@ -87,7 +109,6 @@ const EditPage = () => {
     <div>
       <Formik
         initialValues={initialValues}
-        validationSchema={FormSchema}
         onSubmit={(values) => submitHandler(values)}
       >
         {({ errors, touched, values, setFieldValue }) => (
@@ -96,7 +117,7 @@ const EditPage = () => {
               {/* AREA */}
               <div className="wrapper">
                 <div className="box item1">
-                  <label>1. What kind of website are you creating?</label>
+                  <label>1. Website area</label>
                   <hr />
                 </div>
 
@@ -137,7 +158,7 @@ const EditPage = () => {
             {/* TEMA */}
             <div className="wrapper">
               <div className="box item1">
-                <label>2. What is your tema of choice?</label>
+                <label>2. Tema</label>
                 <hr />
               </div>
 
@@ -177,7 +198,7 @@ const EditPage = () => {
 
             <div className="wrapper">
               <div className="box item1">
-                <label htmlFor="Name">3. Give a name to your company</label>
+                <label htmlFor="Name">3. Name of company</label>
                 <hr />
               </div>
 
@@ -215,9 +236,7 @@ const EditPage = () => {
 
             <div className="wrapper">
               <div className="box item1">
-                <label htmlFor="URL">
-                  4. Give customised URL to your company
-                </label>
+                <label htmlFor="URL">4. Customised URL</label>
                 <hr />
               </div>
 
@@ -241,9 +260,26 @@ const EditPage = () => {
             </div>
 
             <div className="wrapper">
+              <div className="box item1">
+                <label htmlFor="URL">5. Upload photo of your business</label>
+                <hr />
+              </div>
+
+              <div className="box item2">
+                <div className="textarea--form">
+                  <FileInput name="images" type="file" value={undefined} />
+                </div>
+              </div>
+
+              <div className="box item3 images">
+                <img src={images} alt="images" />
+              </div>
+            </div>
+
+            <div className="wrapper">
               <div className="box item4">
                 <button
-                  onClick={redirectToUsersPage}
+                  onClick={navigateToPage}
                   className="btn--form"
                   type="submit"
                 >

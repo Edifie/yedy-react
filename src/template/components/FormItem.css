@@ -60,13 +60,6 @@
   margin: 0.5rem;
 }
 
-.iframe {
-  border: 0px none;
-  margin-left: -185px;
-  height: 859px;
-  margin-top: -533px;
-  width: 926px;
-}
 
 .real-estate-item__button {
   float: right;
@@ -116,12 +109,4 @@
   font-size: 16px;
   font-weight: 600;
 
-}
-
-.iframe {
-  border: 0px none;
-  margin-left: -185px;
-  height: 859px;
-  margin-top: -533px;
-  width: 926px;
 }

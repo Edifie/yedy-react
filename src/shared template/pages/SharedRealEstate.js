@@ -3,6 +3,10 @@ import axios from "axios";
 
 import SharedFormList from "../components/SharedFormList";
 import { useParams } from "react-router-dom";
+import ProfileDetails from "../../template/components/ProfileDetails";
+import html2canvas from "html2canvas";
+
+import "./SharedRealEstate.css";
 
 const SharedRealEstate = () => {
   const [loadedSharePages, setLoadedSharePages] = useState(null);
@@ -78,45 +82,28 @@ const SharedRealEstate = () => {
 
   return (
     <>
-      <div className="container">
-        <div
-          className={
-            tema === "Boho"
-              ? "boho"
-              : tema === "Minimalist"
-              ? "minimal"
-              : "basic"
-          }
-        >
-          <div className="sidebar-boho">
-            <div className="profile-picture">
-              <div>
-                {loadedUser
-                  ? loadedUser.images &&
-                    loadedUser.images
-                      .slice(0, 1)
-                      .map((image, index) => (
-                        <img
-                          key={image.id || index}
-                          src={`data:${image.contentType};base64,${image.imageBase64}`}
-                          alt={image.filename}
-                        />
-                      ))
-                  : "Loading.."}
-              </div>
-              <br />
-            </div>
-            <div>{loadedSharePages ? loadedSharePages.name : "Loading..."}</div>
+      <div className="container-shared">
+        <div>
+          {loadedUser && loadedSharePages ? (
+            <ProfileDetails
+              name={loadedUser.name}
+              email={loadedUser.email}
+              images={loadedSharePages.images}
+              namePage={loadedSharePages.name}
+              location={loadedUser.location}
+              phoneNumber = {loadedUser.phoneNumber}
+            />
+          ) : (
+            "loading"
+          )}
+        </div>
 
-            <div id="username">
-              {loadedUser ? loadedUser.name : "Loading..."}
-              <br />
-            </div>
-          </div>
-
-          <div id="form-list">
+        <div id="form-list">
+          {loadedTemplates ? (
             <SharedFormList items={loadedTemplates} />
-          </div>
+          ) : (
+            "Loading"
+          )}
         </div>
       </div>
     </>

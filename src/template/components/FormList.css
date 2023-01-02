@@ -6,8 +6,9 @@
   grid-gap: 5rem;
   list-style: none;
   width: 70%;
-  margin-left: 400px; /* add margin-top to create space between the sidebar and grid */
+ /* add margin-top to create space between the sidebar and grid */
 
   list-style: none;
-
+  padding-left: 3rem;
+  margin: 0;
 }

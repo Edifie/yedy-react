@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import FormList from "../components/FormList";
+import html2canvas from "html2canvas";
 
 import "./TemplateRealEstate.css";
 import SideDrawerTemplate from "../components/SideDrawerTemplate";
@@ -19,8 +20,6 @@ const TemplateRealEstate = () => {
   const navigate = useNavigate();
 
   const pageId = useParams().pageId;
-
-  const tema = loadedPages.tema;
 
   const getTemplates = async () => {
     await axios({
@@ -104,6 +103,10 @@ const TemplateRealEstate = () => {
       .catch((err) => {
         console.log(err);
       });
+
+    setTimeout(() => {
+      navigate(`/profile/${userId}`);
+    }, 1000);
   };
 
   const handleShare = async () => {
@@ -116,18 +119,21 @@ const TemplateRealEstate = () => {
 
   return (
     <>
-      <div className="container">
+      <div id="sharedTemplateRealEstate" className="container">
         <button onClick={redirectToForm}>Add house</button>
         <button onClick={handleDelete}>Delete Page</button>
         <button onClick={handleShare}>Share Page</button>
         <button onClick={handleEdit}>Edit</button>
         <div>
-          {loadedUser ? (
+          {loadedUser && loadedPages ? (
             <ProfileDetails
               name={loadedUser.name}
               email={loadedUser.email}
-              images={loadedUser.images}
+              images={loadedPages.images}
               namePage={loadedPages.name}
+              location={loadedUser.location}
+              phoneNumber={loadedUser.phoneNumber}
+              profileImage={loadedUser.images}
             />
           ) : (
             "loading"

@@ -6,3 +6,23 @@
 
   list-style: none;
 }
+
+.place-list__button_add-page {
+  display: flex;
+  justify-content: center;
+}
+
+.place-list__button_add-page button {
+  width: 80px;
+  height: 30px;
+
+  background: #7d97f4;
+  color: white;
+  border: none;
+  border-radius: 25px;
+
+  font-weight: 500;
+  font-size: 12px;
+
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px;
+}

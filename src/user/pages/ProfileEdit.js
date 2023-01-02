@@ -193,7 +193,7 @@ const ProfileEdit = () => {
                     ) : null}
                   </div>
 
-                  <label>Upload photos</label>
+                  <label>Upload photo</label>
                   <FileInput name="images" type="file" value={undefined} />
 
                   <div className="field--margin">

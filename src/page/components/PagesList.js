@@ -18,7 +18,9 @@ const PagesList = (props) => {
       <div className="place-list center">
         <Card>
           <h2>No pages found. Maybe create one?</h2>
+          <div className="place-list__button_add-page">
           <button onClick={navigateCreatePage}>Add Page</button>
+          </div>
         </Card>
       </div>
     );
@@ -35,6 +37,7 @@ const PagesList = (props) => {
           area={page.area}
           creatorId={page.creator}
           type={page.type}
+          images={page.images}
           url={page.url}
         />
       ))}

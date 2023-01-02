@@ -32,12 +32,18 @@ const PageItem = (props) => {
     <li className="place-item">
       <Card className="place-item__content">
         <div className="place-item__image ">
-          <iframe
-            title="display"
-            className="iframe"
-            scrolling="no"
-            src={`/pages/${props.id}`}
-          />
+          {props
+            ? props.images &&
+              props.images
+                .slice(0, 1)
+                .map((image, index) => (
+                  <img
+                    key={image.id || index}
+                    src={`data:${image.contentType};base64,${image.imageBase64}`}
+                    alt={image.filename}
+                  />
+                ))
+            : "Loading.."}
         </div>
 
         <div className="place-item__info">
@@ -52,7 +58,9 @@ const PageItem = (props) => {
             VIEW
           </button>
         </div>
-        <button onClick={handleDelete} className="place-item__delete">Delete</button>
+        <button onClick={handleDelete} className="place-item__delete">
+          Delete
+        </button>
       </Card>
     </li>
   );

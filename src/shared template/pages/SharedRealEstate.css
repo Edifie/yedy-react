@@ -1,0 +1,13 @@
+.container-shared {
+  padding-bottom: 20rem;
+  margin-top: 5rem;
+}
+
+
+.shared-image{
+    width: 300px;
+}
+
+.shared-image img{
+    object-fit: cover;
+}
