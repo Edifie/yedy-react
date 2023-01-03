@@ -1,47 +1,140 @@
-.sidebar-boho {
+.sidebar-Boho {
   width: 400px;
-  height: 700px;
-  background: #B5C99A;
+  height: 640px;
+  background: #b5c99a;
   border-radius: 10px;
 
   position: -webkit-sticky;
-  position: absolute;
+  position: fixed;
   text-align: center;
   margin: 0 1rem;
 }
 
-.sidebar__content-boho{
-    margin: 0 2rem;
+.sidebar__content-Boho {
+  margin: 0 2rem;
 }
 
-.sidebar-boho__info{
+.sidebar__info-Boho {
   color: black;
   text-transform: capitalize;
 }
 
-.sidebar-boho__info h1{
-    font-size: 30px;
+.sidebar__info-Boho h1 {
+  font-size: 30px;
 }
 
-.sidebar-boho__info h3{
-    font-size: 15px;
-    font-weight: 300;
-  }
+.sidebar__info-Boho h3 {
+  font-size: 15px;
+  font-weight: 300;
+}
 
-  .sidebar-boho__info h2{
-    font-size: 14px;
-    font-weight: 400;
-  }
-.sidebar-boho__profile-picture {
+.sidebar__info-Boho h2 {
+  font-size: 14px;
+  font-weight: 400;
+}
+.sidebar__business-picture-Boho {
   width: 200px;
   height: 200px;
-  border-radius: 50%;
+  border-radius: 5%;
   overflow: hidden;
   margin: 2rem auto;
 }
 
-.sidebar-boho__profile-picture img {
+.sidebar__business-picture-Boho img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.sidebar__profile-picture-Boho {
+  width: 50px;
+  height: 50px;
+}
+
+.sidebar__profile-picture-Boho h3 {
+  position: absolute;
+  float: right;
+  margin-left: 6rem;
+}
+
+.sidebar__profile-picture-Boho img {
+  width: 100%;
+  height: 100%;
+
+  margin-right: 2rem;
+  border-radius: 50%;
+  margin: 0 2rem;
+  object-fit: cover;
+  float: left;
+}
+
+/**/
+
+.sidebar-Minimalist {
+  display: block;
+  text-align: center;
+  height: 32rem;
+  justify-content: center;
+  width: 85%;
+  background: #232323;
+  margin: 2rem 8rem;
+
+  border-radius: 200px 200px 10px 10px;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
+.sidebar__business-picture-Minimalist {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+  border-radius: 200px 200px 10px 10px;
+}
+
+.profile-business-margin-Minimalist {
+  padding-top: 2rem;
+}
+
+.sidebar__business-picture-Minimalist img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sidebar__profile-picture-Minimalist {
+  width: auto;
+
+}
+
+.sidebar__profile-picture-Minimalist img {
+  width: 50px;
+  height: 50px;
+
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.sidebar__profile-picture-Minimalist h3 {
+  margin: 1rem auto;
+}
+
+.sidebar__info-Minimalist {
+  color: white;
+  text-transform: capitalize;
+}
+
+.sidebar__info-Minimalist h1 {
+  font-size: 30px;
+}
+
+.sidebar__info-Minimalist h3 {
+  font-size: 15px;
+  font-weight: 300;
+}
+
+.sidebar__info-Minimalist h2 {
+  font-size: 14px;
+  font-weight: 400;
 }

@@ -1,27 +1,27 @@
-.real-estate-item {
+.real-estate-item-Boho {
   grid-row: span 1;
   grid-column: span 1;
 }
 
-.real-estate-item__content {
+.real-estate-item__content-Boho {
   padding: auto;
   min-height: 30rem;
 }
 
-.real-estate-item__info {
+.real-estate-item__info-Boho {
   padding: 1rem;
   text-align: left;
   line-height: 15px;
 }
-.real-estate-item__info h1 {
+.real-estate-item__info-Boho h1 {
   font-size: 25px;
   font-weight: 800;
 }
-.real-estate-item__info h3 {
+.real-estate-item__info-Boho h3 {
   font-size: 18px;
   font-weight: 500;
 }
-.real-estate-item__info h4 {
+.real-estate-item__info-Boho h4 {
   font-size: 15px;
   font-weight: 300;
   line-height: 25px;
@@ -29,13 +29,13 @@
   
 }
 
-.real-estate-item__image {
+.real-estate-item__image-Boho {
   width: 100%;
   height: 12.5rem;
   margin-right: 1.5rem;
 }
 
-.real-estate-item__image img {
+.real-estate-item__image-Boho img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -61,27 +61,6 @@
 }
 
 
-.real-estate-item__button {
-  float: right;
-
-  width: 100px;
-  height: 30px;
-
-  background: #7d97f4;
-  color: white;
-  border: none;
-  border-radius: 30px;
-
-  font-weight: 500;
-  font-size: 18px;
-
-  box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px;
-
-  margin: 0 auto;
-  display: block;
-  text-align: center;
-}
-
 @media (min-width: 768px) {
   .place-item__image {
     height: 20rem;
@@ -89,13 +68,13 @@
 }
 
 
-.real-estate-item__buttons-boho button{
+.real-estate-item__buttons-Boho button{
   background-color: white;
   border: none;
 }
 
 
-#real-estate-item__buttonDetail-boho{
+#real-estate-item__buttonDetail-Boho{
   background-color: white;
   border: none;
   float: right;
@@ -104,7 +83,77 @@
 
 }
 
-#real-estate-item__buttonDetail-boho:hover{
+#real-estate-item__buttonDetail-Boho:hover{
+  color: #162719;
+  font-size: 16px;
+  font-weight: 600;
+
+}
+
+
+
+/**/
+
+.real-estate-item-Minimalist {
+  grid-row: span 1;
+  grid-column: span 1;
+
+}
+
+.real-estate-item__content-Minimalist {
+  padding: auto;
+  min-height: 30rem;
+}
+
+.real-estate-item__info-Minimalist {
+  padding: 1rem;
+  text-align: left;
+  line-height: 15px;
+  
+}
+.real-estate-item__info-Minimalist h1 {
+  font-size: 25px;
+  font-weight: 800;
+}
+.real-estate-item__info-Minimalist h3 {
+  font-size: 18px;
+  font-weight: 500;
+}
+.real-estate-item__info-Minimalist h4 {
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 25px;
+  min-height: 3rem;
+}
+
+.real-estate-item__image-Minimalist {
+  width: 100%;
+  height: 12.5rem;
+  margin-right: 1.5rem;
+}
+
+.real-estate-item__image-Minimalist img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.real-estate-item__buttons-Minimalist button{
+  background-color: white;
+  border: none;
+}
+
+
+#real-estate-item__buttonDetail-Minimalist{
+  background-color: white;
+  border: none;
+  float: right;
+  color: #3A5A40;
+  font-weight: 600;
+
+}
+
+#real-estate-item__buttonDetail-Minimalist:hover{
   color: #162719;
   font-size: 16px;
   font-weight: 600;

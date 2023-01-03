@@ -13,13 +13,14 @@ const FormItem = (props) => {
   const pageId = useParams().pageId;
   const navigate = useNavigate();
 
+  const { tema } = props;
+
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
   const handleTemplateClick = () => {
     navigate(`/pages/${pageId}/${props.id}`);
   };
 
-  console.log("id of template --> ", props.id);
   const handleDelete = async () => {
     await axios({
       method: "DELETE",
@@ -82,15 +83,16 @@ const FormItem = (props) => {
             description={props.description}
             adTitle={props.adTitle}
             images={props.images}
+            tema={tema}
           />
         </div>
       </SideDrawerTemplate>
 
-      <li className="real-estate-item">
-        <Card className="real-estate-item__content">
-          <div className="real-estate-item__image">{images}</div>
+      <li className={`real-estate-item-${tema}`}>
+        <Card className={`real-estate-item__content-${tema}`}>
+          <div className={`real-estate-item__image-${tema}`}>{images}</div>
 
-          <div className="real-estate-item__info">
+          <div className={`real-estate-item__info-${tema}`}>
             <h1>{props.price} €</h1>
             <h3>
               {props.category}, {props.adStatus}, T{props.numberOfRooms},{" "}
@@ -98,13 +100,13 @@ const FormItem = (props) => {
             </h3>
             <h4>{props.location}</h4>
           </div>
-          <div className="real-estate-item__buttons-boho">
+          <div className={`real-estate-item__buttons-${tema}`}>
             <button onClick={handleTemplateClick}>Edit</button>
             <button onClick={handleDelete}>Delete</button>
             <br />
             <hr></hr>
             <button
-              id="real-estate-item__buttonDetail-boho"
+              id={`real-estate-item__buttonDetail-${tema}`}
               onClick={openDrawerHandler}
             >
               Details

@@ -11,6 +11,7 @@ import "./SharedRealEstate.css";
 const SharedRealEstate = () => {
   const [loadedSharePages, setLoadedSharePages] = useState(null);
   const [loadedTemplates, setLoadedTemplates] = useState([]);
+  const [tema, setTema] = useState(null);
   const [loadedUser, setLoadedUser] = useState(null);
   const [pageId, setPageId] = useState(null);
 
@@ -30,6 +31,7 @@ const SharedRealEstate = () => {
 
       setLoadedSharePages(res.data.page);
       setPageId(res.data.page.id);
+      setTema(res.data.page.tema);
 
       return res.data.page.id;
     } catch (err) {
@@ -77,13 +79,10 @@ const SharedRealEstate = () => {
     getUserById();
   }, []);
 
-  const tema = loadedSharePages && loadedSharePages.tema;
-  console.log(tema);
-
   return (
     <>
       <div className="container-shared">
-        <div>
+        <div className={`container-${tema}`}>
           {loadedUser && loadedSharePages ? (
             <ProfileDetails
               name={loadedUser.name}
@@ -91,16 +90,18 @@ const SharedRealEstate = () => {
               images={loadedSharePages.images}
               namePage={loadedSharePages.name}
               location={loadedUser.location}
-              phoneNumber = {loadedUser.phoneNumber}
+              phoneNumber={loadedUser.phoneNumber}
+              profilePic={loadedUser.images}
+              tema={tema}
             />
           ) : (
             "loading"
           )}
         </div>
 
-        <div id="form-list">
+        <div>
           {loadedTemplates ? (
-            <SharedFormList items={loadedTemplates} />
+            <SharedFormList items={loadedTemplates} tema={tema} />
           ) : (
             "Loading"
           )}

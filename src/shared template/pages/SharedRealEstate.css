@@ -1,13 +1,8 @@
 .container-shared {
-  padding-bottom: 20rem;
-  margin-top: 5rem;
+  margin-top: 8rem;
 }
 
-
-.shared-image{
-    width: 300px;
-}
-
-.shared-image img{
-    object-fit: cover;
+.container-Minimalist{
+  display: flex;
+  justify-content: center;
 }

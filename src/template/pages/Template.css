@@ -1,3 +1,32 @@
-.main {
-    padding-top: 1rem;
+.template__buttons {
+  margin: 7rem 1rem 2rem;
+
+}
+
+.template__buttons  ul {
+  list-style: none;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: last baseline;
+}
+
+.template__buttons  li {
+  float: left;
+}
+
+.template__buttons  button {
+  width: 130px;
+  height: 40px;
+
+  border: none;
+  background: none;
+
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.template__buttons  button:hover {
+  color: #110978;
+  font-size: 20px;
+  font-weight: 600;
 }

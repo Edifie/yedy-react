@@ -21,8 +21,7 @@ const UpdatePage = () => {
       url: `http://localhost:8080/api/pages/${pageId}`,
       header: "Content Type: application/json",
     })
-      .then((res) => {
-        console.log(res);
+      .then((res) => {  
         setUpdatedPage(res.data.page);
       })
       .catch((err) => {
@@ -46,7 +45,6 @@ const UpdatePage = () => {
     );
   }
   const area = updatedPage.area;
-  console.log(area);
 
   return (
 

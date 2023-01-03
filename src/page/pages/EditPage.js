@@ -114,177 +114,131 @@ const EditPage = () => {
         {({ errors, touched, values, setFieldValue }) => (
           <Form>
             <div className="overall--form">
-              {/* AREA */}
+              {/* TEMA */}
               <div className="wrapper">
                 <div className="box item1">
-                  <label>1. Website area</label>
+                  <label>1. Tema</label>
                   <hr />
                 </div>
 
                 <div className="box item2">
                   <div className="radio">
                     <label>
-                      <Field
-                        type="radio"
-                        name="area"
-                        value="Real Estate"
-                        checked={true}
-                      />
-                      Real Estate
+                      <Field type="radio" name="tema" value="Boho" /> Boho
                     </label>
                   </div>
 
                   <div className="radio">
                     <label>
-                      <Field type="radio" name="area" value="Hardware Store" />
-                      Hardware Store
+                      <Field type="radio" name="tema" value="Minimalist" />{" "}
+                      Minimalist
                     </label>
                   </div>
 
                   <div className="radio">
                     <label>
-                      <Field type="radio" name="area" value="Sell Clothes" />{" "}
-                      Sell Clothes
+                      <Field type="radio" name="tema" value="Basic" /> Basic
                     </label>
                   </div>
                 </div>
 
                 <div className="box item3">
-                  <img src={area} alt="tema" />
+                  <img src={responsive} alt="responsive" />
                 </div>
               </div>
-            </div>
 
-            {/* TEMA */}
-            <div className="wrapper">
-              <div className="box item1">
-                <label>2. Tema</label>
-                <hr />
-              </div>
+              {/* NAME */}
 
-              <div className="box item2">
-                <div className="radio">
-                  <label>
+              <div className="wrapper">
+                <div className="box item1">
+                  <label htmlFor="Name">2. Name of company</label>
+                  <hr />
+                </div>
+
+                <div className="box item2">
+                  <div className="textarea--form">
                     <Field
-                      checked={true}
-                      type="radio"
-                      name="tema"
-                      value="Boho"
-                    />{" "}
-                    Boho
-                  </label>
+                      id="name"
+                      name="name"
+                      className="text--form"
+                      placeholder="Enter your company name"
+                    />
+                    {errors.name && touched.name ? (
+                      <div className="error--form">{errors.name}</div>
+                    ) : null}
+                  </div>
+
+                  <div className="textarea--form hidden">
+                    <Field
+                      id="creator"
+                      value={userId}
+                      onChange={setFieldValue}
+                      className="text--form"
+                      name="creator"
+                      placeholder="Creator"
+                    />
+                  </div>
                 </div>
 
-                <div className="radio">
-                  <label>
-                    <Field type="radio" name="tema" value="Minimalist" />{" "}
-                    Minimalist
-                  </label>
-                </div>
-
-                <div className="radio">
-                  <label>
-                    <Field type="radio" name="tema" value="Basic" /> Basic
-                  </label>
-                </div>
-              </div>
-
-              <div className="box item3">
-                <img src={responsive} alt="responsive" />
-              </div>
-            </div>
-
-            {/* NAME */}
-
-            <div className="wrapper">
-              <div className="box item1">
-                <label htmlFor="Name">3. Name of company</label>
-                <hr />
-              </div>
-
-              <div className="box item2">
-                <div className="textarea--form">
-                  <Field
-                    id="name"
-                    name="name"
-                    className="text--form"
-                    placeholder="Enter your company name"
-                  />
-                  {errors.name && touched.name ? (
-                    <div className="error--form">{errors.name}</div>
-                  ) : null}
-                </div>
-
-                <div className="textarea--form hidden">
-                  <Field
-                    id="creator"
-                    value={userId}
-                    onChange={setFieldValue}
-                    className="text--form"
-                    name="creator"
-                    placeholder="Creator"
-                  />
+                <div className="box item3 page-name__img">
+                  <img src={name} alt="name" />
                 </div>
               </div>
 
-              <div className="box item3 page-name__img">
-                <img src={name} alt="name" />
-              </div>
-            </div>
+              {/* URL */}
 
-            {/* URL */}
+              <div className="wrapper">
+                <div className="box item1">
+                  <label htmlFor="URL">3. Customised URL</label>
+                  <hr />
+                </div>
 
-            <div className="wrapper">
-              <div className="box item1">
-                <label htmlFor="URL">4. Customised URL</label>
-                <hr />
-              </div>
+                <div className="box item2">
+                  <div className="textarea--form">
+                    <Field
+                      id="url"
+                      name="url"
+                      className="text--form"
+                      placeholder="Enter your customised URL"
+                    />
+                    {errors.url && touched.url ? (
+                      <div className="error--form">{errors.url}</div>
+                    ) : null}
+                  </div>
+                </div>
 
-              <div className="box item2">
-                <div className="textarea--form">
-                  <Field
-                    id="url"
-                    name="url"
-                    className="text--form"
-                    placeholder="Enter your customised URL"
-                  />
-                  {errors.url && touched.url ? (
-                    <div className="error--form">{errors.url}</div>
-                  ) : null}
+                <div className="box item3">
+                  <img src={url} alt="url" />
                 </div>
               </div>
 
-              <div className="box item3">
-                <img src={url} alt="url" />
-              </div>
-            </div>
+              <div className="wrapper">
+                <div className="box item1">
+                  <label htmlFor="URL">4. Upload photo of your business</label>
+                  <hr />
+                </div>
 
-            <div className="wrapper">
-              <div className="box item1">
-                <label htmlFor="URL">5. Upload photo of your business</label>
-                <hr />
-              </div>
+                <div className="box item2">
+                  <div className="textarea--form">
+                    <FileInput name="images" type="file" value={undefined} />
+                  </div>
+                </div>
 
-              <div className="box item2">
-                <div className="textarea--form">
-                  <FileInput name="images" type="file" value={undefined} />
+                <div className="box item3 images">
+                  <img src={images} alt="images" />
                 </div>
               </div>
 
-              <div className="box item3 images">
-                <img src={images} alt="images" />
-              </div>
-            </div>
-
-            <div className="wrapper">
-              <div className="box item4">
-                <button
-                  onClick={navigateToPage}
-                  className="btn--form"
-                  type="submit"
-                >
-                  Save
-                </button>
+              <div className="wrapper">
+                <div className="box item4">
+                  <button
+                    onClick={navigateToPage}
+                    className="btn--form"
+                    type="submit"
+                  >
+                    Save
+                  </button>
+                </div>
               </div>
             </div>
           </Form>
