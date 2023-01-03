@@ -6,7 +6,9 @@
 - finish design of Real Estate
     -> finish add template design / DONE
     -> finish profile design / DONE
-    -> finish portfolio design
+    -> finish portfolio design 
 
 - add page edit to change style etc / DONE
 - take alert when submitting tempaltes /DONE
+
+- edit form to new house
