@@ -87,123 +87,172 @@ const BaseFormRealEstate = () => {
         {({ errors, touched }) => (
           <Form>
             <div className="base-form-real-estate__main">
-              <table className="base-form-real-estate__table">
-                <tr>
-                  <th>Category</th>
-                  <td>
-                    <div>
-                      <Field
-                        type="radio"
-                        name="category"
-                        value="House"
-                        checked={true}
-                      />
-                      House
-                    </div>
+              <div className="base-form-real-estate__category">
+                <h1>Domicil Category</h1>
 
-                    <div>
-                      <Field type="radio" name="category" value="Workplace" />
-                      Workplace
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <th>Status</th>
-                  <td>
-                    <div>
-                      <Field
-                        type="radio"
-                        name="adStatus"
-                        value="Rent"
-                        checked={true}
-                      />
-                      Rent
-                    </div>
-                    <div>
-                      <Field type="radio" name="adStatus" value="Sell" />
-                      Sell
-                    </div>
-                  </td>
-                </tr>
+                <div className="base-form-real-estate__field gray">
+                  <div className="base-form-real-estate__header">
+                    <h2>Category</h2>
+                  </div>
 
-                <tr>
-                  <th>Advertisement Title</th>
-                  <td>
-                    <Field type="text" name="adTitle" />
+                  <div className="base-form-real-estate__input">
+                    <Field
+                      type="radio"
+                      name="category"
+                      value="House"
+                      checked={true}
+                    />
+                    <label>House</label>
+
+                    <Field type="radio" name="category" value="Workplace" />
+
+                    <label>Workplace</label>
+                  </div>
+                </div>
+
+                <div className="base-form-real-estate__field white">
+                  <div className="base-form-real-estate__header">
+                    <h2>Status</h2>
+                  </div>
+
+                  <div className="base-form-real-estate__input">
+                    <Field
+                      type="radio"
+                      name="adStatus"
+                      value="Rent"
+                      checked={true}
+                    />
+                    <label>Rent</label>
+
+                    <Field type="radio" name="adStatus" value="Sell" />
+                    <label>Sell</label>
+                  </div>
+                </div>
+              </div>
+
+              <div className="base-form-real-estate__category">
+                <h1>Domicil Informations</h1>
+
+                <div className="base-form-real-estate__field gray">
+                  <div className="base-form-real-estate__header">
+                    <h2>Title</h2>
+                  </div>
+
+                  <div className="base-form-real-estate__input">
+                    <Field
+                      type="text"
+                      name="adTitle"
+                      className="base-form-real-estate__text"
+                    />
                     {errors.adTitle && touched.adTitle ? (
                       <div className="error--form">{errors.adTitle}</div>
                     ) : null}
-                  </td>
-                </tr>
+                  </div>
+                </div>
 
-               
+                <div className="base-form-real-estate__field white">
+                  <div className="base-form-real-estate__header">
+                    <h2>Description</h2>
+                  </div>
 
-                <tr>
-                  <th>Price</th>
-                  <td>
-                    <Field type="number" name="price" />
-                    {errors.price && touched.price ? (
-                      <div className="error--form">{errors.price}</div>
-                    ) : null}
-                  </td>
-                </tr>
-
-                <tr>
-                  <th>Number of rooms</th>
-                  <td>
-                    <Field type="number" name="numberOfRooms" />
-                    {errors.numberOfRooms && touched.numberOfRooms ? (
-                      <div className="error--form">{errors.numberOfRooms}</div>
-                    ) : null}
-                  </td>
-                </tr>
-
-                <tr>
-                  <th>Net M2</th>
-                  <td>
-                    <Field type="number" name="metreSquare" />
-                    {errors.metreSquare && touched.metreSquare ? (
-                      <div className="error--form">{errors.metreSquare}</div>
-                    ) : null}
-                  </td>
-                </tr>
-
-                <tr>
-                  <th>Address</th>
-                  <td>
-                    <Field type="text" name="location" />
-                    {errors.location && touched.location ? (
-                      <div className="error--form">{errors.location}</div>
-                    ) : null}
-                  </td>
-                </tr>
-
-                <tr>
-                  <th>Description</th>
-                  <td>
-                    <Field className="base-form-real-estate__textarea" component="textarea" name="description" />
+                  <div className="base-form-real-estate__input">
+                    <Field
+                      className="base-form-real-estate__textarea"
+                      component="textarea"
+                      name="description"
+                    />
                     {errors.description && touched.description ? (
                       <div className="error--form">{errors.description}</div>
                     ) : null}
-                  </td>
-                </tr>
+                  </div>
+                </div>
 
-                <tr>
-                  <th>Upload photos</th>
-                  <td>
+                <div className="base-form-real-estate__field gray">
+                  <div className="base-form-real-estate__header">
+                    <h2>Price</h2>
+                  </div>
+
+                  <div className="base-form-real-estate__input">
+                    <Field
+                      type="number"
+                      name="price"
+                      className="base-form-real-estate__small-text"
+                    />
+                    {errors.price && touched.price ? (
+                      <div className="error--form">{errors.price}</div>
+                    ) : null}
+                  </div>
+                </div>
+
+                <div className="base-form-real-estate__field white">
+                  <div className="base-form-real-estate__header">
+                    <h2>Number of rooms</h2>
+                  </div>
+
+                  <div className="base-form-real-estate__input">
+                    <Field
+                      type="number"
+                      name="numberOfRooms"
+                      className="base-form-real-estate__small-text"
+                    />
+                    {errors.numberOfRooms && touched.numberOfRooms ? (
+                      <div className="error--form">{errors.numberOfRooms}</div>
+                    ) : null}
+                  </div>
+                </div>
+
+                <div className="base-form-real-estate__field gray">
+                  <div className="base-form-real-estate__header">
+                    <h2>Net m2</h2>
+                  </div>
+
+                  <div className="base-form-real-estate__input">
+                    <Field
+                      type="number"
+                      name="metreSquare"
+                      className="base-form-real-estate__small-text"
+                    />
+                    {errors.metreSquare && touched.metreSquare ? (
+                      <div className="error--form">{errors.metreSquare}</div>
+                    ) : null}
+                  </div>
+                </div>
+
+                <div className="base-form-real-estate__field white">
+                  <div className="base-form-real-estate__header">
+                    <h2>Address </h2>
+                  </div>
+
+                  <div className="base-form-real-estate__input">
+                    <Field
+                      type="text"
+                      name="location"
+                      className="base-form-real-estate__text"
+                    />
+                    {errors.location && touched.location ? (
+                      <div className="error--form">{errors.location}</div>
+                    ) : null}
+                  </div>
+                </div>
+
+                <div className="base-form-real-estate__field gray">
+                  <div className="base-form-real-estate__header">
+                    <h2>Upload photos </h2>
+                  </div>
+
+                  <div className="base-form-real-estate__input">
                     <FileInput
                       name="images"
                       multiple
                       type="file"
                       value={undefined}
                     />
-                  </td>
-                </tr>
+                  </div>
+                </div>
                 <div className="base-form-real-estate__button" type="submit">
-                <button>Submit</button>
+                  <button>Submit</button>
+                </div>
               </div>
-              </table>
-              
             </div>
           </Form>
         )}

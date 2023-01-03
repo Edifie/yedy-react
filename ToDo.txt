@@ -13,6 +13,15 @@
 
 - edit form to new house
 
++ media query
+    - profile / DONE
+    - edit profile / DONE
+    - add new page / DONE
+    - edit page / DONE
+    - display tempaltes / DONE
+    - edit templates / DONE
+    - add new template /DONE
+
 
 
 

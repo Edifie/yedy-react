@@ -29,7 +29,6 @@
   padding-top: 2rem;
 }
 
-
 .profile-picture img {
   width: 100%;
   height: 100%;
@@ -78,7 +77,6 @@
 .profile-text {
   font-size: 30px;
   margin-left: 1rem;
-  
 }
 
 .profile-button__add-page {
@@ -97,6 +95,36 @@
   color: #160d89;
 }
 
-.main-profile__capitalize{
+.main-profile__capitalize {
   text-transform: capitalize;
+}
+
+@media (max-width: 820px) {
+  .main-profile {
+    display: block;
+    margin: 0 3rem;
+  }
+
+  .main-profile__capitalize h1,
+  h3,
+  h4 {
+    font-size: 90%;
+  }
+
+  .profile-button {
+    display: block;
+    text-align: center;
+    margin: 4rem auto;
+    float: none;
+  }
+
+  .profile-pages {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+
+  .profile-text {
+    margin: 3rem auto 0;
+  }
 }

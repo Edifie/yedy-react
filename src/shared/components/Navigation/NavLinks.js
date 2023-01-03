@@ -18,16 +18,6 @@ const NavLinks = () => {
 
   return (
     <ul className="nav-links">
-      <li>
-        <NavLink to="/about">About</NavLink>
-      </li>
-      <li>
-        <NavLink to="/contact">Contact</NavLink>
-      </li>
-      <li>
-        <NavLink to="/resources">Resources</NavLink>
-      </li>
-
       {token && (
         <li>
           <NavLink to="/pages/new">Add new page</NavLink>

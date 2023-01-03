@@ -61,12 +61,6 @@
 }
 
 
-@media (min-width: 768px) {
-  .place-item__image {
-    height: 20rem;
-  }
-}
-
 
 .real-estate-item__buttons-Boho button{
   background-color: white;
@@ -158,4 +152,13 @@
   font-size: 16px;
   font-weight: 600;
 
+}
+
+
+
+@media (max-width: 620px) {
+  .real-estate-item__content-Boho, .real-estate-item-Minimalist {
+    margin: 2rem auto;
+    min-height: auto;
+  }
 }

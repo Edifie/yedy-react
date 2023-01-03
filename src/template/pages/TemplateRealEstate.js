@@ -89,7 +89,7 @@ const TemplateRealEstate = () => {
 
   return (
     <>
-      <div className="container">
+      <div className="template-overall">
         <div className="template__buttons">
           <hr></hr>
           <ul>

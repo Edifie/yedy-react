@@ -51,7 +51,7 @@ const Profile = () => {
       ));
 
   const navigateToAddNewPage = () => {
-    navigate("/pages/new")
+    navigate("/pages/new");
   };
 
   return (
@@ -65,8 +65,8 @@ const Profile = () => {
           </div>
 
           <div className="main-profile__capitalize">
-          <h1>{loadedUser.name}</h1>
-          <h3>{loadedUser.location}</h3>
+            <h1>{loadedUser.name}</h1>
+            <h3>{loadedUser.location}</h3>
           </div>
           <h4>+ {loadedUser.phoneNumber}</h4>
           <div className="profile-button">
@@ -82,9 +82,7 @@ const Profile = () => {
               <button onClick={navigateToAddNewPage}>Add new page ➕</button>
             </div>
 
-            <div>
-              <UserPages />
-            </div>
+            <UserPages />
           </div>
         </div>
       </div>

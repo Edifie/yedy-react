@@ -1,20 +1,19 @@
 .template__buttons {
   margin: 7rem 1rem 2rem;
-
 }
 
-.template__buttons  ul {
+.template__buttons ul {
   list-style: none;
   display: flex;
   flex-wrap: nowrap;
   justify-content: last baseline;
 }
 
-.template__buttons  li {
+.template__buttons li {
   float: left;
 }
 
-.template__buttons  button {
+.template__buttons button {
   width: 130px;
   height: 40px;
 
@@ -25,8 +24,36 @@
   font-size: 18px;
 }
 
-.template__buttons  button:hover {
+.template__buttons button:hover {
   color: #110978;
   font-size: 20px;
   font-weight: 600;
+}
+
+@media (max-width: 820px) {
+  .template__buttons {
+    margin: 2 auto;
+  }
+
+  .template__buttons ul {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    margin: 0;
+  }
+
+  .template__buttons button {
+    font-size: 15px;
+    width: 5rem;
+  }
+
+  .container-Minimalist {
+    display: block;
+    flex-direction: row;
+  }
+
+  .template-overall {
+    display: block;
+
+  }
 }

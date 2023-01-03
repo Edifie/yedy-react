@@ -5,7 +5,6 @@ import Axios from "axios";
 import * as Yup from "yup";
 
 import "./Auth.css";
-import register from "./register.png";
 import axios from "axios";
 import FileInput from "../../shared/components/UIElements/FileInput";
 

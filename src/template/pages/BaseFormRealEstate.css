@@ -1,46 +1,56 @@
 .base-form-real-estate__main {
-  border: 1px solid #ddd;
-  margin: 5rem 20rem;
+
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 20rem;
   border-radius: 5px;
+  color: #434343;
 }
 
-.base-form-real-estate__table {
-  width: 100%;
-  border-spacing: 5px;
-  table-layout: fixed;
-
-  border-collapse: collapse;
-}
-
-.base-form-real-estate__table td {
-  text-align: left;
-
-  padding: 1rem 2rem;
-
-  height: 60px;
-  border-bottom: 1px solid #ddd;
-}
-
-/* .base-form-real-estate__table tr:nth-child(odd) {
-  background-color: #f2f2f2;
-} */
-
-.base-form-real-estate__table tr {
-  width: 50rem;
-}
-
-.base-form-real-estate__table th {
-  color: #7d97f4;
+.base-form-real-estate__category {
+  box-sizing: border-box;
+  padding: 1rem;
+  margin-bottom: 2rem;
   border-radius: 5px;
-  width: 15rem;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-  padding-left: 2rem;
+
+  border: solid #ccc 1px;
+}
+
+.base-form-real-estate__category h1{
+  font-size: 25px;
+}
+
+.base-form-real-estate__header h2{
+  font-size: 18px;
+}
+
+.base-form-real-estate__input label {
+  margin-right: 3rem;
+  font-size: 15px;
+}
+
+.base-form-real-estate__field {
+  padding: 0.5rem;
+}
+
+.gray {
+  background-color: #f9f9f9;
+}
+
+.base-form-real-estate__input {
+  box-sizing: content-box;
+  margin: 1rem;
+}
+
+
+
+.base-form-real-estate__input-radio {
+  display: inline;
 }
 
 .base-form-real-estate__button {
   display: flex;
-  justify-content: right;
+justify-content: center;
 }
 
 .base-form-real-estate__button button {
@@ -57,26 +67,52 @@
 
   box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px;
 
-  margin: 2rem;
+  margin: 2.5rem;
+
 }
 
 .base-form-real-estate__textarea {
-  width: 100%;
-  height: 200px;
+  width: 98%;
+  height: 255px;
   font-size: 16px;
   border: 1px solid #ccc;
   border-radius: 5px;
   resize: none;
   padding: 10px;
-
   font-family: "Poppins", sans-serif;
+
   font-weight: 300;
   text-align: left;
+  padding: 0.5rem;
   vertical-align: top;
 }
 
-@media screen and (max-width: 600px) {
-  .base-form-real-estate__textarea {
+.base-form-real-estate__text {
+  width: 100%;
+  height: 25px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  padding: 0.5rem;
+}
+
+.base-form-real-estate__small-text {
+  width: 30%;
+  height: 25px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-size: 16px;
+  padding: 0.5rem;
+}
+
+@media (max-width: 922px) {
+  .base-form-real-estate__main {
     width: 100%; /* sets the width to 100% on screens smaller than 600px */
+
+    margin: 0;
   }
 }

@@ -84,29 +84,58 @@
   text-align: center;
 }
 
-.btn--form:hover{
+.btn--form:hover {
   background-color: #160d89;
 }
 
-.error--form{
+.error--form {
   font-size: 15px;
-  color: #D63301;
+  color: #d63301;
   text-align: center;
   margin: 0;
   padding: 0;
 }
 
-.page-name__img img{
+.page-name__img img {
   width: 23rem;
   height: auto;
   margin-left: 1.5rem;
 }
 
-
-.hidden{
- display: none;
+.hidden {
+  display: none;
 }
 
-.images{
+.images {
   margin-left: 1.5rem;
+}
+
+@media (max-width: 820px) {
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .item1 {
+    margin: 0.5rem;
+    text-align: center;
+  }
+
+  .item2 {
+    margin: 0;
+  }
+
+  .item3 img {
+    width: 90%;
+    margin: 1rem;
+  }
+
+  .item4 {
+    display: flex;
+    justify-content: center;
+  }
+
+  .textarea--form {
+    text-align: center;
+  }
 }
