@@ -8,7 +8,7 @@ import FormItemDetail from "./FormItemDetail";
 import "./FormList.css";
 
 const FormList = (props) => {
-  const { tema } = props;
+  const { tema, area } = props;
   const pageId = useParams().pageId;
 
   if (props.items.length === 0) {
@@ -26,49 +26,93 @@ const FormList = (props) => {
   }
 
   //Map every item into a jsx element so can be rendered as jsx here
-  return (
-    <ul className={`form-list-${tema}`}>
-      {props.items.map((template) => (
-        <>
-          {tema && (
-            <FormItem
-              tema={tema}
-              showButton={true}
-              key={template._id}
-              id={template._id}
-              price={template.price}
-              location={template.location}
-              category={template.category}
-              numberOfRooms={template.numberOfRooms}
-              adStatus={template.adStatus}
-              metreSquare={template.metreSquare}
-              description={template.description}
-              adTitle={template.adTitle}
-              images={template.images}
-            />
-          )}
+  switch (area) {
+    case "Real Estate":
+      return (
+        <ul className={`form-list-${tema}`}>
+          {props.items.map((template) => (
+            <>
+              {tema && (
+                <FormItem
+                  tema={tema}
+                  showButton={true}
+                  key={template._id}
+                  id={template._id}
+                  price={template.price}
+                  location={template.location}
+                  category={template.category}
+                  numberOfRooms={template.numberOfRooms}
+                  adStatus={template.adStatus}
+                  metreSquare={template.metreSquare}
+                  description={template.description}
+                  adTitle={template.adTitle}
+                  images={template.images}
+                />
+              )}
 
-          {tema && template.show && (
-            <FormItemDetail
-              showButton={true}
-              key={template._id}
-              id={template._id}
-              price={template.price}
-              location={template.location}
-              category={template.category}
-              numberOfRooms={template.numberOfRooms}
-              adStatus={template.adStatus}
-              metreSquare={template.metreSquare}
-              description={template.description}
-              adTitle={template.adTitle}
-              images={template.images}
-              tema={tema}
-            />
-          )}
-        </>
-      ))}
-    </ul>
-  );
+              {tema && template.show && (
+                <FormItemDetail
+                  showButton={true}
+                  key={template._id}
+                  id={template._id}
+                  price={template.price}
+                  location={template.location}
+                  category={template.category}
+                  numberOfRooms={template.numberOfRooms}
+                  adStatus={template.adStatus}
+                  metreSquare={template.metreSquare}
+                  description={template.description}
+                  adTitle={template.adTitle}
+                  images={template.images}
+                  tema={tema}
+                />
+              )}
+            </>
+          ))}
+        </ul>
+      );
+
+    case "Sell Clothes":
+      return (
+        <ul className={`form-list-${tema}`}>
+          {props.items.map((template) => (
+            <>
+              {tema && (
+                <FormItem
+                  tema={tema}
+                  showButton={true}
+                  key={template._id}
+                  id={template._id}
+                  price={template.price}
+                  category={template.category}
+                  size={template.size}
+                  color={template.color}
+                  details={template.details}
+                  material={template.material}
+                  images={template.images}
+                />
+              )}
+
+              {tema && template.show && (
+                <FormItemDetail
+                  showButton={true}
+                  key={template._id}
+                  id={template._id}
+                  price={template.price}
+                  category={template.category}
+                  size={template.size}
+                  color={template.color}
+                  details={template.details}
+                  material={template.material}
+                  images={template.images}
+                  tema={tema}
+                />
+              )}
+            </>
+          ))}
+        </ul>
+      );
+  }
 };
 
 export default FormList;

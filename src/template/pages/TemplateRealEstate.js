@@ -7,12 +7,17 @@ import { faShare } from "@fortawesome/free-solid-svg-icons";
 import "./Template.css";
 import FormList from "../components/FormList";
 import ProfileDetails from "../components/ProfileDetails";
+import WelcomeSection from "../components/WelcomeSection";
+import Sections from "./Sections";
 
 const TemplateRealEstate = () => {
   const [loadedTemplates, setLoadedTemplates] = useState([]);
   const [loadedPages, setLoadedPages] = useState([]);
   const [loadedUser, setLoadedUser] = useState(null);
+  const [loadedSection, setLoadedSection] = useState(null);
   const [tema, setTema] = useState(null);
+  const [area, setArea] = useState(null);
+
 
   const userId = localStorage.getItem("userId");
 
@@ -48,6 +53,7 @@ const TemplateRealEstate = () => {
       .then((res) => {
         setLoadedPages(res.data.page);
         setTema(res.data.page.tema);
+        setArea(res.data.page.area);
         localStorage.setItem("url", res.data.page.url);
       })
       .catch((err) => {
@@ -69,10 +75,27 @@ const TemplateRealEstate = () => {
       });
   };
 
+  const getSectionByPageId = async () => {
+    await axios({
+      method: "GET",
+      url: `http://localhost:8080/api/pages/${pageId}/aditional-section`,
+      headers: {
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((res) => {
+        setLoadedSection(res.data.section);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     getTemplates();
     getPageById();
     getUserById();
+    getSectionByPageId();
   }, []);
 
   const redirectToForm = () => {
@@ -81,6 +104,10 @@ const TemplateRealEstate = () => {
 
   const handleShare = async () => {
     window.open(`http://localhost:3000/DT/${localStorage.getItem("url")}`);
+  };
+
+  const handleInfo = async () => {
+    navigate(`/pages/${pageId}/aditional-section`);
   };
 
   const handleEdit = async () => {
@@ -95,6 +122,10 @@ const TemplateRealEstate = () => {
           <ul>
             <li>
               <button onClick={handleEdit}>Edit</button>
+            </li>
+
+            <li>
+              <button onClick={handleInfo}>Add section</button>
             </li>
 
             <li>
@@ -128,7 +159,11 @@ const TemplateRealEstate = () => {
         </div>
 
         <div>
-          <FormList tema={tema} items={loadedTemplates} />
+          <Sections />
+        </div>
+
+        <div>
+          <FormList area={area} tema={tema} items={loadedTemplates} />
         </div>
       </div>
     </>

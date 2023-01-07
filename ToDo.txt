@@ -22,6 +22,11 @@
     - edit templates / DONE
     - add new template /DONE
 
-
++ add aditional sections
+    - about us -> Text(About Us) + Text
+    - welcome -> Text(Welcome) + Text
+    - team -> Text (Meet the team) + (Image + Job Title + Name + Description)
+    - contact -> Call (number) + Email (email)
+    - promotion -> Text + Text
 
 

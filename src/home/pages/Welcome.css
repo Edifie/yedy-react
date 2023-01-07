@@ -6,7 +6,7 @@ body {
 .grid-container {
   display: grid;
   grid-template-columns: repeat(13, 1fr);
-  grid-template-rows: repeat(6, 16.50%);
+
 } 
 
 @media (max-width: 820px) {
