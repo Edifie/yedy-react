@@ -3,10 +3,6 @@
 
   font-size: 14px;
   font-weight: 300;
-
-  width: 400px;
-
-  margin-left: 3%;
 }
 
 .btn--auth-edit {
@@ -44,8 +40,6 @@
 
   font-weight: 500;
   font-size: 15px;
-
-
 
   box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px;
 

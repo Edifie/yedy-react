@@ -22,11 +22,24 @@
     - edit templates / DONE
     - add new template /DONE
 
-+ add aditional sections
-    - about us -> Text(About Us) + Text
-    - welcome -> Text(Welcome) + Text
-    - team -> Text (Meet the team) + (Image + Job Title + Name + Description)
-    - contact -> Call (number) + Email (email)
++ add aditional sections 
+    - about us -> Text(About Us) + Text /DONE
+    - welcome -> Text(Welcome) + Text /DONE
+    - team -> Text (Meet the team) + (Image + Job Title + Name + Description) /DONE
     - promotion -> Text + Text
+
+
+
+
++ Sections
+    - redirect to section page after create a page / DONE
+    - manage to save with empty data if neccessary / DONE
+    - in the Template, change "Add section" to "Edit section" / DONE
+    - handle edit section in the both ends, backend and frontend / DONE (backend)
+
+    - design of edit section
+    - design of welcome section
+    - design of team section
+    - design of about us section
 
 

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
 
 import Welcome from "./home/pages/Welcome";
@@ -13,14 +13,16 @@ import BaseFormRealEstate from "./template/pages/BaseFormRealEstate";
 import UpdateTemplate from "./template/pages/UpdateRealEstate";
 import SharedRealEstate from "./shared template/pages/SharedRealEstate.js";
 import FormItemDetail from "./template/components/FormItemDetail";
-import Sections from "./template/pages/Sections"
 
 import "./App.css";
-import ProtectedRoutes from "./ProtectedRoute";
+
 import Profile from "./user/pages/Profile";
 import ProfileEdit from "./user/pages/ProfileEdit";
 import EditPage from "./page/pages/EditPage";
 import BaseFormAditional from "./template/pages/BaseFormAditional";
+import BaseFormAditionalEdit from "./template/pages/BaseFormAditionalEdit";
+import AddTeam from "./template/components/AddTeam";
+import SessionExpiredCheck from "./shared/components/Session/SessionExpiredCheck";
 
 const App = () => {
   // See Notion - React/Router-dom-v6 for Router usage in version 6
@@ -31,38 +33,46 @@ const App = () => {
       <main className="main">
         <Routes>
           {/* Protected routes */}
-          <Route path="/" element={<ProtectedRoutes />}>
-            <Route path="/users" component={<Users />} />
-            <Route path="/pages/:pageId" element={<UpdatePage />} />
-            <Route path="/pages/new" exact="true" element={<NewPage />} />
-            <Route path="/:userId/pages" element={<UserPages />} />
-            <Route
-              path="/pages/:pageId/formRE"
-              element={<BaseFormRealEstate />}
-            />
-            <Route
-              path="/pages/:pageId/:templateId"
-              element={<UpdateTemplate />}
-            />
-            <Route path="/DT/:url" element={<SharedRealEstate />} />
-            <Route path="/profile/:userId" element={<Profile />} />
-            <Route path="/:userId/edit-profile" element={<ProfileEdit />} />
-            <Route
-              path="/pages/details/:templateId"
-              element={<FormItemDetail />}
-            />
-            <Route path="pages/edit/:pageId" element={<EditPage />} />
-            <Route
-              path="pages/:pageId/aditional-section"
-              element={<BaseFormAditional />}
-            />
-            <Route path="pages/:pageId/sections" element={<Sections />} />
-          </Route>
+
+          <Route path="/users" component={<Users />} />
+          <Route path="/pages/:pageId" element={<UpdatePage />} />
+          <Route path="/pages/new" exact="true" element={<NewPage />} />
+          <Route path="/:userId/pages" element={<UserPages />} />
+          <Route
+            path="/pages/:pageId/formRE"
+            element={<BaseFormRealEstate />}
+          />
+          <Route
+            path="/pages/:pageId/:templateId"
+            element={<UpdateTemplate />}
+          />
+          <Route path="/DT/:url" element={<SharedRealEstate />} />
+          <Route path="/profile/:userId" element={<Profile />} />
+          <Route path="/:userId/edit-profile" element={<ProfileEdit />} />
+          <Route
+            path="/pages/details/:templateId"
+            element={<FormItemDetail />}
+          />
+          <Route path="pages/edit/:pageId" element={<EditPage />} />
+          <Route
+            path="pages/:pageId/aditional-section"
+            element={<BaseFormAditional />}
+          />
+          <Route
+            path="pages/:pageId/aditional-section-edit"
+            element={<BaseFormAditionalEdit />}
+          />
+
+          <Route
+            path="pages/:pageId/aditional-section/add-team/:sectionId"
+            element={<AddTeam />}
+          />
 
           <Route path="/home" element={<Welcome />} />
-
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
+
+          <Route path="/*" element={<SessionExpiredCheck />} />
         </Routes>
       </main>
     </BrowserRouter>

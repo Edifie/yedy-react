@@ -75,9 +75,8 @@
   text-align: center;
   height: 32rem;
   justify-content: center;
-  width: 85%;
   background: #232323;
-  margin: 2rem 8rem;
+  margin: 0 auto;
 
   border-radius: 200px 200px 10px 10px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",

@@ -1,29 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faShare } from "@fortawesome/free-solid-svg-icons";
 
 import "./Template.css";
 import FormList from "../components/FormList";
 import ProfileDetails from "../components/ProfileDetails";
 import WelcomeSection from "../components/WelcomeSection";
-import Sections from "./Sections";
+
+import TeamSection from "../components/TeamSection";
+import AboutUsSection from "../components/AboutUsSection";
 
 const TemplateRealEstate = () => {
   const [loadedTemplates, setLoadedTemplates] = useState([]);
   const [loadedPages, setLoadedPages] = useState([]);
   const [loadedUser, setLoadedUser] = useState(null);
-  const [loadedSection, setLoadedSection] = useState(null);
+  const [sectionData, setSectionData] = useState(null);
   const [tema, setTema] = useState(null);
   const [area, setArea] = useState(null);
-
 
   const userId = localStorage.getItem("userId");
 
   const navigate = useNavigate();
 
   const pageId = useParams().pageId;
+
+  if (sectionData) {
+    const containerClass = sectionData.teamTitle
+      ? "parent-container"
+      : "parent-container-no-team";
+  }
 
   const getTemplates = async () => {
     await axios({
@@ -84,7 +89,7 @@ const TemplateRealEstate = () => {
       },
     })
       .then((res) => {
-        setLoadedSection(res.data.section);
+        setSectionData(res.data.sections[0]);
       })
       .catch((err) => {
         console.log(err);
@@ -98,6 +103,10 @@ const TemplateRealEstate = () => {
     getSectionByPageId();
   }, []);
 
+  if (!sectionData) {
+    return null;
+  }
+
   const redirectToForm = () => {
     window.location = `/pages/${pageId}/formRE`;
   };
@@ -106,8 +115,8 @@ const TemplateRealEstate = () => {
     window.open(`http://localhost:3000/DT/${localStorage.getItem("url")}`);
   };
 
-  const handleInfo = async () => {
-    navigate(`/pages/${pageId}/aditional-section`);
+  const handleSection = async () => {
+    navigate(`/pages/${pageId}/aditional-section-edit`);
   };
 
   const handleEdit = async () => {
@@ -116,7 +125,7 @@ const TemplateRealEstate = () => {
 
   return (
     <>
-      <div className="template-overall">
+      <div className={`template-overall-${tema}`}>
         <div className="template__buttons">
           <hr></hr>
           <ul>
@@ -125,7 +134,7 @@ const TemplateRealEstate = () => {
             </li>
 
             <li>
-              <button onClick={handleInfo}>Add section</button>
+              <button onClick={handleSection}>Edit section</button>
             </li>
 
             <li>
@@ -140,7 +149,6 @@ const TemplateRealEstate = () => {
           </ul>
           <hr></hr>
         </div>
-
         <div className={`container-${tema}`}>
           {loadedUser && loadedPages ? (
             <ProfileDetails
@@ -157,9 +165,47 @@ const TemplateRealEstate = () => {
             "loading"
           )}
         </div>
+        <div className="WelcomeSection">
+          {sectionData.welcomeTitle && sectionData.welcomeDescription ? (
+            <WelcomeSection
+              welcomeTitle={sectionData.welcomeTitle}
+              welcomeDescription={sectionData.welcomeDescription}
+              tema={tema}
+            />
+          ) : (
+            ""
+          )}
+        </div>
+        
+        <div
+          className={`parent-container ${
+            sectionData.team && sectionData.team.length > 0
+              ? ""
+              : "parent-container-no-team"
+          }`}
+        >
+          <div className="AboutUsSection" style={{flex:sectionData.team && sectionData.team.length > 0 ? "1" : "2"}}>
+            {sectionData.aboutUsTitle && sectionData.aboutUsDescription ? (
+              <AboutUsSection
+                aboutUsTitle={sectionData.aboutUsTitle}
+                aboutUsDescription={sectionData.aboutUsDescription}
+                tema={tema}
+              />
+            ) : (
+              ""
+            )}
+          </div>
 
-        <div>
-          <Sections />
+          <div className="TeamSection">
+            {sectionData.team && sectionData.team.length > 0 ? (
+              <TeamSection
+                team={sectionData.team}
+                teamTitle={sectionData.teamTitle}
+              />
+            ) : (
+              ""
+            )}
+          </div>
         </div>
 
         <div>

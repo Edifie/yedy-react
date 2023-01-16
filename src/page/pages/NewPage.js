@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Formik, Field, Form } from "formik";
 import Axios from "axios";
 import * as Yup from "yup";
@@ -7,7 +7,7 @@ import area from "./area.jpg";
 import responsive from "./responsive.jpg";
 import tema from "./tema.jpg";
 import name from "./name.jpg";
-import url from "./url.jpg"
+import url from "./url.jpg";
 
 import "./NewPage.css";
 import { useNavigate } from "react-router-dom";
@@ -24,6 +24,8 @@ const NewPage = () => {
       .required("Cannot leave blank this field."),
   });
 
+  const [pageId, setPageId] = useState(null);
+
   const token = localStorage.getItem("token");
   console.log(token);
 
@@ -36,21 +38,27 @@ const NewPage = () => {
     })
       .then((res) => {
         console.log(res);
+
+        setTimeout(async () => {
+          navigate(`/pages/${res.data.pageId}/aditional-section`);
+        }, 2000);
+
+        // setPageId(res.data.pageId);
+        // console.log("res.data.pageId", res.data.pageId);
       })
       .catch((res) => {
         console.log(res);
       });
-    console.log(values);
   };
 
   let userId = localStorage.getItem("userId");
 
   const navigate = useNavigate();
-  const redirectToUsersPage = () => {
-    setTimeout(() => {
-      navigate(`/profile/${userId}`);
-    }, 2000);
-  };
+  // const redirectToUsersPage = () => {
+  //   setTimeout(async () => {
+  //     navigate(`pages/${pageId}/aditional-section`);
+  //   }, 2000);
+  // };
 
   return (
     <div>
@@ -218,7 +226,7 @@ const NewPage = () => {
             <div className="wrapper">
               <div className="box item4">
                 <button
-                  onClick={redirectToUsersPage}
+                  // onClick={redirectToUsersPage}
                   className="btn--form"
                   type="submit"
                 >

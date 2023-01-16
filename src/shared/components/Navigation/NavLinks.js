@@ -19,14 +19,16 @@ const NavLinks = () => {
   return (
     <ul className="nav-links">
       {token && (
-        <li>
-          <NavLink to="/pages/new">Add new page</NavLink>
-        </li>
+        <>
+          <li>
+            <NavLink to="/pages/new">Add new page</NavLink>
+          </li>
+          <li>
+            <NavLink to={"/profile" + "/" + userId}>Profile</NavLink>
+          </li>
+        </>
       )}
 
-      <li>
-        <NavLink to={"/profile" + "/" + userId}>Profile</NavLink>
-      </li>
       {!token && (
         <li>
           <NavLink to="/login">Login</NavLink>

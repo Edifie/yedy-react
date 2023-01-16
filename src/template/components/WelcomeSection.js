@@ -1,11 +1,21 @@
 import React from "react";
 
-const WelcomeSection = ({ welcomeTitle, welcomeDescription }) => {
+import "./WelcomeSection.css";
+
+const WelcomeSection = ({ tema, welcomeTitle, welcomeDescription }) => {
   return (
-    <div>
-      <h1>{welcomeTitle}</h1>
-      <p>{welcomeDescription}</p>
-    </div>
+    <>
+      {tema && (
+        <div className={`welcome-section-overall-${tema} `}>
+          <div className={`welcome-section-header-${tema}`}>
+            <h1>{welcomeTitle}</h1>
+          </div>
+          <div className={`welcome-section-description-${tema}`}>
+            <p>{welcomeDescription}</p>
+          </div>
+        </div>
+      )}
+    </>
   );
 };
 

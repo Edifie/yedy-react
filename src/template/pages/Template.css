@@ -2,6 +2,10 @@
   margin: 7rem 1rem 2rem;
 }
 
+.template-overall-Minimalist{
+  margin: 2rem 8rem;
+}
+
 .template__buttons ul {
   list-style: none;
   display: flex;
@@ -30,7 +34,24 @@
   font-weight: 600;
 }
 
+.parent-container{
+  display: flex;
+  flex-direction: row;
+
+}
+
+.parent-container-no-team {
+  display: flex;
+  flex-direction: column;
+
+}
+
 @media (max-width: 820px) {
+
+  .template-overall-Minimalist{
+    margin: 1rem;
+  }
+
   .template__buttons {
     margin: 2 auto;
   }

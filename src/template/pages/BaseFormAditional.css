@@ -1,0 +1,108 @@
+.additional-form__overall {
+  margin: 5rem;
+  padding: 1rem;
+}
+
+.animated-div {
+  animation: slide-in 0.5s ease-in-out;
+  position: relative;
+  margin: 2rem;
+}
+
+/* TEAM SECTION */
+
+.additional-form_centered {
+  margin: 0.5rem 0;
+  text-align: center;
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.text--form__additional {
+  height: auto;
+  padding: 0.5rem;
+  font-size: 14px;
+  box-shadow: 0 0 10px rgb(199 198 207 / 60%);
+
+  letter-spacing: 0.5px;
+  border-radius: 5px;
+  border: solid;
+  border-color: lightgray;
+}
+
+.text--form__additional-textarea {
+  height: 10rem;
+  padding: 0.5rem;
+  font-size: 14px;
+  box-shadow: 0 0 10px rgb(199 198 207 / 60%);
+
+  letter-spacing: 0.5px;
+  border-radius: 5px;
+  border: solid;
+  border-color: lightgray;
+}
+
+.additional-form__toggle-button {
+  background: none;
+  margin: 2rem 0;
+  border: none;
+  font-size: 22px;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateY(-50%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.additional-edit__button-add-member button {
+  float: right;
+
+  width: auto;
+
+  background: none;
+  border: 1px solid #abb2bf;
+  border-radius: 5px;
+  padding: 0.5rem;
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.additional-edit__button-add-member button:hover {
+  background-color: #a4b9ff;
+  color: white;
+  border: 1px solid #a4b9ff;
+}
+
+.existing-team-members {
+  margin: 3rem auto;
+  display: flex;
+}
+.additional-form__hr {
+  margin-right: auto;
+}
+
+.existing-team-member__card-row {
+  margin: 2rem 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.existing-team-member__card-column {
+  display: flex;
+  flex-direction: column;
+}
+.hidden-team-member-id {
+  display: none;
+}
+
+.member-image img {
+  width: 150px;
+  border-radius: 5px;
+  justify-content: center;
+}

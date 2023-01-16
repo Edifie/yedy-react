@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
 import axios from "axios";
@@ -26,6 +26,13 @@ const BaseFormAditional = () => {
         memberName: "",
         memberJobTitle: "",
         memberDescription: "",
+        images: [
+          {
+            filename: "",
+            contentType: "",
+            imageBase64: "",
+          },
+        ],
       },
     ],
   };
@@ -46,6 +53,7 @@ const BaseFormAditional = () => {
   };
   const pageId = useParams().pageId;
   const navigate = useNavigate();
+
   const submitHandler = async (values) => {
     const formData = new FormData();
 
@@ -66,6 +74,10 @@ const BaseFormAditional = () => {
         `team[${index}][memberDescription]`,
         item.memberDescription || ""
       );
+
+      formData.append(`team[${index}][images][0]`, item.images[0][0]);
+
+      console.log("append image: ", item.images[0]);
     });
 
     formData.append("pageId", pageId);
@@ -85,13 +97,14 @@ const BaseFormAditional = () => {
       .then((res) => {
         console.log(res);
       })
-      .catch((res) => {
-        console.log(res);
+      .catch((err) => {
+        console.log(err);
       });
 
     console.log(values);
     navigate(`/pages/${pageId}`);
   };
+
 
   return (
     <div>
@@ -178,16 +191,20 @@ const BaseFormAditional = () => {
                                 />
                               </div>
 
-                              {/* <div className="col">
+                              <div className="col">
                                 <label htmlFor={`team.${index}.images[0]`}>
                                   Upload image
                                 </label>
-             
 
-                                <Field
+                                {/* <Field
+                                  name={`team.${index}.images`}
+                                  type="file"
+                                /> */}
+
+                                <FileInput
                                   name={`team.${index}.images[0]`}
                                   type="file"
-                                  
+                                  value={undefined}
                                 />
 
                                 <ErrorMessage
@@ -195,7 +212,7 @@ const BaseFormAditional = () => {
                                   component="div"
                                   className="field-error"
                                 />
-                              </div> */}
+                              </div>
 
                               <div className="col">
                                 <button
@@ -213,9 +230,9 @@ const BaseFormAditional = () => {
                           className="secondary"
                           onClick={() =>
                             push({
-                              name: "",
-                              jobTitle: "",
-                              description: "",
+                              memberName: "",
+                              memberJobTitle: "",
+                              memberDescription: "",
                               images: "",
                             })
                           }
