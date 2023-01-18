@@ -4,7 +4,7 @@ import axios from "axios";
 import SharedFormList from "../components/SharedFormList";
 import { useParams } from "react-router-dom";
 import ProfileDetails from "../../template/components/ProfileDetails";
-import html2canvas from "html2canvas";
+
 
 import "./SharedRealEstate.css";
 
