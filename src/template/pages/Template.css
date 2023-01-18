@@ -6,6 +6,12 @@
   margin: 2rem 8rem;
 }
 
+.template-background-Boho {
+  background-image: url("background-Boho.jpg");
+
+  background-size: cover;
+}
+
 .template__buttons ul {
   list-style: none;
   display: flex;
@@ -34,7 +40,7 @@
   font-weight: 600;
 }
 
-.parent-container {
+.parent-container-Minimalist {
   display: flex;
   flex-direction: row;
 }
@@ -42,6 +48,10 @@
 .parent-container-no-team {
   display: flex;
   flex-direction: column;
+}
+
+.template-adverts-Boho h1 {
+  margin-left: 430px;
 }
 
 @media (max-width: 820px) {
@@ -76,7 +86,5 @@
 
   .parent-container {
     display: block;
-
   }
-  
 }

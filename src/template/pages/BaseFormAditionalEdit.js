@@ -230,6 +230,7 @@ const BaseFormAditionalEdit = () => {
                               <div className="existing-team-member__card-column">
                                 <div className="existing-team-member__delete-member">
                                   <button
+                                    type="button"
                                     onClick={() => deleteTeamMember(item._id)}
                                   >
                                     ❌ Delete member

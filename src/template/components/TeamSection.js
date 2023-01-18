@@ -3,10 +3,11 @@ import React from "react";
 import "./TeamSection.css";
 
 const TeamSection = (props) => {
+  const { tema } = props;
   return (
-    <div className="card-team-overall">
+    <div className={`card-team-overall-${tema}`}>
       <div>
-        <h1 className="card-team-title">{props.teamTitle}</h1>
+        <h1 className={`card-team-title-${tema}`}>{props.teamTitle}</h1>
       </div>
       <ul className="cards">
         {props.team.map((member) => {
@@ -30,13 +31,15 @@ const TeamSection = (props) => {
                 <div className="card__overlay">
                   <div className="card__header">
                     <div className="card__header-text">
-                      <h3 className="card__title">{member.memberName}</h3>
-                      <span className="card__status">
+                      <h3 className={`card__title-${tema}`}>
+                        {member.memberName}
+                      </h3>
+                      <span className={`card__status-${tema}`}>
                         {member.memberJobTitle}
                       </span>
                     </div>
                   </div>
-                  <p className="card__description">
+                  <p className={`card__description-${tema}`}>
                     {member.memberDescription}
                   </p>
                 </div>

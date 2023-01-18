@@ -6,21 +6,7 @@
 * {
   box-sizing: border-box;
 }
-.card-team-overall {
-  margin: 2rem 1rem;
-}
-.card-team-title {
-  display: flex;
-  flex-direction: column;
-  justify-self: center;
-  align-items: center;
-  padding: 1.5rem;
-  background: #ffffff;
-  background: -webkit-linear-gradient(0deg, #ffffff 0%, #f1f1f1 100%);
-  background: linear-gradient(0deg, #ffffff 20%, #ebebeb 80%);
-  border-radius: 5px;
-  text-transform: capitalize;
-}
+
 .cards {
   display: flex;
   flex-wrap: wrap;
@@ -83,7 +69,24 @@
   transform: translateY(0);
 }
 
-.card__title {
+/* MINIMALIST */
+.card-team-overall-Minimalist {
+  margin: 2rem 1rem;
+}
+.card-team-title-Minimalist {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
+  padding: 1.5rem;
+  background: #ffffff;
+  background: -webkit-linear-gradient(0deg, #ffffff 0%, #f1f1f1 100%);
+  background: linear-gradient(0deg, #ffffff 20%, #ebebeb 80%);
+  border-radius: 5px;
+  text-transform: capitalize;
+}
+
+.card__title-Minimalist {
   font-size: 1em;
   margin: 0 0 0.3em;
   /* color: #6a515e; */
@@ -91,14 +94,14 @@
   text-transform: capitalize;
 }
 
-.card__status {
+.card__status-Minimalist {
   font-size: 0.8em;
   /* color: #d7bdca; */
   color: #1c1c1c;
   text-transform: capitalize;
 }
 
-.card__description {
+.card__description-Minimalist {
   padding: 0 1em 1em;
   margin: 0;
   color: #4a4a4a;
@@ -111,9 +114,80 @@
   overflow: scroll;
   text-transform: uppercase;
 }
+
+/* BOHO */
+
+.card-team-overall-Boho {
+  margin: 0 2rem 2rem 430px;
+  padding: 2rem;
+
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 12px;
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.card-team-title-Boho {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
+
+  text-transform: capitalize;
+}
+
+.card__title-Boho {
+  font-size: 1em;
+  margin: 0 0 0.3em;
+  /* color: #6a515e; */
+  color: #17573a;
+  text-transform: capitalize;
+}
+
+.card__status-Boho {
+  font-size: 0.8em;
+  /* color: #d7bdca; */
+  color: #8ec1aa;
+  text-transform: capitalize;
+}
+
+.card__description-Boho {
+  padding: 0 1em 1em;
+  margin: 0;
+  color: #4a4a4a;
+  text-align: justify;
+  font-size: 12px;
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: scroll;
+  text-transform: uppercase;
+}
+
 @media (max-width: 820px) {
   .cards {
     justify-content: center;
     margin: 0;
+    flex-direction: column;
+  }
+
+  .card-team-overall-Boho {
+    margin: 1.5rem;
+    background-color: rgba(255, 255, 255, 0.7);
+  }
+
+  .card__description-Boho {
+    font-size: 10px;
+  }
+
+  .card__title-Boho {
+    font-size: 12px;
+  }
+
+  .card-team-title-Boho {
+    text-align: center;
+  }
+
+  .card__status-Boho{
+    font-size: 10px;
   }
 }

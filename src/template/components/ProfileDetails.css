@@ -1,13 +1,16 @@
 .sidebar-Boho {
   width: 400px;
   height: 640px;
-  background: #b5c99a;
+
   border-radius: 10px;
+
+  box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 12px;
 
   position: -webkit-sticky;
   position: fixed;
   text-align: center;
-  margin: 0 1rem;
+  margin: 0 auto;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
 .sidebar__content-Boho {
@@ -38,6 +41,7 @@
   border-radius: 5%;
   overflow: hidden;
   margin: 2rem auto;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px;
 }
 
 .sidebar__business-picture-Boho img {
@@ -66,6 +70,7 @@
   margin: 0 2rem;
   object-fit: cover;
   float: left;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px;
 }
 
 /**/
@@ -77,6 +82,9 @@
   justify-content: center;
   background: #232323;
   margin: 0 auto;
+
+  background-image: url("background-Minimalist.jpg");
+  background-size: cover;
 
   border-radius: 200px 200px 10px 10px;
   font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",

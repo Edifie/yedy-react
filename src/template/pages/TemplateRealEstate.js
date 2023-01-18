@@ -150,60 +150,29 @@ const TemplateRealEstate = () => {
           </ul>
           <hr></hr>
         </div>
-        <div className={`container-${tema}`}>
-          {loadedUser && loadedPages ? (
-            <ProfileDetails
-              name={loadedUser.name}
-              email={loadedUser.email}
-              location={loadedUser.location}
-              phoneNumber={loadedUser.phoneNumber}
-              profilePic={loadedUser.images}
-              images={loadedPages.images}
-              namePage={loadedPages.name}
-              tema={loadedPages.tema}
-            />
-          ) : (
-            "loading"
-          )}
-        </div>
-        <div className="WelcomeSection">
-          {sectionData.welcomeTitle !== " " &&
-          sectionData.welcomeDescription !== " " ? (
-            <WelcomeSection
-              welcomeTitle={sectionData.welcomeTitle}
-              welcomeDescription={sectionData.welcomeDescription}
-              tema={tema}
-            />
-          ) : (
-            ""
-          )}
-        </div>
-
-        <div
-          className={`parent-container ${
-            sectionData.team &&
-            sectionData.team.length > 0 &&
-            sectionData.aboutUsTitle !== " " &&
-            sectionData.aboutUsDescription !== " " &&
-            sectionData.aboutUsTitle !== "" &&
-            sectionData.aboutUsDescription !== ""
-              ? ""
-              : "parent-container-no-team"
-          }`}
-        >
-          <div
-            className="AboutUsSection"
-            style={{
-              flex: sectionData.team && sectionData.team.length > 0 ? "1" : "2",
-            }}
-          >
-            {sectionData.aboutUsTitle !== " " &&
-            sectionData.aboutUsTitle !== "" &&
-            sectionData.aboutUsDescription !== "" &&
-            sectionData.aboutUsDescription !== " " ? (
-              <AboutUsSection
-                aboutUsTitle={sectionData.aboutUsTitle}
-                aboutUsDescription={sectionData.aboutUsDescription}
+        <div className={`template-background-${tema}`}>
+          <div className={`container-${tema}`}>
+            {loadedUser && loadedPages ? (
+              <ProfileDetails
+                name={loadedUser.name}
+                email={loadedUser.email}
+                location={loadedUser.location}
+                phoneNumber={loadedUser.phoneNumber}
+                profilePic={loadedUser.images}
+                images={loadedPages.images}
+                namePage={loadedPages.name}
+                tema={loadedPages.tema}
+              />
+            ) : (
+              "loading"
+            )}
+          </div>
+          <div className="WelcomeSection">
+            {sectionData.welcomeTitle !== " " &&
+            sectionData.welcomeDescription !== " " ? (
+              <WelcomeSection
+                welcomeTitle={sectionData.welcomeTitle}
+                welcomeDescription={sectionData.welcomeDescription}
                 tema={tema}
               />
             ) : (
@@ -211,20 +180,55 @@ const TemplateRealEstate = () => {
             )}
           </div>
 
-          <div className="TeamSection">
-            {sectionData.team && sectionData.team.length > 0 ? (
-              <TeamSection
-                team={sectionData.team}
-                teamTitle={sectionData.teamTitle}
-              />
-            ) : (
-              ""
-            )}
-          </div>
-        </div>
+          <div
+            className={`parent-container-${tema} ${
+              sectionData.team &&
+              sectionData.team.length > 0 &&
+              sectionData.aboutUsTitle !== " " &&
+              sectionData.aboutUsDescription !== " " &&
+              sectionData.aboutUsTitle !== "" &&
+              sectionData.aboutUsDescription !== ""
+                ? ""
+                : "parent-container-no-team"
+            }`}
+          >
+            <div
+              className="AboutUsSection"
+              style={{
+                flex:
+                  sectionData.team && sectionData.team.length > 0 ? "1" : "2",
+              }}
+            >
+              {sectionData.aboutUsTitle !== " " &&
+              sectionData.aboutUsTitle !== "" &&
+              sectionData.aboutUsDescription !== "" &&
+              sectionData.aboutUsDescription !== " " ? (
+                <AboutUsSection
+                  aboutUsTitle={sectionData.aboutUsTitle}
+                  aboutUsDescription={sectionData.aboutUsDescription}
+                  tema={tema}
+                />
+              ) : (
+                ""
+              )}
+            </div>
 
-        <div>
-          <h1>Adverts</h1>
+            <div className="TeamSection">
+              {sectionData.team && sectionData.team.length > 0 ? (
+                <TeamSection
+                  team={sectionData.team}
+                  teamTitle={sectionData.teamTitle}
+                  tema={loadedPages.tema}
+                />
+              ) : (
+                ""
+              )}
+            </div>
+          </div>
+
+          <div className={`template-adverts-${tema}`}>
+            <h1>Adverts</h1>
+          </div>
           <FormList area={area} tema={tema} items={loadedTemplates} />
         </div>
       </div>
