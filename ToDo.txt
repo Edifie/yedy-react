@@ -37,9 +37,12 @@
     - in the Template, change "Add section" to "Edit section" / DONE
     - handle edit section in the both ends, backend and frontend / DONE (backend)
 
-    - design of edit section
-    - design of welcome section
+    - design of edit section / DONE
+    - design of welcome section 
     - design of team section
     - design of about us section
 
+
+
+-- hardware store --> music store
 

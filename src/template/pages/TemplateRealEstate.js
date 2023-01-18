@@ -8,6 +8,7 @@ import ProfileDetails from "../components/ProfileDetails";
 import WelcomeSection from "../components/WelcomeSection";
 
 import TeamSection from "../components/TeamSection";
+import "../components/TeamSection.css";
 import AboutUsSection from "../components/AboutUsSection";
 
 const TemplateRealEstate = () => {
@@ -166,7 +167,8 @@ const TemplateRealEstate = () => {
           )}
         </div>
         <div className="WelcomeSection">
-          {sectionData.welcomeTitle && sectionData.welcomeDescription ? (
+          {sectionData.welcomeTitle !== " " &&
+          sectionData.welcomeDescription !== " " ? (
             <WelcomeSection
               welcomeTitle={sectionData.welcomeTitle}
               welcomeDescription={sectionData.welcomeDescription}
@@ -176,16 +178,29 @@ const TemplateRealEstate = () => {
             ""
           )}
         </div>
-        
+
         <div
           className={`parent-container ${
-            sectionData.team && sectionData.team.length > 0
+            sectionData.team &&
+            sectionData.team.length > 0 &&
+            sectionData.aboutUsTitle !== " " &&
+            sectionData.aboutUsDescription !== " " &&
+            sectionData.aboutUsTitle !== "" &&
+            sectionData.aboutUsDescription !== ""
               ? ""
               : "parent-container-no-team"
           }`}
         >
-          <div className="AboutUsSection" style={{flex:sectionData.team && sectionData.team.length > 0 ? "1" : "2"}}>
-            {sectionData.aboutUsTitle && sectionData.aboutUsDescription ? (
+          <div
+            className="AboutUsSection"
+            style={{
+              flex: sectionData.team && sectionData.team.length > 0 ? "1" : "2",
+            }}
+          >
+            {sectionData.aboutUsTitle !== " " &&
+            sectionData.aboutUsTitle !== "" &&
+            sectionData.aboutUsDescription !== "" &&
+            sectionData.aboutUsDescription !== " " ? (
               <AboutUsSection
                 aboutUsTitle={sectionData.aboutUsTitle}
                 aboutUsDescription={sectionData.aboutUsDescription}
@@ -209,6 +224,7 @@ const TemplateRealEstate = () => {
         </div>
 
         <div>
+          <h1>Adverts</h1>
           <FormList area={area} tema={tema} items={loadedTemplates} />
         </div>
       </div>

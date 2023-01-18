@@ -5,6 +5,8 @@ import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
 import FileInput from "../../shared/components/UIElements/FileInput";
 
+import "./BaseFormAditional.css";
+
 const BaseFormAditional = () => {
   const [showTeamForm, setShowTeamForm] = useState(false);
   const [showWelcomeForm, setShowWelcomeForm] = useState(false);
@@ -105,7 +107,6 @@ const BaseFormAditional = () => {
     navigate(`/pages/${pageId}`);
   };
 
-
   return (
     <div>
       <Formik
@@ -114,197 +115,266 @@ const BaseFormAditional = () => {
       >
         {({ values, setFieldValue }) => (
           <Form>
-            {/* TEAM SECTION */}
-            <div>
-              <button
-                type="button"
-                onClick={() => {
-                  setShowTeamForm(!showTeamForm);
-                  if (!showTeamForm) {
-                    resetTeamSection(setFieldValue);
-                  }
-                }}
-              >
-                + Team
-              </button>
+            <div className="additional-form__overall">
+              {/* TEAM SECTION */}
+              <div>
+                <button
+                  className="additional-form__toggle-button"
+                  type="button"
+                  onClick={() => {
+                    setShowTeamForm(!showTeamForm);
+                  }}
+                >
+                  ➕ Team
+                </button>
+                <hr></hr>
+                {showTeamForm && (
+                  <div className="animated-div">
+                    <h1>Team</h1>
+                    <div className="existing-team-member__card-column">
+                      <div className="existing-team-member__card-column">
+                        <label htmlFor="team-title">Team Title</label>
+                        <br />
+                        <Field
+                          id="team-title"
+                          name="teamTitle"
+                          className="text--form__additional"
+                        />
+                      </div>
+                    </div>
+                    <hr></hr>
+                    <FieldArray name="team">
+                      {({ insert, remove, push }) => (
+                        <div>
+                          {values.team.length > 0 &&
+                            values.team.map((item, index) => (
+                              <div
+                                className="existing-team-member__card-column"
+                                key={index}
+                              >
+                                <div className="existing-team-member__card-column">
+                                  <label htmlFor={`team.${index}.memberName`}>
+                                    Name
+                                  </label>
+                                  <Field
+                                    name={`team.${index}.memberName`}
+                                    placeholder="Jane Doe"
+                                    type="text"
+                                    className="text--form__additional"
+                                  />
+                                  <ErrorMessage
+                                    name={`team.${index}.memberName`}
+                                    component="div"
+                                    className="field-error"
+                                  />
+                                </div>
 
-              {showTeamForm && (
-                <div>
-                  <h1>Team</h1>
-                  <label htmlFor="contact-title">Team Title:</label>
-                  <br />
-                  <Field id="team-title" name="teamTitle" />
+                                <div className="existing-team-member__card-column">
+                                  <label
+                                    htmlFor={`team.${index}.memberJobTitle`}
+                                  >
+                                    Job Title
+                                  </label>
+                                  <Field
+                                    name={`team.${index}.memberJobTitle`}
+                                    placeholder="Marketing"
+                                    type="text"
+                                    className="text--form__additional"
+                                  />
+                                  <ErrorMessage
+                                    name={`team.${index}.memberJobTitle`}
+                                    component="div"
+                                    className="field-error"
+                                  />
+                                </div>
 
-                  <FieldArray name="team">
-                    {({ insert, remove, push }) => (
-                      <div>
-                        {values.team.length > 0 &&
-                          values.team.map((item, index) => (
-                            <div className="row" key={index}>
-                              <div className="col">
-                                <label htmlFor={`team.${index}.memberName`}>
-                                  Name
-                                </label>
-                                <Field
-                                  name={`team.${index}.memberName`}
-                                  placeholder="Jane Doe"
-                                  type="text"
-                                />
-                                <ErrorMessage
-                                  name={`team.${index}.memberName`}
-                                  component="div"
-                                  className="field-error"
-                                />
-                              </div>
+                                <div className="existing-team-member__card-column">
+                                  <label
+                                    htmlFor={`team.${index}.memberDescription`}
+                                  >
+                                    Description
+                                  </label>
+                                  <Field
+                                    name={`team.${index}.memberDescription`}
+                                    placeholder="About team member"
+                                    as="textarea"
+                                    className="text--form__additional-textarea"
+                                  />
+                                  <ErrorMessage
+                                    name={`team.${index}.memberDescription`}
+                                    component="div"
+                                    className="field-error"
+                                  />
+                                </div>
 
-                              <div className="col">
-                                <label htmlFor={`team.${index}.memberJobTitle`}>
-                                  Job Title
-                                </label>
-                                <Field
-                                  name={`team.${index}.memberJobTitle`}
-                                  placeholder="Marketing"
-                                  type="text"
-                                />
-                                <ErrorMessage
-                                  name={`team.${index}.memberJobTitle`}
-                                  component="div"
-                                  className="field-error"
-                                />
-                              </div>
+                                <div className="existing-team-member__card-column">
+                                  <label htmlFor={`team.${index}.images[0]`}>
+                                    Upload image
+                                  </label>
 
-                              <div className="col">
-                                <label
-                                  htmlFor={`team.${index}.memberDescription`}
-                                >
-                                  Description
-                                </label>
-                                <Field
-                                  name={`team.${index}.memberDescription`}
-                                  placeholder="About team member"
-                                  type="text"
-                                />
-                                <ErrorMessage
-                                  name={`team.${index}.memberDescription`}
-                                  component="div"
-                                  className="field-error"
-                                />
-                              </div>
-
-                              <div className="col">
-                                <label htmlFor={`team.${index}.images[0]`}>
-                                  Upload image
-                                </label>
-
-                                {/* <Field
+                                  {/* <Field
                                   name={`team.${index}.images`}
                                   type="file"
                                 /> */}
 
-                                <FileInput
-                                  name={`team.${index}.images[0]`}
-                                  type="file"
-                                  value={undefined}
-                                />
+                                  <FileInput
+                                    name={`team.${index}.images[0]`}
+                                    type="file"
+                                    value={undefined}
+                                  />
 
-                                <ErrorMessage
-                                  name={`team.${index}.images[0]`}
-                                  component="div"
-                                  className="field-error"
-                                />
-                              </div>
+                                  <ErrorMessage
+                                    name={`team.${index}.images[0]`}
+                                    component="div"
+                                    className="field-error"
+                                  />
+                                </div>
 
-                              <div className="col">
-                                <button
-                                  type="button"
-                                  className="secondary"
-                                  onClick={() => remove(index)}
-                                >
-                                  Delete Member
-                                </button>
+                                <div className="existing-team-member__delete-member">
+                                  <button
+                                    type="button"
+                                    className="secondary"
+                                    onClick={() => remove(index)}
+                                  >
+                                    ❌ Delete Member
+                                  </button>
+                                </div>
                               </div>
-                            </div>
-                          ))}
+                            ))}
+
+                          <div className="existing-team-member__add-member">
+                            <button
+                              type="button"
+                              className="secondary"
+                              onClick={() =>
+                                push({
+                                  memberName: "",
+                                  memberJobTitle: "",
+                                  memberDescription: "",
+                                  images: "",
+                                })
+                              }
+                            >
+                              ➕ Add Member
+                            </button>
+                          </div>
+                        </div>
+                      )}
+                    </FieldArray>
+                  </div>
+                )}
+              </div>
+
+              {/* WELCOME SECTION */}
+              <div>
+                <button
+                  type="button"
+                  className="additional-form__toggle-button"
+                  onClick={() => {
+                    setShowWelcomeForm(!showWelcomeForm);
+                  }}
+                >
+                  ➕ Welcome
+                </button>
+                <hr></hr>
+                {showWelcomeForm && (
+                  <div className="animated-div">
+                    <h1>Welcome</h1>
+                    <div className="existing-team-member__card-column">
+                      <div className="existing-team-member__delete-member">
                         <button
                           type="button"
-                          className="secondary"
-                          onClick={() =>
-                            push({
-                              memberName: "",
-                              memberJobTitle: "",
-                              memberDescription: "",
-                              images: "",
-                            })
-                          }
+                          onClick={() => {
+                            resetWelcomeSection(setFieldValue);
+                          }}
                         >
-                          Add Member
+                          ❌ Delete this section
                         </button>
                       </div>
-                    )}
-                  </FieldArray>
-                </div>
-              )}
-            </div>
-            {/* WELCOME SECTION */}
-            <div>
-              <button
-                type="button"
-                onClick={() => {
-                  setShowWelcomeForm(!showWelcomeForm);
-                  if (!showWelcomeForm) {
-                    resetWelcomeSection(setFieldValue);
-                  }
-                }}
-              >
-                + Welcome
-              </button>
-              {showWelcomeForm && (
-                <div>
-                  <h1>Welcome</h1>
-                  <label htmlFor="welcome-title">Welcome Title:</label>
-                  <br />
-                  <Field id="welcome-title" name="welcomeTitle" />
-                  <br />
-                  <label htmlFor="welcome-description">
-                    Welcome Description:
-                  </label>
-                  <br />
-                  <Field id="welcome-description" name="welcomeDescription" />
-                </div>
-              )}
-            </div>
+                      <div className="existing-team-member__card-column">
+                        <label htmlFor="welcome-title">Welcome Title:</label>
+                        <br />
+                        <Field
+                          id="welcome-title"
+                          name="welcomeTitle"
+                          className="text--form__additional"
+                        />
+                        <br />
+                      </div>
+                      <div className="existing-team-member__card-column">
+                        <label htmlFor="welcome-description">
+                          Welcome Description:
+                        </label>
+                        <br />
+                        <Field
+                          id="welcome-description"
+                          name="welcomeDescription"
+                          as="textarea"
+                          className="text--form__additional-textarea"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
 
-            {/* ABOUT US SECTION */}
-            <div>
-              <button
-                type="button"
-                onClick={() => {
-                  setShowAboutUsForm(!showAboutUsForm);
-                  if (!showAboutUsForm) {
-                    resetAboutUsSection(setFieldValue);
-                  }
-                }}
-              >
-                + About Us
-              </button>
-              {showAboutUsForm && (
-                <div>
-                  <h1>About Us</h1>
-                  <label htmlFor="aboutUs-title">About Us Title:</label>
-                  <br />
-                  <Field id="aboutUs-title" name="aboutUsTitle" />
-                  <br />
-                  <label htmlFor="aboutUs-description">
-                    About Us Description:
-                  </label>
-                  <br />
-                  <Field id="aboutUs-description" name="aboutUsDescription" />
-                </div>
-              )}
-            </div>
+              {/* ABOUT US SECTION */}
+              <div>
+                <button
+                  type="button"
+                  className="additional-form__toggle-button"
+                  onClick={() => {
+                    setShowAboutUsForm(!showAboutUsForm);
+                  }}
+                >
+                  ➕ About Us
+                </button>
+                <hr></hr>
+                {showAboutUsForm && (
+                  <div className="animated-div">
+                    <h1>About Us</h1>
+                    <div className="existing-team-member__card-column">
+                      <div className="existing-team-member__delete-member">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            resetAboutUsSection(setFieldValue);
+                          }}
+                        >
+                          ❌ Delete this section
+                        </button>
+                      </div>
+                      <div className="existing-team-member__card-column">
+                        <label htmlFor="aboutUs-title">About Us Title:</label>
+                        <br />
+                        <Field
+                          id="aboutUs-title"
+                          name="aboutUsTitle"
+                          className="text--form__additional"
+                        />
+                        <br />
+                      </div>
+                      <div className="existing-team-member__card-column">
+                        <label htmlFor="aboutUs-description">
+                          About Us Description:
+                        </label>
+                        <br />
 
-            <div>
-              <button type="submit">Save</button>
+                        <Field
+                          id="aboutUs-description"
+                          name="aboutUsDescription"
+                          as="textarea"
+                          className="text--form__additional-textarea"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="form-additional__save-button">
+                <button type="submit">Save</button>
+              </div>
             </div>
           </Form>
         )}

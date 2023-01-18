@@ -80,123 +80,133 @@ const AddTeam = () => {
     >
       {({ values, setFieldValue }) => (
         <Form>
-          {/* TEAM SECTION */}
+          <div className="additional-form__overall_add-team">
+            {/* TEAM SECTION */}
 
-          <div>
-            <h1>Team</h1>
+            <div>
+              <h1>Team</h1>
 
-            <FieldArray name="team">
-              {({ insert, remove, push }) => (
-                <div>
-                  {values.team.length > 0 &&
-                    values.team.map((item, index) => (
-                      <div className="row" key={index}>
-                        <Field name="sectionId" value={sectionId} />
+              <FieldArray name="team">
+                {({ insert, remove, push }) => (
+                  <div>
+                    {values.team.length > 0 &&
+                      values.team.map((item, index) => (
+                        <div
+                          className="existing-team-member__card-column"
+                          key={index}
+                        >
+                          <Field name="sectionId" value={sectionId} />
 
-                        <div className="col">
-                          <label htmlFor={`team.${index}.memberName`}>
-                            Name
-                          </label>
+                          <div className="existing-team-member__card-column">
+                            <label htmlFor={`team.${index}.memberName`}>
+                              Name
+                            </label>
 
-                          <Field
-                            name={`team.${index}.memberName`}
-                            placeholder="Jane Doe"
-                            type="text"
-                          />
-                          <ErrorMessage
-                            name={`team.${index}.memberName`}
-                            component="div"
-                            className="field-error"
-                          />
-                        </div>
+                            <Field
+                              name={`team.${index}.memberName`}
+                              placeholder="Jane Doe"
+                              type="text"
+                              className="text--form__additional"
+                            />
+                            <ErrorMessage
+                              name={`team.${index}.memberName`}
+                              component="div"
+                              className="field-error"
+                            />
+                          </div>
 
-                        <div className="col">
-                          <label htmlFor={`team.${index}.memberJobTitle`}>
-                            Job Title
-                          </label>
-                          <Field
-                            name={`team.${index}.memberJobTitle`}
-                            placeholder="Marketing"
-                            type="text"
-                          />
-                          <ErrorMessage
-                            name={`team.${index}.memberJobTitle`}
-                            component="div"
-                            className="field-error"
-                          />
-                        </div>
+                          <div className="existing-team-member__card-column">
+                            <label htmlFor={`team.${index}.memberJobTitle`}>
+                              Job Title
+                            </label>
+                            <Field
+                              name={`team.${index}.memberJobTitle`}
+                              placeholder="Marketing"
+                              type="text"
+                              className="text--form__additional"
+                            />
+                            <ErrorMessage
+                              name={`team.${index}.memberJobTitle`}
+                              component="div"
+                              className="field-error"
+                            />
+                          </div>
 
-                        <div className="col">
-                          <label htmlFor={`team.${index}.memberDescription`}>
-                            Description
-                          </label>
-                          <Field
-                            name={`team.${index}.memberDescription`}
-                            placeholder="About team member"
-                            type="text"
-                          />
-                          <ErrorMessage
-                            name={`team.${index}.memberDescription`}
-                            component="div"
-                            className="field-error"
-                          />
-                        </div>
+                          <div className="existing-team-member__card-column">
+                            <label htmlFor={`team.${index}.memberDescription`}>
+                              Description
+                            </label>
+                            <Field
+                              name={`team.${index}.memberDescription`}
+                              placeholder="About team member"
+                              as="textarea"
+                              className="text--form__additional-textarea"
+                            />
+                            <ErrorMessage
+                              name={`team.${index}.memberDescription`}
+                              component="div"
+                              className="field-error"
+                            />
+                          </div>
 
-                        <div className="col">
-                          <label htmlFor={`team.${index}.images[0]`}>
-                            Upload image
-                          </label>
+                          <div className="existing-team-member__card-column">
+                            <label htmlFor={`team.${index}.images[0]`}>
+                              Upload image
+                            </label>
 
-                          {/* <Field
+                            {/* <Field
                               name={`team.${index}.images`}
                               type="file"
                             /> */}
 
-                          <FileInput
-                            name={`team.${index}.images[0]`}
-                            type="file"
-                            value={undefined}
-                          />
+                            <FileInput
+                              name={`team.${index}.images[0]`}
+                              type="file"
+                              value={undefined}
+                            />
 
-                          <ErrorMessage
-                            name={`team.${index}.images[0]`}
-                            component="div"
-                            className="field-error"
-                          />
+                            <ErrorMessage
+                              name={`team.${index}.images[0]`}
+                              component="div"
+                              className="field-error"
+                            />
+                          </div>
+
+                          <div className="existing-team-member__delete-member">
+                            <button
+                              type="button"
+                              className="secondary"
+                              onClick={() => remove(index)}
+                            >
+                              ❌ Delete Member
+                            </button>
+                          </div>
                         </div>
+                      ))}
+                    <div className="existing-team-member__add-member">
+                      <button
+                        type="button"
+                        className="secondary"
+                        onClick={() =>
+                          push({
+                            memberName: "",
+                            memberJobTitle: "",
+                            memberDescription: "",
+                            images: "",
+                          })
+                        }
+                      >
+                        ➕ Add Member
+                      </button>
+                    </div>
+                  </div>
+                )}
+              </FieldArray>
+            </div>
 
-                        <div className="col">
-                          <button
-                            type="button"
-                            className="secondary"
-                            onClick={() => remove(index)}
-                          >
-                            Delete Member
-                          </button>
-                        </div>
-                      </div>
-                    ))}
-                  <button
-                    type="button"
-                    className="secondary"
-                    onClick={() =>
-                      push({
-                        memberName: "",
-                        memberJobTitle: "",
-                        memberDescription: "",
-                        images: "",
-                      })
-                    }
-                  >
-                    Add Member
-                  </button>
-                </div>
-              )}
-            </FieldArray>
-          </div>
-
-          <div>
-            <button type="submit">Save</button>
+            <div className="form-additional__save-button">
+              <button type="submit">Save</button>
+            </div>
           </div>
         </Form>
       )}

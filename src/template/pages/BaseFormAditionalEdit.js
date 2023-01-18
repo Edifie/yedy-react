@@ -29,8 +29,6 @@ const BaseFormAditionalEdit = () => {
     }
   };
 
-  console.log(initialValuesData.aboutUsDescription);
-
   useEffect(() => {
     getSectionByPageId();
   }, []);
@@ -40,8 +38,8 @@ const BaseFormAditionalEdit = () => {
   }
 
   const resetWelcomeSection = (setFieldValue) => {
-    setFieldValue("welcomeTitle", "");
-    setFieldValue("welcomeDescription", "");
+    setFieldValue("welcomeTitle", " ");
+    setFieldValue("welcomeDescription", " ");
   };
 
   const resetTeamSection = (setFieldValue) => {
@@ -50,8 +48,8 @@ const BaseFormAditionalEdit = () => {
   };
 
   const resetAboutUsSection = (setFieldValue) => {
-    setFieldValue("aboutUsTitle", "");
-    setFieldValue("aboutUsDescription", "");
+    setFieldValue("aboutUsTitle", " ");
+    setFieldValue("aboutUsDescription", " ");
   };
   const pageId = useParams().pageId;
   const navigate = useNavigate();
@@ -94,7 +92,8 @@ const BaseFormAditionalEdit = () => {
       formData.append("teamTitle", values.teamTitle);
     }
 
-    if (values.team && values.team.length > 0) {
+    // if (values.team && values.team.length > 0) {
+    if (values.team !== undefined && values.team !== initialValuesData.team) {
       values.team.forEach((item, index) => {
         // update existing team member
 
@@ -115,7 +114,6 @@ const BaseFormAditionalEdit = () => {
           values.team[index].memberDescription
         );
         if (
-          values.team[index].images[0] &&
           values.team[index].images[0][0] !==
             initialValuesData.team[index].images[0] &&
           (values.team[index].images[0][0]
@@ -229,62 +227,65 @@ const BaseFormAditionalEdit = () => {
                         {initialValuesData &&
                           initialValuesData.team.map((item, index) => (
                             <>
-                              <button
-                                onClick={() => deleteTeamMember(item._id)}
-                              >
-                                Delete team member
-                              </button>
                               <div className="existing-team-member__card-column">
-                                <div className="member-image">
-                                  {item
-                                    ? item.images &&
-                                      item.images
-                                        .slice(0, 1)
-                                        .map((image, index) => (
-                                          <img
-                                            key={image.id || index}
-                                            src={`data:${image.contentType};base64,${image.imageBase64}`}
-                                            alt={image.filename}
-                                          />
-                                        ))
-                                    : "Loading.."}
+                                <div className="existing-team-member__delete-member">
+                                  <button
+                                    onClick={() => deleteTeamMember(item._id)}
+                                  >
+                                    ❌ Delete member
+                                  </button>
                                 </div>
-                                <div className="existing-team-member__card-row">
-                                  <div className="hidden-team-member-id">
-                                    <Field
-                                      name={`team.${index}._id`}
-                                      value={item._id}
-                                    />
-                                  </div>
-
-                                  <div className="additional-form_centered">
-                                    <label>Name</label>
-                                    <Field
-                                      key={item._id}
-                                      type="text"
-                                      name={`team.${index}.memberName`}
-                                      className="text--form__additional"
-                                      // defaultValue={item.memberName}
-                                    />
-                                  </div>
-
-                                  <div className="additional-form_centered">
-                                    <label>Job Title</label>
-                                    <Field
-                                      key={item._id}
-                                      type="text"
-                                      name={`team.${index}.memberJobTitle`}
-                                      className="text--form__additional"
-                                      // defaultValue={item.memberJobTitle}
-                                    />
-                                  </div>
-                                </div>
-
                                 <div className="existing-team-member__card-column">
+                                  <div className="member-image">
+                                    {item
+                                      ? item.images &&
+                                        item.images
+                                          .slice(0, 1)
+                                          .map((image, index) => (
+                                            <img
+                                              key={image.id || index}
+                                              src={`data:${image.contentType};base64,${image.imageBase64}`}
+                                              alt={image.filename}
+                                            />
+                                          ))
+                                      : "Loading.."}
+                                  </div>
                                   <div className="existing-team-member__card-row">
+                                    <div className="hidden-team-member-id">
+                                      <Field
+                                        name={`team.${index}._id`}
+                                        value={item._id}
+                                      />
+                                    </div>
+
+                                    <div className="additional-form_centered">
+                                      <label>Name</label>
+                                      <Field
+                                        key={item._id}
+                                        type="text"
+                                        name={`team.${index}.memberName`}
+                                        className="text--form__additional"
+                                        // defaultValue={item.memberName}
+                                      />
+                                    </div>
+
+                                    <div className="additional-form_centered">
+                                      <label>Job Title</label>
+                                      <Field
+                                        key={item._id}
+                                        type="text"
+                                        name={`team.${index}.memberJobTitle`}
+                                        className="text--form__additional"
+                                        // defaultValue={item.memberJobTitle}
+                                      />
+                                    </div>
+                                  </div>
+
+                                  <div className="existing-team-member__card-column">
                                     <div className="additional-form_centered">
                                       <label>Description</label>
                                       <Field
+                                        as="textarea"
                                         key={item._id}
                                         name={`team.${index}.memberDescription`}
                                         className="text--form__additional-textarea"
@@ -292,19 +293,19 @@ const BaseFormAditionalEdit = () => {
                                       />
                                     </div>
                                   </div>
-                                </div>
-                                <div className="existing-team-member__card-column">
-                                  <div className="additional-form_centered">
-                                    <label>Upload</label>
-                                    <FileInput
-                                      name={`team.${index}.images[0]`}
-                                      type="file"
-                                      value={undefined}
-                                    />
+                                  <div className="existing-team-member__card-column">
+                                    <div className="additional-form_centered">
+                                      <label>Upload</label>
+                                      <FileInput
+                                        name={`team.${index}.images[0]`}
+                                        type="file"
+                                        value={undefined}
+                                      />
+                                    </div>
                                   </div>
                                 </div>
                               </div>
-                              <hr className="additional-form__hr"></hr>
+                              {/* <hr className="additional-form__hr"></hr> */}
                             </>
                           ))}
                       </div>
@@ -331,23 +332,42 @@ const BaseFormAditionalEdit = () => {
                 {initialValuesData && showWelcomeForm && (
                   <div className="animated-div">
                     <h1>Welcome</h1>
-                    <label htmlFor="welcome-title">Welcome Title:</label>
-                    <br />
-                    <Field
-                      id="welcome-title"
-                      name="welcomeTitle"
-                      // defaultValue={initialValuesData.welcomeTitle}
-                    />
-                    <br />
-                    <label htmlFor="welcome-description">
-                      Welcome Description:
-                    </label>
-                    <br />
-                    <Field
-                      id="welcome-description"
-                      name="welcomeDescription"
-                      // defaultValue={initialValuesData.welcomeDescription}
-                    />
+
+                    <div className="existing-team-member__card-column">
+                      <div className="existing-team-member__delete-member">
+                        <button
+                          type="button"
+                          onClick={() => {
+                            resetWelcomeSection(setFieldValue);
+                          }}
+                        >
+                          ❌ Delete this section
+                        </button>
+                      </div>
+                      <div className="existing-team-member__card-column">
+                        <label htmlFor="welcome-title">Welcome Title</label>
+                        <br />
+                        <Field
+                          id="welcome-title"
+                          className="text--form__additional"
+                          name="welcomeTitle"
+                          // defaultValue={initialValuesData.welcomeTitle}
+                        />
+                        <br />
+                      </div>
+                      <div className="existing-team-member__card-column">
+                        <label htmlFor="welcome-description">
+                          Welcome Description
+                        </label>
+                        <br />
+                        <Field
+                          className="text--form__additional-textarea"
+                          id="welcome-description"
+                          name="welcomeDescription"
+                          as="textarea"
+                        />
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
@@ -363,40 +383,57 @@ const BaseFormAditionalEdit = () => {
                 >
                   ➕ About Us
                 </button>
+                <hr></hr>
                 {initialValuesData && showAboutUsForm && (
                   <div>
-                    <h1>About Us</h1>
-                    <label htmlFor="aboutUs-title">About Us Title:</label>
-                    <br />
-                    <Field
-                      id="aboutUs-title"
-                      name="aboutUsTitle"
-                      // defaultValue={
-                      //   initialValuesData && initialValuesData.aboutUsTitle !== ""
-                      //     ? initialValuesData.aboutUsTitle
-                      //     : " "
-                      // }
-                    />
-                    <br />
-                    <label htmlFor="aboutUs-description">
-                      About Us Description:
-                    </label>
-                    <br />
-                    <Field
-                      id="aboutUs-description"
-                      name="aboutUsDescription"
-                      // defaultValue={
-                      //   initialValuesData &&
-                      //   initialValuesData.aboutUsDescription !== ""
-                      //     ? initialValuesData.aboutUsDescription
-                      //     : " "
-                      // }
-                    />
+                    <div className="animated-div">
+                      <h1>About Us</h1>
+                      <div className="existing-team-member__card-column">
+                        <div className="existing-team-member__delete-member">
+                          <button
+                            type="button"
+                            onClick={() => {
+                              resetAboutUsSection(setFieldValue);
+                            }}
+                          >
+                            ❌ Delete this section
+                          </button>
+                        </div>
+                        <div className="existing-team-member__card-column">
+                          <label htmlFor="aboutUs-title">About Us Title</label>
+                          <br />
+                          <Field
+                            id="aboutUs-title"
+                            name="aboutUsTitle"
+                            className="text--form__additional"
+                          />
+                          <br />
+                        </div>
+                        <div className="existing-team-member__card-column">
+                          <label htmlFor="aboutUs-description">
+                            About Us Description:
+                          </label>
+                          <br />
+                          <Field
+                            className="text--form__additional-textarea"
+                            id="aboutUs-description"
+                            name="aboutUsDescription"
+                            as="textarea"
+                            // defaultValue={
+                            //   initialValuesData &&
+                            //   initialValuesData.aboutUsDescription !== ""
+                            //     ? initialValuesData.aboutUsDescription
+                            //     : " "
+                            // }
+                          />
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 )}
               </div>
 
-              <div>
+              <div className="form-additional__save-button">
                 <button type="submit">Save</button>
               </div>
             </div>

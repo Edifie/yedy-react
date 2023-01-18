@@ -3,6 +3,10 @@
   padding: 1rem;
 }
 
+.additional-form__overall_add-team {
+  margin: 3rem 13rem;
+}
+
 .animated-div {
   animation: slide-in 0.5s ease-in-out;
   position: relative;
@@ -28,19 +32,23 @@
   letter-spacing: 0.5px;
   border-radius: 5px;
   border: solid;
-  border-color: lightgray;
+  border-color: white;
 }
 
 .text--form__additional-textarea {
-  height: 10rem;
+  height: 7rem;
+
+  margin: 0.5rem 0;
   padding: 0.5rem;
   font-size: 14px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
   box-shadow: 0 0 10px rgb(199 198 207 / 60%);
+  resize: none;
 
-  letter-spacing: 0.5px;
   border-radius: 5px;
-  border: solid;
-  border-color: lightgray;
+  border: none;
+  text-align: justify;
 }
 
 .additional-form__toggle-button {
@@ -83,12 +91,13 @@
   display: flex;
 }
 .additional-form__hr {
-  margin-right: auto;
+  margin: 0 2rem;
 }
 
 .existing-team-member__card-row {
-  margin: 2rem 0;
+  margin: 0.5rem 0;
   display: flex;
+
   flex-direction: row;
   justify-content: space-between;
 }
@@ -96,13 +105,71 @@
 .existing-team-member__card-column {
   display: flex;
   flex-direction: column;
+  background-color: #dae5fa;
+  border-radius: 10px;
+  margin: 1rem 1rem;
 }
 .hidden-team-member-id {
   display: none;
 }
 
+.member-image {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  overflow: auto;
+  margin: auto auto;
+  scroll-behavior: none;
+}
+
 .member-image img {
-  width: 150px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.existing-team-member__delete-member,
+.existing-team-member__add-member {
+  display: flex;
+  flex-direction: row;
+  margin: 1rem;
+}
+
+.existing-team-member__delete-member button {
+  background: none;
+  border: none;
+}
+
+.existing-team-member__add-member button {
+  background-color: #e0efe3;
+  border: none;
+  padding: 0.5rem;
   border-radius: 5px;
+}
+
+.existing-team-member__add-member button:hover {
+  background-color: #b8d8be;
+  color: white;
+}
+
+.existing-team-member__delete-member button:hover {
+  color: red;
+}
+
+.form-additional__save-button {
+  display: flex;
   justify-content: center;
+}
+.form-additional__save-button button {
+  width: 120px;
+  height: 40px;
+  background: #a4b8ff;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: 500;
+  font-size: 15px;
+  box-shadow: rgb(0 0 0 / 25%) 0px 4px 12px;
+  margin: 5px 0 40px 20px;
+  text-align: center;
 }
