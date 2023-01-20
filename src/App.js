@@ -22,6 +22,7 @@ import EditPage from "./page/pages/EditPage";
 import BaseFormAditional from "./template/pages/BaseFormAditional";
 import BaseFormAditionalEdit from "./template/pages/BaseFormAditionalEdit";
 import AddTeam from "./template/components/AddTeam";
+import BaseFormSellClothes from "./template/pages/BaseFormSellClothes";
 import SessionExpiredCheck from "./shared/components/Session/SessionExpiredCheck";
 
 const App = () => {
@@ -66,6 +67,11 @@ const App = () => {
           <Route
             path="pages/:pageId/aditional-section/add-team/:sectionId"
             element={<AddTeam />}
+          />
+
+          <Route
+            path="/pages/:pageId/formSC"
+            element={<BaseFormSellClothes />}
           />
 
           <Route path="/home" element={<Welcome />} />

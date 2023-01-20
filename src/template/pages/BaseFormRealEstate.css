@@ -1,5 +1,4 @@
 .base-form-real-estate__main {
-
   display: flex;
   flex-direction: column;
   margin: 1rem 20rem;
@@ -16,11 +15,11 @@
   border: solid #ccc 1px;
 }
 
-.base-form-real-estate__category h1{
+.base-form-real-estate__category h1 {
   font-size: 25px;
 }
 
-.base-form-real-estate__header h2{
+.base-form-real-estate__header h2 {
   font-size: 18px;
 }
 
@@ -42,15 +41,13 @@
   margin: 1rem;
 }
 
-
-
 .base-form-real-estate__input-radio {
   display: inline;
 }
 
 .base-form-real-estate__button {
   display: flex;
-justify-content: center;
+  justify-content: center;
 }
 
 .base-form-real-estate__button button {
@@ -68,7 +65,6 @@ justify-content: center;
   box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px;
 
   margin: 2.5rem;
-
 }
 
 .base-form-real-estate__textarea {
@@ -107,6 +103,57 @@ justify-content: center;
   font-weight: 300;
   font-size: 16px;
   padding: 0.5rem;
+}
+
+.dot {
+  height: 25px;
+  width: 25px;
+  border: 1px solid #ccc;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 0 1rem 0 0.2rem;
+}
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: green;
+}
+
+.blue {
+  background-color: blue;
+}
+
+.black {
+  background-color: black;
+}
+
+.white {
+  background-color: white;
+}
+.pink {
+  background-color: pink;
+}
+
+.grey {
+  background-color: grey;
+}
+
+.yellow {
+  background-color: yellow;
+}
+
+.purple {
+  background-color: purple;
+}
+
+.orange {
+  background-color: orange;
+}
+
+.brown {
+  background-color: #52362b;
 }
 
 @media (max-width: 922px) {

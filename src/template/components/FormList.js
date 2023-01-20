@@ -47,6 +47,7 @@ const FormList = (props) => {
                   description={template.description}
                   adTitle={template.adTitle}
                   images={template.images}
+                  area={area}
                 />
               )}
 
@@ -65,6 +66,7 @@ const FormList = (props) => {
                   adTitle={template.adTitle}
                   images={template.images}
                   tema={tema}
+                  area={area}
                 />
               )}
             </>
@@ -88,8 +90,11 @@ const FormList = (props) => {
                   size={template.size}
                   color={template.color}
                   details={template.details}
+                  brand={template.brand}
+                  adTitle={template.adTitle}
                   material={template.material}
                   images={template.images}
+                  area={area}
                 />
               )}
 
@@ -104,8 +109,11 @@ const FormList = (props) => {
                   color={template.color}
                   details={template.details}
                   material={template.material}
+                  adTitle={template.adTitle}
+                  brand={template.brand}
                   images={template.images}
                   tema={tema}
+                  area={area}
                 />
               )}
             </>

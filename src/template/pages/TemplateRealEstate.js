@@ -25,11 +25,6 @@ const TemplateRealEstate = () => {
 
   const pageId = useParams().pageId;
 
-  if (sectionData) {
-    const containerClass = sectionData.teamTitle
-      ? "parent-container"
-      : "parent-container-no-team";
-  }
 
   const getTemplates = async () => {
     await axios({

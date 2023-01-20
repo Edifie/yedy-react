@@ -1,11 +1,11 @@
 .form-item-detail__image-Boho img {
   height: auto;
   width: 100%;
-
-  display: flex;
-  justify-content: center;
-  margin-top: 2rem;
+  margin: 0 auto;
+  object-fit: contain;
+  height: 500px;
 }
+
 
 .form-item-detail__table-Boho {
   width: 100%;
@@ -25,7 +25,7 @@
 }
 
 .form-item-detail__table-Boho th {
-  background-color: #8FB6A7;
+  background-color: #8fb6a7;
   color: white;
   width: 10rem;
   border-radius: 5px;
@@ -84,7 +84,5 @@
   padding: 2rem;
 }
 
-
 @media (max-widht: 820px) {
-  
 }
