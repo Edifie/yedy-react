@@ -3,12 +3,9 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 
 import Card from "../../shared/components/UIElements/Card";
-import TemplateRealEstate from "../../template/pages/TemplateRealEstate";
-import TemplateSellClothes from "../../template/pages/TemplateSellClothes";
-import TemplateHardwareStore from "../../template/pages/TemplateHardwareStore";
+import Templates from "../../template/pages/Templates";
 
 import "./PageForm.css";
-
 
 const UpdatePage = () => {
   const [updatedPage, setUpdatedPage] = useState();
@@ -21,7 +18,7 @@ const UpdatePage = () => {
       url: `http://localhost:8080/api/pages/${pageId}`,
       header: "Content Type: application/json",
     })
-      .then((res) => {  
+      .then((res) => {
         setUpdatedPage(res.data.page);
       })
       .catch((err) => {
@@ -31,7 +28,7 @@ const UpdatePage = () => {
 
   useEffect(() => {
     getPageById();
-  }, []);
+  });
 
   //find the page with the ID that we have in the URL from that array of pages.
 
@@ -44,20 +41,11 @@ const UpdatePage = () => {
       </div>
     );
   }
-  const area = updatedPage.area;
 
   return (
-
-      <div>
-        {area === "Real Estate" ? (
-          <TemplateRealEstate />
-        ) : area === "Sell Clothes" ? (
-          <TemplateSellClothes />
-        ) : (
-          <TemplateHardwareStore />
-        )}
-      </div>
-
+    <div>
+      <Templates />
+    </div>
   );
 };
 

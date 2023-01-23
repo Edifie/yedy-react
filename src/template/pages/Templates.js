@@ -12,7 +12,9 @@ import "../components/TeamSection.css";
 import AboutUsSection from "../components/AboutUsSection";
 
 const TemplateRealEstate = () => {
-  const [loadedTemplates, setLoadedTemplates] = useState([]);
+  const [loadedTemplatesRE, setLoadedTemplatesRE] = useState([]);
+  const [loadedTemplatesSC, setLoadedTemplatesSC] = useState([]);
+  const [loadedTemplatesMS, setLoadedTemplatesMS] = useState([]);
   const [loadedPages, setLoadedPages] = useState([]);
   const [loadedUser, setLoadedUser] = useState(null);
   const [sectionData, setSectionData] = useState(null);
@@ -25,8 +27,7 @@ const TemplateRealEstate = () => {
 
   const pageId = useParams().pageId;
 
-
-  const getTemplates = async () => {
+  const getTemplatesRE = async () => {
     await axios({
       method: "GET",
       url: `http://localhost:8080/api/RE/template/${pageId}`,
@@ -36,7 +37,41 @@ const TemplateRealEstate = () => {
       },
     })
       .then((res) => {
-        setLoadedTemplates(res.data.templates);
+        setLoadedTemplatesRE(res.data.templates);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const getTemplatesSC = async () => {
+    await axios({
+      method: "GET",
+      url: `http://localhost:8080/api/SC/template/${pageId}`,
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((res) => {
+        setLoadedTemplatesSC(res.data.templates);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const getTemplatesMS = async () => {
+    await axios({
+      method: "GET",
+      url: `http://localhost:8080/api/MS/template/${pageId}`,
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((res) => {
+        setLoadedTemplatesMS(res.data.templates);
       })
       .catch((err) => {
         console.log(err);
@@ -93,9 +128,11 @@ const TemplateRealEstate = () => {
   };
 
   useEffect(() => {
-    getTemplates();
+    getTemplatesRE();
+    getTemplatesMS();
     getPageById();
     getUserById();
+    getTemplatesSC();
     getSectionByPageId();
   }, []);
 
@@ -104,7 +141,13 @@ const TemplateRealEstate = () => {
   }
 
   const redirectToForm = () => {
-    window.location = `/pages/${pageId}/formRE`;
+    if (area === "Real Estate") {
+      window.location = `/pages/${pageId}/formRE`;
+    } else if (area === "Sell Clothes") {
+      window.location = `/pages/${pageId}/formSC`;
+    } else {
+      window.location = `/pages/${pageId}/formMS`;
+    }
   };
 
   const handleShare = async () => {
@@ -164,6 +207,8 @@ const TemplateRealEstate = () => {
           </div>
           <div className="WelcomeSection">
             {sectionData.welcomeTitle !== " " &&
+            sectionData.welcomeTitle !== "" &&
+            sectionData.welcomeDescription !== "" &&
             sectionData.welcomeDescription !== " " ? (
               <WelcomeSection
                 welcomeTitle={sectionData.welcomeTitle}
@@ -224,7 +269,28 @@ const TemplateRealEstate = () => {
           <div className={`template-adverts-${tema}`}>
             <h1>Adverts</h1>
           </div>
-          <FormList area={area} tema={tema} items={loadedTemplates} />
+
+          {area === "Real Estate" ? (
+            loadedTemplatesRE ? (
+              <FormList items={loadedTemplatesRE} tema={tema} area={area} />
+            ) : (
+              "Loading"
+            )
+          ) : area === "Sell Clothes" ? (
+            loadedTemplatesSC ? (
+              <FormList items={loadedTemplatesSC} tema={tema} area={area} />
+            ) : (
+              "Loading"
+            )
+          ) : area === "Music Store" ? (
+            loadedTemplatesMS ? (
+              <FormList items={loadedTemplatesMS} tema={tema} area={area} />
+            ) : (
+              "Loading"
+            )
+          ) : (
+            <div>Error loading area</div>
+          )}
         </div>
       </div>
     </>

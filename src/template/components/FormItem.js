@@ -15,8 +15,6 @@ const FormItem = (props) => {
 
   const { tema, area } = props;
 
-  console.log(props.brand);
-
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
   const handleTemplateClick = () => {
@@ -24,6 +22,8 @@ const FormItem = (props) => {
       navigate(`/pages/${pageId}/RE/${props.id}`);
     } else if (area === "Sell Clothes") {
       navigate(`/pages/${pageId}/SC/${props.id}`);
+    } else if (area === "Music Store") {
+      navigate(`/pages/${pageId}/MS/${props.id}`);
     } else {
       console.log("Error in navigation.");
     }
@@ -194,6 +194,56 @@ const FormItem = (props) => {
                 <h1>{props.price} €</h1>
                 <h3>{props.adTitle}</h3>
                 <h4>{props.category}</h4>
+              </div>
+              <div className={`real-estate-item__buttons-${tema}`}>
+                <button onClick={handleTemplateClick}>Edit</button>
+                <button onClick={handleDelete}>Delete</button>
+                <br />
+                <hr></hr>
+                <button
+                  id={`real-estate-item__buttonDetail-${tema}`}
+                  onClick={openDrawerHandler}
+                >
+                  Details
+                </button>
+              </div>
+            </Card>
+          </li>
+        </>
+      );
+
+    case "Music Store":
+      return (
+        <>
+          {drawerIsOpen && <Backdrop onClick={closeDrawerHandler}></Backdrop>}
+
+          <SideDrawerTemplate show={drawerIsOpen} onClick={closeDrawerHandler}>
+            <div className="check-if-exists">
+              <FormItemDetail
+                showButton={true}
+                key={props._id}
+                id={props._id}
+                price={props.price}
+                category={props.category}
+                subCategory={props.subCategory}
+                brand={props.brand}
+                adTitle={props.adTitle}
+                description={props.description}
+                images={props.images}
+                tema={tema}
+                area={area}
+              />
+            </div>
+          </SideDrawerTemplate>
+
+          <li className={`real-estate-item-${tema}`}>
+            <Card className={`real-estate-item__content-${tema}`}>
+              <div className={`real-estate-item__image-${tema}`}>{images}</div>
+
+              <div className={`real-estate-item__info-${tema}`}>
+                <h1>{props.price} €</h1>
+                <h3>{props.adTitle}</h3>
+                <h4>{props.subCategory}</h4>
               </div>
               <div className={`real-estate-item__buttons-${tema}`}>
                 <button onClick={handleTemplateClick}>Edit</button>

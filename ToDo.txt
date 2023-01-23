@@ -38,9 +38,9 @@
     - handle edit section in the both ends, backend and frontend / DONE (backend)
 
     - design of edit section / DONE
-    - design of welcome section 
-    - design of team section
-    - design of about us section
+    - design of welcome section / DONE
+    - design of team section / DONE
+    - design of about us section / DONE
 
 
 
@@ -48,6 +48,51 @@
 
 
 + Sell Clothes
-    - edit form
+    - edit form / DONE
+    - shared template / DONE
+    - Yup validation
+
+
+
++ Music store
+    - main template
     - shared template
+    - update form
+    - base form
+
+
+    - images
+    - description 
+    - price
+    - brand
+    + categories
+        + guitars
+            - electric guitars
+            - classical guitars
+            - acoustic guitars
+            - ukeleles
+            - guitar amps
+            - strings for guitars
+        + basses
+            - electric basses
+            - acoustic basses
+            - ukelele basses
+            - bass amps
+        + drums
+            - acoustic drums
+            - e-drums
+            - cymbals
+            - marching
+            - bags and cases
+        + keys
+            - acoustic pianos
+            - digital pianos
+            - keyboards
+            - organs
+            - accordions
+
+        + strings
+            - violins
+            - cellos
+
 

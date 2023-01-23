@@ -136,6 +136,59 @@ const FormItemDetail = (props) => {
           </div>
         </>
       );
+    case "Music Store":
+      return (
+        <>
+          <div className={`form-item-detail__content-${tema}`}>
+            <div className={`form-item-detail__image-${tema}`}>
+              <Slide>
+                {props.images &&
+                  props.images.length > 0 &&
+                  props.images.map((image, index) => (
+                    <img
+                      key={image.id || index}
+                      src={`data:${image.contentType};base64,${image.imageBase64}`}
+                      alt={image.filename}
+                    />
+                  ))}
+              </Slide>
+            </div>
+
+            <Card className={`form-item-detail__card-${tema}`}>
+              <div>
+                <h1>{props.adTitle}</h1>
+
+                <table className={`form-item-detail__table-${tema}`}>
+                  <tr>
+                    <th>Category</th>
+                    <td clas>{props.category}</td>
+                  </tr>
+
+                  <tr>
+                    <th>Sub Category</th>
+                    <td clas>{props.subCategory}</td>
+                  </tr>
+
+                  <tr>
+                    <th>Price</th>
+                    <td clas>{props.price} €</td>
+                  </tr>
+
+                  <tr>
+                    <th>Brand</th>
+                    <td clas>{props.brand} </td>
+                  </tr>
+                </table>
+
+                <div className={`form-item-detail__paragh-${tema}`}>
+                  <h3>Description</h3>
+                  <p>{props.description}</p>
+                </div>
+              </div>
+            </Card>
+          </div>
+        </>
+      );
   }
 };
 

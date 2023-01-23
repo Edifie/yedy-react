@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { Formik, Field, Form } from "formik";
 import Axios from "axios";
 import * as Yup from "yup";
 
 import area from "./area.jpg";
 import responsive from "./responsive.jpg";
-import tema from "./tema.jpg";
+
 import name from "./name.jpg";
 import url from "./url.jpg";
 
@@ -23,8 +23,6 @@ const NewPage = () => {
       .max(35, "URL name cannot pass to 35 characters.")
       .required("Cannot leave blank this field."),
   });
-
-  const [pageId, setPageId] = useState(null);
 
   const token = localStorage.getItem("token");
   console.log(token);
@@ -98,8 +96,8 @@ const NewPage = () => {
 
                   <div className="radio">
                     <label>
-                      <Field type="radio" name="area" value="Hardware Store" />
-                      Hardware Store
+                      <Field type="radio" name="area" value="Music Store" />
+                      Music Store
                     </label>
                   </div>
 

@@ -6,8 +6,9 @@ import Axios from "axios";
 import * as Yup from "yup";
 import FileInput from "../../shared/components/UIElements/FileInput";
 import SizeField from "../components/SizeField";
+import SubCategoryField from "../components/SubCategoryField";
 
-const BaseTemplateSellClothes = () => {
+const BaseTemplateMusicStore = () => {
   const pageId = useParams().pageId;
   const navigate = useNavigate();
   const FormSchema = Yup.object().shape({
@@ -31,10 +32,9 @@ const BaseTemplateSellClothes = () => {
     formData.append("price", values.price);
 
     formData.append("category", values.category);
-    formData.append("size", values.size);
-    formData.append("color", values.color);
-    formData.append("details", values.details);
-    formData.append("material", values.material);
+    formData.append("subCategory", values.subCategory);
+    formData.append("description", values.description);
+
     formData.append("brand", values.brand);
 
     formData.append("adTitle", values.adTitle);
@@ -49,7 +49,7 @@ const BaseTemplateSellClothes = () => {
 
     await Axios({
       method: "POST",
-      url: "http://localhost:8080/api/SC/template",
+      url: "http://localhost:8080/api/MS/template",
       data: formData,
       headers: {
         "Content-Type": "multipart/form-data",
@@ -66,31 +66,17 @@ const BaseTemplateSellClothes = () => {
     console.log(values);
     navigate(`/pages/${pageId}`);
   };
-  const colors = [
-    "red",
-    "orange",
-    "yellow",
-    "green",
-    "blue",
-    "purple",
-    "pink",
-    "brown",
-    "grey",
-    "black",
-    "white",
-  ];
+
   return (
     <div>
       <Formik
         initialValues={{
           price: "",
-          category: "Clothes",
-          size: "",
-          color: "",
-          details: "",
-          material: "",
+          category: "Guitar",
+          subCategory: "",
           adTitle: "",
           brand: "",
+          description: "",
           images: [],
         }}
         onSubmit={(values) => submitHandler(values)}
@@ -103,20 +89,28 @@ const BaseTemplateSellClothes = () => {
 
                 <div className="base-form-real-estate__field gray">
                   <div className="base-form-real-estate__input">
-                    <Field type="radio" name="category" value="Clothes" />
-                    <label>Clothes</label>
+                    <Field type="radio" name="category" value="Guitar" />
+                    <label>Guitar</label>
                   </div>
                   <div className="base-form-real-estate__input">
-                    <Field type="radio" name="category" value="Shoes" />
-                    <label>Shoes</label>
+                    <Field type="radio" name="category" value="Bass" />
+                    <label>Bass</label>
                   </div>
                   <div className="base-form-real-estate__input">
-                    <Field type="radio" name="category" value="Accessories" />
-                    <label>Accessories</label>
+                    <Field type="radio" name="category" value="Drum" />
+                    <label>Drum</label>
+                  </div>
+                  <div className="base-form-real-estate__input">
+                    <Field type="radio" name="category" value="Key" />
+                    <label>Key</label>
+                  </div>
+                  <div className="base-form-real-estate__input">
+                    <Field type="radio" name="category" value="String" />
+                    <label>String</label>
                   </div>
                 </div>
 
-                <SizeField />
+                <SubCategoryField />
               </div>
 
               <div className="base-form-real-estate__category">
@@ -141,17 +135,17 @@ const BaseTemplateSellClothes = () => {
 
                 <div className="base-form-real-estate__field white">
                   <div className="base-form-real-estate__header">
-                    <h2>Details</h2>
+                    <h2>Description</h2>
                   </div>
 
                   <div className="base-form-real-estate__input">
                     <Field
                       className="base-form-real-estate__textarea"
                       component="textarea"
-                      name="details"
+                      name="description"
                     />
-                    {errors.details && touched.details ? (
-                      <div className="error--form">{errors.details}</div>
+                    {errors.description && touched.description ? (
+                      <div className="error--form">{errors.description}</div>
                     ) : null}
                   </div>
                 </div>
@@ -191,43 +185,6 @@ const BaseTemplateSellClothes = () => {
 
                 <div className="base-form-real-estate__field gray">
                   <div className="base-form-real-estate__header">
-                    <h2>Color</h2>
-                  </div>
-
-                  <div>
-                    {colors.map((color, index) => (
-                      <>
-                        <Field
-                          key={index}
-                          type="checkbox"
-                          name="color"
-                          value={color}
-                        />
-                        <span className={`dot ${color}`}></span>
-                      </>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="base-form-real-estate__field white">
-                  <div className="base-form-real-estate__header">
-                    <h2>Material</h2>
-                  </div>
-
-                  <div className="base-form-real-estate__input">
-                    <Field
-                      type="text"
-                      name="material"
-                      className="base-form-real-estate__text"
-                    />
-                    {errors.material && touched.material ? (
-                      <div className="error--form">{errors.material}</div>
-                    ) : null}
-                  </div>
-                </div>
-
-                <div className="base-form-real-estate__field gray">
-                  <div className="base-form-real-estate__header">
                     <h2>Upload photos </h2>
                   </div>
 
@@ -252,4 +209,4 @@ const BaseTemplateSellClothes = () => {
   );
 };
 
-export default BaseTemplateSellClothes;
+export default BaseTemplateMusicStore;

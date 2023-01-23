@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import { BrowserRouter, Route, Routes, useNavigate } from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Welcome from "./home/pages/Welcome";
-import Users from "./user/pages/Users";
+
 import MainNavigation from "./shared/components/Navigation/MainNavigation";
 import UserPages from "./page/pages/UserPages";
 import UpdatePage from "./page/pages/UpdatePage";
@@ -10,9 +10,10 @@ import Register from "./user/pages/Register";
 import Login from "./user/pages/Login";
 import NewPage from "./page/pages/NewPage";
 import BaseFormRealEstate from "./template/pages/BaseFormRealEstate";
+import BaseFormMusicStore from "./template/pages/BaseFormMusicStore";
 import UpdateRealEstate from "./template/pages/UpdateRealEstate";
+import UpdateMusicStore from "./template/pages/UpdateMusicStore";
 import SharedTemplate from "./shared template/pages/SharedTemplate.js";
-import FormItemDetail from "./template/components/FormItemDetail";
 
 import "./App.css";
 
@@ -36,10 +37,14 @@ const App = () => {
         <Routes>
           {/* Protected routes */}
 
-          <Route path="/users" component={<Users />} />
+          {/* PAGES */}
           <Route path="/pages/:pageId" element={<UpdatePage />} />
           <Route path="/pages/new" exact="true" element={<NewPage />} />
           <Route path="/:userId/pages" element={<UserPages />} />
+          <Route path="pages/edit/:pageId" element={<EditPage />} />
+          {/**************************************************************************************/}
+
+          {/* REAL ESTATE */}
           <Route
             path="/pages/:pageId/formRE"
             element={<BaseFormRealEstate />}
@@ -48,19 +53,41 @@ const App = () => {
             path="/pages/:pageId/RE/:templateId"
             element={<UpdateRealEstate />}
           />
+          {/**************************************************************************************/}
 
+          {/* SELL CLOTHES */}
+          <Route
+            path="/pages/:pageId/formSC"
+            element={<BaseFormSellClothes />}
+          />
           <Route
             path="/pages/:pageId/SC/:templateId"
             element={<UpdateSellClothes />}
           />
+          {/**************************************************************************************/}
+
+          {/* MUSIC STORE */}
+          <Route
+            path="/pages/:pageId/formMS"
+            element={<BaseFormMusicStore />}
+          />
+
+          <Route
+            path="/pages/:pageId/MS/:templateId"
+            element={<UpdateMusicStore />}
+          />
+          {/**************************************************************************************/}
+
+          {/* SHARED TEMPLATES */}
           <Route path="/DT/:url" element={<SharedTemplate />} />
+          {/**************************************************************************************/}
+
+          {/* PROFILE */}
           <Route path="/profile/:userId" element={<Profile />} />
           <Route path="/:userId/edit-profile" element={<ProfileEdit />} />
-          <Route
-            path="/pages/details/:templateId"
-            element={<FormItemDetail />}
-          />
-          <Route path="pages/edit/:pageId" element={<EditPage />} />
+          {/**************************************************************************************/}
+
+          {/* SECTIONS */}
           <Route
             path="pages/:pageId/aditional-section"
             element={<BaseFormAditional />}
@@ -69,22 +96,19 @@ const App = () => {
             path="pages/:pageId/aditional-section-edit"
             element={<BaseFormAditionalEdit />}
           />
-
           <Route
             path="pages/:pageId/aditional-section/add-team/:sectionId"
             element={<AddTeam />}
           />
+          {/**************************************************************************************/}
 
-          <Route
-            path="/pages/:pageId/formSC"
-            element={<BaseFormSellClothes />}
-          />
-
+          {/* OTHER ROUTES */}
           <Route path="/home" element={<Welcome />} />
           <Route path="/register" element={<Register />} />
           <Route path="/login" element={<Login />} />
 
           <Route path="/*" element={<SessionExpiredCheck />} />
+          {/**************************************************************************************/}
         </Routes>
       </main>
     </BrowserRouter>

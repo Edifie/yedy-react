@@ -1,6 +1,5 @@
-import axios from "axios";
 import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+
 import Card from "../../shared/components/UIElements/Card";
 import Backdrop from "../../shared/components/UIElements/Backdrop";
 import SideDrawerTemplate from "../../template/components/SideDrawerTemplate";
@@ -9,7 +8,7 @@ import "../../template/components/FormItem.css";
 import FormItemDetail from "../../template/components/FormItemDetail";
 
 const SharedFormItem = (props) => {
-  const { tema,area } = props;
+  const { tema, area } = props;
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
   const images =
     props.images &&

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import React from "react";
+import { useParams } from "react-router-dom";
 
 import Card from "../../shared/components/UIElements/Card";
 import FormItem from "./FormItem";
@@ -9,7 +9,6 @@ import "./FormList.css";
 
 const FormList = (props) => {
   const { tema, area } = props;
-  const pageId = useParams().pageId;
 
   if (props.items.length === 0) {
     return (
@@ -111,6 +110,49 @@ const FormList = (props) => {
                   material={template.material}
                   adTitle={template.adTitle}
                   brand={template.brand}
+                  images={template.images}
+                  tema={tema}
+                  area={area}
+                />
+              )}
+            </>
+          ))}
+        </ul>
+      );
+
+    case "Music Store":
+      return (
+        <ul className={`form-list-${tema}`}>
+          {props.items.map((template) => (
+            <>
+              {tema && (
+                <FormItem
+                  tema={tema}
+                  showButton={true}
+                  key={template._id}
+                  id={template._id}
+                  price={template.price}
+                  category={template.category}
+                  subCategory={template.subCategory}
+                  brand={template.brand}
+                  adTitle={template.adTitle}
+                  description={template.description}
+                  images={template.images}
+                  area={area}
+                />
+              )}
+
+              {tema && template.show && (
+                <FormItemDetail
+                  showButton={true}
+                  key={template._id}
+                  id={template._id}
+                  price={template.price}
+                  category={template.category}
+                  subCategory={template.subCategory}
+                  brand={template.brand}
+                  adTitle={template.adTitle}
+                  description={template.description}
                   images={template.images}
                   tema={tema}
                   area={area}

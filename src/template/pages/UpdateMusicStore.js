@@ -1,15 +1,19 @@
 import { Formik, Field, Form } from "formik";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Axios from "axios";
+import axios from "axios";
 
 import * as Yup from "yup";
 import FileInput from "../../shared/components/UIElements/FileInput";
 import SizeField from "../components/SizeField";
+import SubCategoryField from "../components/SubCategoryField";
 
-const BaseTemplateSellClothes = () => {
+const UpdateMusicStore = () => {
   const pageId = useParams().pageId;
   const navigate = useNavigate();
+
+  const [initialValues, setInitialValues] = useState({});
+  const { templateId } = useParams();
   const FormSchema = Yup.object().shape({
     price: Yup.number().required("Cannot leave blank this field."),
     size: Yup.string().required("Cannot leave blank this field."),
@@ -25,31 +29,71 @@ const BaseTemplateSellClothes = () => {
       .required("Cannot leave blank this field."),
   });
 
+  const getTemplateById = async () => {
+    await axios({
+      method: "GET",
+      url: `http://localhost:8080/api/MS/template/templates/${templateId}`,
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((res) => {
+        console.log("Respond from the request templateID -->", res);
+        setInitialValues(res.data.template);
+        console.log("Res.data.templatesID -->", res.data.template);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    console.log("Loaded templateID --> ", initialValues);
+  };
+
+  useEffect(() => {
+    getTemplateById();
+  }, []);
+
   const submitHandler = async (values) => {
     const formData = new FormData();
 
-    formData.append("price", values.price);
+    // only append the fields that have changed
+    if (values.price !== initialValues.price) {
+      formData.append("price", values.price);
+    }
 
-    formData.append("category", values.category);
-    formData.append("size", values.size);
-    formData.append("color", values.color);
-    formData.append("details", values.details);
-    formData.append("material", values.material);
-    formData.append("brand", values.brand);
+    if (values.category !== initialValues.category) {
+      formData.append("category", values.category);
+    }
 
-    formData.append("adTitle", values.adTitle);
-    formData.append("pageId", pageId);
+    if (values.subCategory !== initialValues.subCategory) {
+      formData.append("subCategory", values.subCategory);
+    }
 
-    for (const image of values.images) {
-      formData.append("images", image);
+    if (values.description !== initialValues.description) {
+      formData.append("description", values.description);
+    }
+
+    if (values.brand !== initialValues.brand) {
+      formData.append("brand", values.brand);
+    }
+
+    if (values.adTitle !== initialValues.adTitle) {
+      formData.append("adTitle", values.adTitle);
+    }
+
+    if (values.images !== initialValues.images) {
+      for (const image of values.images) {
+        formData.append("images", image);
+      }
     }
 
     const token = localStorage.getItem("token");
     console.log("token: ", token);
 
-    await Axios({
-      method: "POST",
-      url: "http://localhost:8080/api/SC/template",
+    await axios({
+      method: "PATCH",
+      url: `http://localhost:8080/api/MS/template/${templateId}`,
       data: formData,
       headers: {
         "Content-Type": "multipart/form-data",
@@ -64,35 +108,19 @@ const BaseTemplateSellClothes = () => {
       });
 
     console.log(values);
-    navigate(`/pages/${pageId}`);
+    setTimeout(() => {
+      navigate(`/pages/${pageId}`);
+    }, 1000);
   };
-  const colors = [
-    "red",
-    "orange",
-    "yellow",
-    "green",
-    "blue",
-    "purple",
-    "pink",
-    "brown",
-    "grey",
-    "black",
-    "white",
-  ];
+
+  if (!Object.keys(initialValues).length) {
+    return <p>Loading...</p>;
+  }
+
   return (
     <div>
       <Formik
-        initialValues={{
-          price: "",
-          category: "Clothes",
-          size: "",
-          color: "",
-          details: "",
-          material: "",
-          adTitle: "",
-          brand: "",
-          images: [],
-        }}
+        initialValues={initialValues}
         onSubmit={(values) => submitHandler(values)}
       >
         {({ errors, touched }) => (
@@ -103,20 +131,28 @@ const BaseTemplateSellClothes = () => {
 
                 <div className="base-form-real-estate__field gray">
                   <div className="base-form-real-estate__input">
-                    <Field type="radio" name="category" value="Clothes" />
-                    <label>Clothes</label>
+                    <Field type="radio" name="category" value="Guitar" />
+                    <label>Guitar</label>
                   </div>
                   <div className="base-form-real-estate__input">
-                    <Field type="radio" name="category" value="Shoes" />
-                    <label>Shoes</label>
+                    <Field type="radio" name="category" value="Bass" />
+                    <label>Bass</label>
                   </div>
                   <div className="base-form-real-estate__input">
-                    <Field type="radio" name="category" value="Accessories" />
-                    <label>Accessories</label>
+                    <Field type="radio" name="category" value="Drum" />
+                    <label>Drum</label>
+                  </div>
+                  <div className="base-form-real-estate__input">
+                    <Field type="radio" name="category" value="Key" />
+                    <label>Key</label>
+                  </div>
+                  <div className="base-form-real-estate__input">
+                    <Field type="radio" name="category" value="String" />
+                    <label>String</label>
                   </div>
                 </div>
 
-                <SizeField />
+                <SubCategoryField />
               </div>
 
               <div className="base-form-real-estate__category">
@@ -141,17 +177,17 @@ const BaseTemplateSellClothes = () => {
 
                 <div className="base-form-real-estate__field white">
                   <div className="base-form-real-estate__header">
-                    <h2>Details</h2>
+                    <h2>Description</h2>
                   </div>
 
                   <div className="base-form-real-estate__input">
                     <Field
                       className="base-form-real-estate__textarea"
                       component="textarea"
-                      name="details"
+                      name="description"
                     />
-                    {errors.details && touched.details ? (
-                      <div className="error--form">{errors.details}</div>
+                    {errors.description && touched.description ? (
+                      <div className="error--form">{errors.description}</div>
                     ) : null}
                   </div>
                 </div>
@@ -191,43 +227,6 @@ const BaseTemplateSellClothes = () => {
 
                 <div className="base-form-real-estate__field gray">
                   <div className="base-form-real-estate__header">
-                    <h2>Color</h2>
-                  </div>
-
-                  <div>
-                    {colors.map((color, index) => (
-                      <>
-                        <Field
-                          key={index}
-                          type="checkbox"
-                          name="color"
-                          value={color}
-                        />
-                        <span className={`dot ${color}`}></span>
-                      </>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="base-form-real-estate__field white">
-                  <div className="base-form-real-estate__header">
-                    <h2>Material</h2>
-                  </div>
-
-                  <div className="base-form-real-estate__input">
-                    <Field
-                      type="text"
-                      name="material"
-                      className="base-form-real-estate__text"
-                    />
-                    {errors.material && touched.material ? (
-                      <div className="error--form">{errors.material}</div>
-                    ) : null}
-                  </div>
-                </div>
-
-                <div className="base-form-real-estate__field gray">
-                  <div className="base-form-real-estate__header">
                     <h2>Upload photos </h2>
                   </div>
 
@@ -252,4 +251,4 @@ const BaseTemplateSellClothes = () => {
   );
 };
 
-export default BaseTemplateSellClothes;
+export default UpdateMusicStore;
