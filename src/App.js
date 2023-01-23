@@ -10,8 +10,8 @@ import Register from "./user/pages/Register";
 import Login from "./user/pages/Login";
 import NewPage from "./page/pages/NewPage";
 import BaseFormRealEstate from "./template/pages/BaseFormRealEstate";
-import UpdateTemplate from "./template/pages/UpdateRealEstate";
-import SharedRealEstate from "./shared template/pages/SharedRealEstate.js";
+import UpdateRealEstate from "./template/pages/UpdateRealEstate";
+import SharedTemplate from "./shared template/pages/SharedTemplate.js";
 import FormItemDetail from "./template/components/FormItemDetail";
 
 import "./App.css";
@@ -24,6 +24,7 @@ import BaseFormAditionalEdit from "./template/pages/BaseFormAditionalEdit";
 import AddTeam from "./template/components/AddTeam";
 import BaseFormSellClothes from "./template/pages/BaseFormSellClothes";
 import SessionExpiredCheck from "./shared/components/Session/SessionExpiredCheck";
+import UpdateSellClothes from "./template/pages/UpdateSellClothes";
 
 const App = () => {
   // See Notion - React/Router-dom-v6 for Router usage in version 6
@@ -44,10 +45,15 @@ const App = () => {
             element={<BaseFormRealEstate />}
           />
           <Route
-            path="/pages/:pageId/:templateId"
-            element={<UpdateTemplate />}
+            path="/pages/:pageId/RE/:templateId"
+            element={<UpdateRealEstate />}
           />
-          <Route path="/DT/:url" element={<SharedRealEstate />} />
+
+          <Route
+            path="/pages/:pageId/SC/:templateId"
+            element={<UpdateSellClothes />}
+          />
+          <Route path="/DT/:url" element={<SharedTemplate />} />
           <Route path="/profile/:userId" element={<Profile />} />
           <Route path="/:userId/edit-profile" element={<ProfileEdit />} />
           <Route

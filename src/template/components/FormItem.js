@@ -20,7 +20,13 @@ const FormItem = (props) => {
   const [drawerIsOpen, setDrawerIsOpen] = useState(false);
 
   const handleTemplateClick = () => {
-    navigate(`/pages/${pageId}/${props.id}`);
+    if (area === "Real Estate") {
+      navigate(`/pages/${pageId}/RE/${props.id}`);
+    } else if (area === "Sell Clothes") {
+      navigate(`/pages/${pageId}/SC/${props.id}`);
+    } else {
+      console.log("Error in navigation.");
+    }
   };
 
   const handleDelete = async () => {
@@ -76,10 +82,6 @@ const FormItem = (props) => {
         window.location.reload();
       }, 1000);
     }
-  };
-
-  const handleDetails = () => {
-    navigate(`/pages/details/${props.id}`);
   };
 
   const openDrawerHandler = () => {

@@ -1,39 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { Formik, Field, Form } from "formik";
-import Axios from "axios";
+import axios from "axios";
 import * as Yup from "yup";
 
+import SizeField from "../components/SizeField";
 import FileInput from "../../shared/components/UIElements/FileInput";
 
 import "./Template.css";
 
-const UpdateRealEstate = (props) => {
+const UpdateSellClothes = () => {
   const pageId = useParams().pageId;
   const navigate = useNavigate();
   const [initialValues, setInitialValues] = useState({});
-
   const { templateId } = useParams();
 
-  const FormSchema = Yup.object().shape({
-    price: Yup.number().required("Cannot leave blank this field."),
-    location: Yup.string()
-      .min(3, "Location should contain at least 3 characters.")
-      .required("Cannot leave blank this field."),
-    category: Yup.string().required("Cannot leave blank this field."),
-    numberOfRooms: Yup.string().required("Cannot leave blank this field."),
-    adStatus: Yup.string().required("Cannot leave blank this field."),
-    metreSquare: Yup.string().required("Cannot leave blank this field."),
-    description: Yup.string().required("Cannot leave blank this field."),
-    adTitle: Yup.string()
-      .min(3, "Title should contain at least 3 characters.")
-      .required("Cannot leave blank this field."),
-  });
-
   const getTemplateById = async () => {
-    await Axios({
+    await axios({
       method: "GET",
-      url: `http://localhost:8080/api/RE/template/templates/${templateId}`,
+      url: `http://localhost:8080/api/SC/template/templates/${templateId}`,
       headers: {
         "Content-Type": "multipart/form-data",
         Authorization: "Bearer " + localStorage.getItem("token"),
@@ -42,6 +27,10 @@ const UpdateRealEstate = (props) => {
       .then((res) => {
         console.log("Respond from the request templateID -->", res);
         setInitialValues(res.data.template);
+        setInitialValues((prevState) => ({
+          ...prevState,
+          color: res.data.template.color.split(","),
+        }));
         console.log("Res.data.templatesID -->", res.data.template);
       })
       .catch((err) => {
@@ -62,26 +51,31 @@ const UpdateRealEstate = (props) => {
     if (values.price !== initialValues.price) {
       formData.append("price", values.price);
     }
-    if (values.location !== initialValues.location) {
-      formData.append("location", values.location);
-    }
     if (values.category !== initialValues.category) {
       formData.append("category", values.category);
     }
-    if (values.numberOfRooms !== initialValues.numberOfRooms) {
-      formData.append("numberOfRooms", values.numberOfRooms);
-    }
-    if (values.adStatus !== initialValues.adStatus) {
-      formData.append("adStatus", values.adStatus);
-    }
-    if (values.metreSquare !== initialValues.metreSquare) {
-      formData.append("metreSquare", values.metreSquare);
-    }
-    if (values.description !== initialValues.description) {
-      formData.append("description", values.description);
-    }
     if (values.adTitle !== initialValues.adTitle) {
       formData.append("adTitle", values.adTitle);
+    }
+
+    if (values.size !== initialValues.size) {
+      formData.append("size", values.size);
+    }
+
+    if (values.color !== initialValues.color) {
+      formData.append("color", values.color);
+    }
+
+    if (values.details !== initialValues.details) {
+      formData.append("details", values.details);
+    }
+
+    if (values.material !== initialValues.material) {
+      formData.append("material", values.material);
+    }
+
+    if (values.brand !== initialValues.brand) {
+      formData.append("brand", values.brand);
     }
 
     if (values.images !== initialValues.images) {
@@ -93,9 +87,9 @@ const UpdateRealEstate = (props) => {
     const token = localStorage.getItem("token");
     console.log("token: ", token);
 
-    await Axios({
+    await axios({
       method: "PATCH",
-      url: `http://localhost:8080/api/RE/template/${templateId}`,
+      url: `http://localhost:8080/api/SC/template/${templateId}`,
       data: formData,
       headers: {
         "Content-Type": "multipart/form-data",
@@ -116,56 +110,56 @@ const UpdateRealEstate = (props) => {
     }, 1000);
   };
 
-  // wait to get data
   if (!Object.keys(initialValues).length) {
     return <p>Loading...</p>;
   }
+
+  const colors = [
+    "red",
+    "orange",
+    "yellow",
+    "green",
+    "blue",
+    "purple",
+    "pink",
+    "brown",
+    "grey",
+    "black",
+    "white",
+  ];
 
   return (
     <div>
       <Formik
         initialValues={initialValues}
-        validationSchema={FormSchema}
         onSubmit={(values) => submitHandler(values)}
       >
         {({ errors, touched }) => (
           <Form>
             <div className="base-form-real-estate__main">
               <div className="base-form-real-estate__category">
-                <h1>Domicil Category</h1>
+                <h1>Category</h1>
 
                 <div className="base-form-real-estate__field gray">
-                  <div className="base-form-real-estate__header">
-                    <h2>Category</h2>
-                  </div>
-
                   <div className="base-form-real-estate__input">
-                    <Field type="radio" name="category" value="House" />
-                    <label>House</label>
-
-                    <Field type="radio" name="category" value="Workplace" />
-
-                    <label>Workplace</label>
+                    <Field type="radio" name="category" value="Clothes" />
+                    <label>Clothes</label>
+                  </div>
+                  <div className="base-form-real-estate__input">
+                    <Field type="radio" name="category" value="Shoes" />
+                    <label>Shoes</label>
+                  </div>
+                  <div className="base-form-real-estate__input">
+                    <Field type="radio" name="category" value="Accessories" />
+                    <label>Accessories</label>
                   </div>
                 </div>
 
-                <div className="base-form-real-estate__field white">
-                  <div className="base-form-real-estate__header">
-                    <h2>Status</h2>
-                  </div>
-
-                  <div className="base-form-real-estate__input">
-                    <Field type="radio" name="adStatus" value="Rent" />
-                    <label>Rent</label>
-
-                    <Field type="radio" name="adStatus" value="Sell" />
-                    <label>Sell</label>
-                  </div>
-                </div>
+                <SizeField />
               </div>
 
               <div className="base-form-real-estate__category">
-                <h1>Domicil Informations</h1>
+                <h1>Informations</h1>
 
                 <div className="base-form-real-estate__field gray">
                   <div className="base-form-real-estate__header">
@@ -186,17 +180,17 @@ const UpdateRealEstate = (props) => {
 
                 <div className="base-form-real-estate__field white">
                   <div className="base-form-real-estate__header">
-                    <h2>Description</h2>
+                    <h2>Details</h2>
                   </div>
 
                   <div className="base-form-real-estate__input">
                     <Field
                       className="base-form-real-estate__textarea"
                       component="textarea"
-                      name="description"
+                      name="details"
                     />
-                    {errors.description && touched.description ? (
-                      <div className="error--form">{errors.description}</div>
+                    {errors.details && touched.details ? (
+                      <div className="error--form">{errors.details}</div>
                     ) : null}
                   </div>
                 </div>
@@ -220,51 +214,53 @@ const UpdateRealEstate = (props) => {
 
                 <div className="base-form-real-estate__field white">
                   <div className="base-form-real-estate__header">
-                    <h2>Number of rooms</h2>
+                    <h2>Brand</h2>
                   </div>
-
                   <div className="base-form-real-estate__input">
                     <Field
-                      type="number"
-                      name="numberOfRooms"
-                      className="base-form-real-estate__small-text"
+                      type="text"
+                      name="brand"
+                      className="base-form-real-estate__text"
                     />
-                    {errors.numberOfRooms && touched.numberOfRooms ? (
-                      <div className="error--form">{errors.numberOfRooms}</div>
+                    {errors.brand && touched.brand ? (
+                      <div className="error--form">{errors.brand}</div>
                     ) : null}
                   </div>
                 </div>
 
                 <div className="base-form-real-estate__field gray">
                   <div className="base-form-real-estate__header">
-                    <h2>Net m2</h2>
+                    <h2>Color</h2>
                   </div>
 
-                  <div className="base-form-real-estate__input">
-                    <Field
-                      type="number"
-                      name="metreSquare"
-                      className="base-form-real-estate__small-text"
-                    />
-                    {errors.metreSquare && touched.metreSquare ? (
-                      <div className="error--form">{errors.metreSquare}</div>
-                    ) : null}
+                  <div>
+                    {colors.map((color, index) => (
+                      <>
+                        <Field
+                          key={index}
+                          type="checkbox"
+                          name="color"
+                          value={color}
+                        />
+                        <span className={`dot ${color}`}></span>
+                      </>
+                    ))}
                   </div>
                 </div>
 
                 <div className="base-form-real-estate__field white">
                   <div className="base-form-real-estate__header">
-                    <h2>Address </h2>
+                    <h2>Material</h2>
                   </div>
 
                   <div className="base-form-real-estate__input">
                     <Field
                       type="text"
-                      name="location"
+                      name="material"
                       className="base-form-real-estate__text"
                     />
-                    {errors.location && touched.location ? (
-                      <div className="error--form">{errors.location}</div>
+                    {errors.material && touched.material ? (
+                      <div className="error--form">{errors.material}</div>
                     ) : null}
                   </div>
                 </div>
@@ -284,7 +280,7 @@ const UpdateRealEstate = (props) => {
                   </div>
                 </div>
                 <div className="base-form-real-estate__button" type="submit">
-                  <button>Submit</button>
+                  <button type="submit">Submit</button>
                 </div>
               </div>
             </div>
@@ -295,4 +291,4 @@ const UpdateRealEstate = (props) => {
   );
 };
 
-export default UpdateRealEstate;
+export default UpdateSellClothes;

@@ -5,14 +5,15 @@ import SharedFormList from "../components/SharedFormList";
 import { useParams } from "react-router-dom";
 import ProfileDetails from "../../template/components/ProfileDetails";
 
-import "./SharedRealEstate.css";
+import "./SharedTemplate.css";
 import WelcomeSection from "../../template/components/WelcomeSection";
 import TeamSection from "../../template/components/TeamSection";
 import AboutUsSection from "../../template/components/AboutUsSection";
 
 const SharedRealEstate = () => {
   const [loadedSharePages, setLoadedSharePages] = useState(null);
-  const [loadedTemplates, setLoadedTemplates] = useState([]);
+  const [loadedTemplatesRE, setLoadedTemplatesRE] = useState([]);
+  const [loadedTemplatesSC, setLoadedTemplatesSC] = useState([]);
   const [tema, setTema] = useState(null);
   const [loadedUser, setLoadedUser] = useState(null);
   const [pageId, setPageId] = useState(null);
@@ -44,7 +45,7 @@ const SharedRealEstate = () => {
     }
   };
 
-  const getTemplates = async () => {
+  const getTemplatesRE = async () => {
     try {
       const pageId = await getCustomUrl();
       const res = await axios({
@@ -56,8 +57,27 @@ const SharedRealEstate = () => {
         },
       });
 
-      setLoadedTemplates(res.data.templates);
-      console.log("Res.data.templates -->", res.data.templates);
+      setLoadedTemplatesRE(res.data.templates);
+      console.log("Res.data.templatesRE -->", res.data.templates);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getTemplatesSC = async () => {
+    try {
+      const pageId = await getCustomUrl();
+      const res = await axios({
+        method: "GET",
+        url: `http://localhost:8080/api/SC/template/${pageId}`,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+
+      setLoadedTemplatesSC(res.data.templates);
+      console.log("Res.data.templatesSC -->", res.data.templates);
     } catch (err) {
       console.log(err);
     }
@@ -97,10 +117,11 @@ const SharedRealEstate = () => {
   };
 
   useEffect(() => {
-    getTemplates();
+    getTemplatesRE();
     getUserById();
     getSectionByPageId();
     getCustomUrl();
+    getTemplatesSC();
   }, []);
 
   if (!sectionData) {
@@ -190,10 +211,29 @@ const SharedRealEstate = () => {
           <div className={`template-adverts-${tema}`}>
             <h1>Adverts</h1>
           </div>
-          {loadedTemplates ? (
-            <SharedFormList items={loadedTemplates} tema={tema} />
+
+          {area === "Real Estate" ? (
+            loadedTemplatesRE ? (
+              <SharedFormList
+                items={loadedTemplatesRE}
+                tema={tema}
+                area={area}
+              />
+            ) : (
+              "Loading"
+            )
+          ) : area === "Sell Clothes" ? (
+            loadedTemplatesSC ? (
+              <SharedFormList
+                items={loadedTemplatesSC}
+                tema={tema}
+                area={area}
+              />
+            ) : (
+              "Loading"
+            )
           ) : (
-            "Loading"
+            "Music store"
           )}
         </div>
       </div>
