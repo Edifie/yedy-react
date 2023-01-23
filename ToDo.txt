@@ -46,3 +46,8 @@
 
 -- hardware store --> music store
 
+
++ Sell Clothes
+    - edit form
+    - shared template
+
