@@ -128,10 +128,24 @@ const UpdateSellClothes = () => {
     "white",
   ];
 
+  const FormSchema = Yup.object().shape({
+    price: Yup.number().required("Cannot leave blank this field."),
+    category: Yup.string().required("Cannot leave blank this field."),
+    size: Yup.string().required("Cannot leave blank this field."),
+    material: Yup.string().required("Cannot leave blank this field."),
+    brand: Yup.string().required("Cannot leave blank this field."),
+    details: Yup.string()
+      .min(3, "Location should contain at least 3 characters.")
+      .required("Cannot leave blank this field."),
+    adTitle: Yup.string()
+      .min(3, "Title should contain at least 3 characters.")
+      .required("Cannot leave blank this field."),
+  });
   return (
     <div>
       <Formik
         initialValues={initialValues}
+        validationSchema={FormSchema}
         onSubmit={(values) => submitHandler(values)}
       >
         {({ errors, touched }) => (

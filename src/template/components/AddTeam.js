@@ -1,8 +1,9 @@
 import React from "react";
-import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
-
-import axios from "axios";
 import { useNavigate, useParams } from "react-router-dom";
+import { Formik, Field, Form, ErrorMessage, FieldArray } from "formik";
+import * as Yup from "yup";
+import axios from "axios";
+
 import FileInput from "../../shared/components/UIElements/FileInput";
 
 const AddTeam = () => {
@@ -58,6 +59,18 @@ const AddTeam = () => {
     navigate(`/pages/${pageId}`);
   };
 
+  const FormSchema = Yup.object().shape({
+    team: Yup.array().of(
+      Yup.object().shape({
+        memberName: Yup.string().required("Cannot leave blank this field."),
+        memberJobTitle: Yup.string().required("Cannot leave blank this field."),
+        memberDescription: Yup.string()
+          .min(5, "Description should contain at least 5 characters.")
+          .required("Cannot leave blank this field."),
+      })
+    ),
+  });
+
   return (
     <Formik
       initialValues={{
@@ -77,8 +90,9 @@ const AddTeam = () => {
         ],
       }}
       onSubmit={(values) => submitHandler(values)}
+      validationSchema={FormSchema}
     >
-      {({ values, setFieldValue }) => (
+      {({ values, setFieldValue, errors, touched }) => (
         <Form>
           <div className="additional-form__overall_add-team">
             {/* TEAM SECTION */}
@@ -95,8 +109,9 @@ const AddTeam = () => {
                           className="existing-team-member__card-column"
                           key={index}
                         >
-                          <Field name="sectionId" value={sectionId} />
-
+                          <div className="hidden-team-member-id">
+                            <Field name="sectionId" value={sectionId} />
+                          </div>
                           <div className="existing-team-member__card-column">
                             <label htmlFor={`team.${index}.memberName`}>
                               Name
@@ -121,7 +136,7 @@ const AddTeam = () => {
                             </label>
                             <Field
                               name={`team.${index}.memberJobTitle`}
-                              placeholder="Marketing"
+                              placeholder="Ex. Marketing"
                               type="text"
                               className="text--form__additional"
                             />
@@ -138,7 +153,7 @@ const AddTeam = () => {
                             </label>
                             <Field
                               name={`team.${index}.memberDescription`}
-                              placeholder="About team member"
+                              placeholder="Brief explanation about team member"
                               as="textarea"
                               className="text--form__additional-textarea"
                             />

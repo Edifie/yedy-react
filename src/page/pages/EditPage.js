@@ -137,7 +137,7 @@ const EditPage = () => {
 
                   <div className="radio">
                     <label>
-                      <Field type="radio" name="tema" value="Basic" /> Basic
+                      <Field type="radio" name="tema" value="Autumnal" /> Autumnal
                     </label>
                   </div>
                 </div>

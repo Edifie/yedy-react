@@ -57,6 +57,25 @@
   font-weight: 300;
 }
 
+.welcome-section-overall-Autumnal {
+  padding: 2rem;
+  margin-top: 3rem;
+  color: white;
+  /* background-color: rgba(253, 132, 32, 0.5); */
+  background-color: #F69E7B;
+  border-radius: 3px;
+}
+
+.welcome-section-description-Autumnal {
+  font-weight: 400;
+  text-align: justify;
+}
+
+.welcome-section-header-Autumnal{
+  font-size:x-large;
+  text-transform: capitalize;
+}
+
 @media (max-width: 820px) {
   .welcome-section-header-Minimalist h1 {
     font-size: 20px;

@@ -40,10 +40,12 @@
   font-weight: 600;
 }
 
-.parent-container-Minimalist {
+.parent-container-Minimalist, .parent-container-Autumnal {
   display: flex;
   flex-direction: row;
 }
+
+
 
 .parent-container-no-team {
   display: flex;
@@ -52,6 +54,12 @@
 
 .template-adverts-Boho h1 {
   margin-left: 430px;
+}
+
+
+
+.template-background-Autumnal{
+  margin: 0 7rem;
 }
 
 @media (max-width: 820px) {

@@ -10,20 +10,6 @@ import SizeField from "../components/SizeField";
 const BaseTemplateSellClothes = () => {
   const pageId = useParams().pageId;
   const navigate = useNavigate();
-  const FormSchema = Yup.object().shape({
-    price: Yup.number().required("Cannot leave blank this field."),
-    size: Yup.string().required("Cannot leave blank this field."),
-    category: Yup.string().required("Cannot leave blank this field."),
-    details: Yup.string()
-      .min(3, "Details should contain at least 3 characters.")
-      .required("Cannot leave blank this field."),
-    material: Yup.string()
-      .min(3, "Material should contain at least 3 characters.")
-      .required("Cannot leave blank this field."),
-    adTitle: Yup.string()
-      .min(3, "Title should contain at least 3 characters.")
-      .required("Cannot leave blank this field."),
-  });
 
   const submitHandler = async (values) => {
     const formData = new FormData();
@@ -79,6 +65,20 @@ const BaseTemplateSellClothes = () => {
     "black",
     "white",
   ];
+
+  const FormSchema = Yup.object().shape({
+    price: Yup.number().required("Cannot leave blank this field."),
+    category: Yup.string().required("Cannot leave blank this field."),
+    size: Yup.string().required("Cannot leave blank this field."),
+    material: Yup.string().required("Cannot leave blank this field."),
+    brand: Yup.string().required("Cannot leave blank this field."),
+    details: Yup.string()
+      .min(3, "Location should contain at least 3 characters.")
+      .required("Cannot leave blank this field."),
+    adTitle: Yup.string()
+      .min(3, "Title should contain at least 3 characters.")
+      .required("Cannot leave blank this field."),
+  });
   return (
     <div>
       <Formik
@@ -94,6 +94,7 @@ const BaseTemplateSellClothes = () => {
           images: [],
         }}
         onSubmit={(values) => submitHandler(values)}
+        validationSchema={FormSchema}
       >
         {({ errors, touched }) => (
           <Form>

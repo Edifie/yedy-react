@@ -13,17 +13,15 @@ const BaseTemplateMusicStore = () => {
   const navigate = useNavigate();
   const FormSchema = Yup.object().shape({
     price: Yup.number().required("Cannot leave blank this field."),
-    size: Yup.string().required("Cannot leave blank this field."),
     category: Yup.string().required("Cannot leave blank this field."),
-    details: Yup.string()
+    subCategory: Yup.string().required("Cannot leave blank this field."),
+    description: Yup.string()
       .min(3, "Details should contain at least 3 characters.")
-      .required("Cannot leave blank this field."),
-    material: Yup.string()
-      .min(3, "Material should contain at least 3 characters.")
       .required("Cannot leave blank this field."),
     adTitle: Yup.string()
       .min(3, "Title should contain at least 3 characters.")
       .required("Cannot leave blank this field."),
+    brand: Yup.string().required("Cannot leave blank this field."),
   });
 
   const submitHandler = async (values) => {
@@ -80,6 +78,7 @@ const BaseTemplateMusicStore = () => {
           images: [],
         }}
         onSubmit={(values) => submitHandler(values)}
+        validationSchema={FormSchema}
       >
         {({ errors, touched }) => (
           <Form>

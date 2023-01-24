@@ -32,7 +32,7 @@ const ProfileDetails = (props) => {
             <FontAwesomeIcon icon={faLocationDot} />
             {props ? props.location : "Loading..."}
           </h2>
-          <br /> <br />
+
           <div className={`sidebar__profile-picture-${tema}`}>
             {props
               ? props.profilePic &&
@@ -48,9 +48,7 @@ const ProfileDetails = (props) => {
               : "Loading.."}
             <h3>{props ? props.name : "Loading..."}</h3>
           </div>
-          <h2 id={`sidebar__phoneNumber-${tema}`}>
-            + {props ? props.phoneNumber : "Loading..."}
-          </h2>
+          <h2>+ {props ? props.phoneNumber : "Loading..."}</h2>
           <br />
         </div>
       </div>
