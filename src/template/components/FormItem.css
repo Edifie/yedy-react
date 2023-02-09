@@ -195,9 +195,23 @@
   object-fit: cover;
 }
 
+
+.real-estate-item__buttons-Autumnal button {
+    background-color: white;
+    border: none;
+}
+
+#real-estate-item__buttonDetail-Autumnal {
+  background-color: white;
+  border: none;
+  float: right;
+  color: #f79e7c;
+  font-weight: 600;
+}
+
 @media (max-width: 620px) {
   .real-estate-item__content-Boho,
-  .real-estate-item-Minimalist {
+  .real-estate-item-Minimalist   {
     margin: 2rem auto;
     min-height: auto;
   }

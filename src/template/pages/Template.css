@@ -95,4 +95,10 @@
   .parent-container {
     display: block;
   }
+
+  .parent-container-Autumnal{
+    display: flex;
+    flex-direction: column;
+  }
+
 }

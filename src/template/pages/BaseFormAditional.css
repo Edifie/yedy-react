@@ -185,3 +185,44 @@
   font-size: 12px;
   margin-left: 0.5rem;
 }
+
+@media (max-width: 620px) {
+  .additional-form__overall {
+    margin: 0;
+  }
+
+  .additional-edit__button-add-member button {
+    float: left;
+    margin-bottom: 1rem;
+  }
+
+  .animated-div {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .existing-team-members {
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .existing-team-member__card-row {
+    flex-direction: column;
+  }
+
+  .existing-team-member__card-column{
+    margin: 1rem 0;
+    padding: 0.5rem;
+  }
+
+  .additional-form_centered {
+    padding: 0;
+  }
+
+  .additional-form__overall_add-team {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+}

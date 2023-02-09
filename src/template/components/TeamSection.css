@@ -239,4 +239,12 @@
   .card__status-Boho {
     font-size: 10px;
   }
+
+  .card-team-overall-Autumnal{
+    display: block;
+  }
+
+  .card__image{
+    object-fit: cover;
+  }
 }

@@ -126,6 +126,9 @@ const EditPage = () => {
                     <label>
                       <Field type="radio" name="tema" value="Boho" /> Boho
                     </label>
+                    <span className="dotPage dark-green"></span>
+                    <span className="dotPage middle-green"></span>
+                    <span className="dotPage light-green"></span>
                   </div>
 
                   <div className="radio">
@@ -133,12 +136,19 @@ const EditPage = () => {
                       <Field type="radio" name="tema" value="Minimalist" />{" "}
                       Minimalist
                     </label>
+                    <span className="dotPage dark-black"></span>
+                    <span className="dotPage middle-black"></span>
+                    <span className="dotPage light-black"></span>
                   </div>
 
                   <div className="radio">
                     <label>
-                      <Field type="radio" name="tema" value="Autumnal" /> Autumnal
+                      <Field type="radio" name="tema" value="Autumnal" />
+                      Autumnal
                     </label>
+                    <span className="dotPage dark-blue"></span>
+                    <span className="dotPage middle-orange"></span>
+                    <span className="dotPage light-orange"></span>
                   </div>
                 </div>
 

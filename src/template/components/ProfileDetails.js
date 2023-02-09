@@ -29,8 +29,8 @@ const ProfileDetails = (props) => {
         <div className={`sidebar__info-${tema}`}>
           <h1>{props ? props.namePage : "Loading..."}</h1>
           <h2>
-            <FontAwesomeIcon icon={faLocationDot} />
-            {props ? props.location : "Loading..."}
+            <FontAwesomeIcon icon={faLocationDot}  />  
+             {props ? props.location : "Loading..."}
           </h2>
 
           <div className={`sidebar__profile-picture-${tema}`}>

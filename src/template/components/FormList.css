@@ -68,7 +68,7 @@
 }
 
 @media (max-width: 820px) {
-  .form-list-Boho {
+  .form-list-Boho, .form-list-Autumnal {
     display: block;
     margin: 1rem auto 0;
     width: auto;
@@ -81,4 +81,5 @@
     width: auto;
     padding: 2rem;
   }
+
 }

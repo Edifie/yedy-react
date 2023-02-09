@@ -157,10 +157,10 @@
   display: block;
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.5) 0px 4px 12px;
-  text-align: center;
+
   margin: 0 auto;
 
-  background-color: #383E56;
+  background-color: #383e56;
 
   border: 1px solid rgba(255, 255, 255, 0.25);
 }
@@ -168,7 +168,7 @@
 .sidebar__content-Autumnal {
   padding: 2rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-evenly;
 }
 
 .sidebar__info-Autumnal {
@@ -216,13 +216,10 @@
   width: 50px;
   height: 50px;
   float: right;
-  display: none;
 }
 
 .sidebar__profile-picture-Autumnal h3 {
-  position: absolute;
-  float: right;
-  margin-left: 6rem;
+ display: none;
 }
 
 .sidebar__profile-picture-Autumnal img {
@@ -230,7 +227,7 @@
   height: 100%;
 
   border-radius: 50%;
-
+  display: none;
   object-fit: cover;
 
   box-shadow: rgba(0, 0, 0, 0.25) 0px 4px 12px;
@@ -261,5 +258,25 @@
 
   .sidebar-Minimalist {
     margin: 0 auto;
+  }
+
+  /* AUTUMNAL */
+
+  .sidebar__content-Autumnal {
+    display: block;
+    position: relative;
+  }
+
+  .template-background-Autumnal {
+    margin: 0;
+    padding: 0.5rem;
+  }
+
+  .sidebar__business-picture-Autumnal {
+    margin: 0 auto;
+  }
+
+  .sidebar__profile-picture-Autumnal img {
+    margin: 0 20%;
   }
 }

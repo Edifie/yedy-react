@@ -169,7 +169,7 @@ const TemplateRealEstate = () => {
           <hr></hr>
           <ul>
             <li>
-              <button onClick={handleEdit}>Edit</button>
+              <button onClick={handleEdit}>Edit Page</button>
             </li>
 
             <li>
@@ -177,13 +177,13 @@ const TemplateRealEstate = () => {
             </li>
 
             <li>
+              <button onClick={redirectToForm}>Add new</button>
+            </li>
+            
+            <li>
               <button title="Share" onClick={handleShare}>
                 Share
               </button>
-            </li>
-
-            <li>
-              <button onClick={redirectToForm}>Add new</button>
             </li>
           </ul>
           <hr></hr>

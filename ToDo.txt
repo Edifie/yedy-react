@@ -96,3 +96,9 @@
             - cellos
 
 
+
++ add shared template music store
++ add backend error to display on the client side
++ add book store area
++ add mobile version of autumnal /DONE
++ fix team photo in mobile mode on Minimalist /DONE

@@ -1,15 +1,14 @@
-import React from 'react'
+import React from "react";
 
-import './GridRight.css'
-import homeLogo from './Designer.jpg';
+import "./GridRight.css";
+import homeLogo from "./Designer.jpg";
 
 const GridRight = () => {
   return (
-    <div className='grid-right' >
-        <img src={homeLogo} alt='main page logo' >
-        </img>
+    <div className="grid-right">
+      <img src={homeLogo} alt="main page logo"></img>
     </div>
-  )
-}
+  );
+};
 
-export default GridRight
+export default GridRight;
