@@ -26,6 +26,8 @@ import AddTeam from "./template/components/AddTeam";
 import BaseFormSellClothes from "./template/pages/BaseFormSellClothes";
 import SessionExpiredCheck from "./shared/components/Session/SessionExpiredCheck";
 import UpdateSellClothes from "./template/pages/UpdateSellClothes";
+import BaseFormBookStore from "./template/pages/BaseFormBookStore";
+import UpdateBookStore from "./template/pages/UpdateBookStore";
 
 const App = () => {
   // See Notion - React/Router-dom-v6 for Router usage in version 6
@@ -76,6 +78,16 @@ const App = () => {
             path="/pages/:pageId/MS/:templateId"
             element={<UpdateMusicStore />}
           />
+
+          {/**************************************************************************************/}
+
+          {/* BOOK STORE */}
+          <Route path="/pages/:pageId/formBS" element={<BaseFormBookStore />} />
+          <Route
+            path="/pages/:pageId/BS/:templateId"
+            element={<UpdateBookStore />}
+          />
+
           {/**************************************************************************************/}
 
           {/* SHARED TEMPLATES */}

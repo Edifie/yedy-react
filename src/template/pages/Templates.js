@@ -15,6 +15,7 @@ const TemplateRealEstate = () => {
   const [loadedTemplatesRE, setLoadedTemplatesRE] = useState([]);
   const [loadedTemplatesSC, setLoadedTemplatesSC] = useState([]);
   const [loadedTemplatesMS, setLoadedTemplatesMS] = useState([]);
+  const [loadedTemplatesBS, setLoadedTemplatesBS] = useState([]);
   const [loadedPages, setLoadedPages] = useState([]);
   const [loadedUser, setLoadedUser] = useState(null);
   const [sectionData, setSectionData] = useState(null);
@@ -78,6 +79,23 @@ const TemplateRealEstate = () => {
       });
   };
 
+  const getTemplatesBS = async () => {
+    await axios({
+      method: "GET",
+      url: `http://localhost:8080/api/BS/template/${pageId}`,
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((res) => {
+        setLoadedTemplatesBS(res.data.templates);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const getPageById = async () => {
     await axios({
       method: "GET",
@@ -130,6 +148,7 @@ const TemplateRealEstate = () => {
   useEffect(() => {
     getTemplatesRE();
     getTemplatesMS();
+    getTemplatesBS();
     getPageById();
     getUserById();
     getTemplatesSC();
@@ -145,8 +164,14 @@ const TemplateRealEstate = () => {
       window.location = `/pages/${pageId}/formRE`;
     } else if (area === "Sell Clothes") {
       window.location = `/pages/${pageId}/formSC`;
-    } else {
+    } else if (area === "Book Store") {
+      window.location = `/pages/${pageId}/formBS`;
+    } else if (area === "Music Store") {
       window.location = `/pages/${pageId}/formMS`;
+    } else {
+      <div>
+        <h1>Wrong form navigation.</h1>
+      </div>;
     }
   };
 
@@ -179,7 +204,7 @@ const TemplateRealEstate = () => {
             <li>
               <button onClick={redirectToForm}>Add new</button>
             </li>
-            
+
             <li>
               <button title="Share" onClick={handleShare}>
                 Share
@@ -285,6 +310,12 @@ const TemplateRealEstate = () => {
           ) : area === "Music Store" ? (
             loadedTemplatesMS ? (
               <FormList items={loadedTemplatesMS} tema={tema} area={area} />
+            ) : (
+              "Loading"
+            )
+          ) : area === "Book Store" ? (
+            loadedTemplatesBS ? (
+              <FormList items={loadedTemplatesBS} tema={tema} area={area} />
             ) : (
               "Loading"
             )

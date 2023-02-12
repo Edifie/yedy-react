@@ -107,6 +107,13 @@ const NewPage = () => {
                       Sell Clothes
                     </label>
                   </div>
+
+                  <div className="radio">
+                    <label>
+                      <Field type="radio" name="area" value="Book Store" />{" "}
+                      Book Store
+                    </label>
+                  </div>
                 </div>
 
                 <div className="box item3">

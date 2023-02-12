@@ -1,3 +1,5 @@
+/* BOHO */ 
+
 .form-item-detail__image-Boho img {
   height: auto;
   width: 100%;
@@ -41,7 +43,7 @@
   padding: 2rem;
 }
 
-/**/
+/* MINIMALIST */
 
 .form-item-detail__image-Minimalist img {
   height: auto;
@@ -84,6 +86,53 @@
 .form-item-detail__card-Minimalist {
   padding: 2rem;
 }
+
+
+/* AUTUMNAL */
+
+.form-item-detail__image-Autumnal img {
+  height: auto;
+  width: 100%;
+  margin: 0 auto;
+  object-fit: contain;
+  height: 500px;
+}
+
+.form-item-detail__table-Autumnal {
+  width: 100%;
+
+  border-collapse: separate;
+  border-spacing: 10px;
+}
+
+.form-item-detail__table-Autumnal td {
+  text-align: left;
+  padding: 8px;
+  padding-left: 2rem;
+  text-transform: capitalize;
+}
+
+.form-item-detail__table-Autumnal tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.form-item-detail__table-Autumnal th {
+  background-color: #F69E7B;
+  color: white;
+  width: 10rem;
+  text-transform: capitalize;
+  border-radius: 5px;
+}
+
+.form-item-detail__paragh-Autumnal p {
+  font-weight: 300;
+  text-align: justify;
+}
+
+.form-item-detail__card-Autumnal {
+  padding: 2rem;
+}
+
 
 @media (max-widht: 820px) {
 }

@@ -14,6 +14,8 @@ const SharedRealEstate = () => {
   const [loadedSharePages, setLoadedSharePages] = useState(null);
   const [loadedTemplatesRE, setLoadedTemplatesRE] = useState([]);
   const [loadedTemplatesSC, setLoadedTemplatesSC] = useState([]);
+  const [loadedTemplatesMS, setLoadedTemplatesMS] = useState([]);
+  const [loadedTemplatesBS, setLoadedTemplatesBS] = useState([]);
   const [tema, setTema] = useState(null);
   const [loadedUser, setLoadedUser] = useState(null);
   const [pageId, setPageId] = useState(null);
@@ -64,6 +66,25 @@ const SharedRealEstate = () => {
     }
   };
 
+  const getTemplatesBS = async () => {
+    try {
+      const pageId = await getCustomUrl();
+      const res = await axios({
+        method: "GET",
+        url: `http://localhost:8080/api/BS/template/${pageId}`,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+
+      setLoadedTemplatesBS(res.data.templates);
+      console.log("Res.data.templatesRE -->", res.data.templates);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const getTemplatesSC = async () => {
     try {
       const pageId = await getCustomUrl();
@@ -77,6 +98,25 @@ const SharedRealEstate = () => {
       });
 
       setLoadedTemplatesSC(res.data.templates);
+      console.log("Res.data.templatesSC -->", res.data.templates);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const getTemplatesMS = async () => {
+    try {
+      const pageId = await getCustomUrl();
+      const res = await axios({
+        method: "GET",
+        url: `http://localhost:8080/api/MS/template/${pageId}`,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+
+      setLoadedTemplatesMS(res.data.templates);
       console.log("Res.data.templatesSC -->", res.data.templates);
     } catch (err) {
       console.log(err);
@@ -121,7 +161,9 @@ const SharedRealEstate = () => {
     getUserById();
     getSectionByPageId();
     getCustomUrl();
+    getTemplatesBS();
     getTemplatesSC();
+    getTemplatesMS();
   }, []);
 
   if (!sectionData) {
@@ -151,6 +193,8 @@ const SharedRealEstate = () => {
 
           <div className="WelcomeSection">
             {sectionData.welcomeTitle !== " " &&
+            sectionData.welcomeTitle !== "" &&
+            sectionData.welcomeDescription !== "" &&
             sectionData.welcomeDescription !== " " ? (
               <WelcomeSection
                 welcomeTitle={sectionData.welcomeTitle}
@@ -232,8 +276,28 @@ const SharedRealEstate = () => {
             ) : (
               "Loading"
             )
+          ) : area === "Music Store" ? (
+            loadedTemplatesMS ? (
+              <SharedFormList
+                items={loadedTemplatesMS}
+                tema={tema}
+                area={area}
+              />
+            ) : (
+              "Loading"
+            )
+          ) : area === "Book Store" ? (
+            loadedTemplatesBS ? (
+              <SharedFormList
+                items={loadedTemplatesBS}
+                tema={tema}
+                area={area}
+              />
+            ) : (
+              "Loading"
+            )
           ) : (
-            "Music store"
+            "Loading"
           )}
         </div>
       </div>

@@ -1,7 +1,7 @@
 import { useField, Field } from "formik";
 import { useEffect } from "react";
 
-const SubCategoryField = () => {
+const SubCategoryFieldMusic = () => {
   const [categoryField] = useField("category");
 
   useEffect(() => {}, [categoryField.value]);
@@ -94,4 +94,4 @@ const SubCategoryField = () => {
   );
 };
 
-export default SubCategoryField;
+export default SubCategoryFieldMusic;

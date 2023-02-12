@@ -24,6 +24,8 @@ const FormItem = (props) => {
       navigate(`/pages/${pageId}/SC/${props.id}`);
     } else if (area === "Music Store") {
       navigate(`/pages/${pageId}/MS/${props.id}`);
+    } else if (area === "Book Store") {
+      navigate(`/pages/${pageId}/BS/${props.id}`);
     } else {
       console.log("Error in navigation.");
     }
@@ -51,6 +53,23 @@ const FormItem = (props) => {
       await axios({
         method: "DELETE",
         url: `http://localhost:8080/api/SC/template/${props.id}`,
+        headers: {
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      })
+        .then((res) => {
+          console.log("Respond from the request -->", res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+    } else if (area === "Book Store") {
+      await axios({
+        method: "DELETE",
+        url: `http://localhost:8080/api/BS/template/${props.id}`,
         headers: {
           Authorization: "Bearer " + localStorage.getItem("token"),
         },
@@ -244,6 +263,60 @@ const FormItem = (props) => {
                 <h1>{props.price} €</h1>
                 <h3>{props.adTitle}</h3>
                 <h4>{props.subCategory}</h4>
+              </div>
+              <div className={`real-estate-item__buttons-${tema}`}>
+                <button onClick={handleTemplateClick}>Edit</button>
+                <button onClick={handleDelete}>Delete</button>
+                <br />
+                <hr></hr>
+                <button
+                  id={`real-estate-item__buttonDetail-${tema}`}
+                  onClick={openDrawerHandler}
+                >
+                  Details
+                </button>
+              </div>
+            </Card>
+          </li>
+        </>
+      );
+
+    case "Book Store":
+      return (
+        <>
+          {drawerIsOpen && <Backdrop onClick={closeDrawerHandler}></Backdrop>}
+
+          <SideDrawerTemplate show={drawerIsOpen} onClick={closeDrawerHandler}>
+            <div className="check-if-exists">
+              <FormItemDetail
+                showButton={true}
+                key={props._id}
+                id={props._id}
+                price={props.price}
+                category={props.category}
+                subCategory={props.subCategory}
+                adTitle={props.adTitle}
+                description={props.description}
+                writer={props.writer}
+                language={props.language}
+                publisher={props.publisher}
+                numberOfPage={props.numberOfPage}
+                printYear={props.printYear}
+                images={props.images}
+                tema={tema}
+                area={area}
+              />
+            </div>
+          </SideDrawerTemplate>
+
+          <li className={`real-estate-item-${tema}`}>
+            <Card className={`real-estate-item__content-${tema}`}>
+              <div className={`real-estate-item__image-${tema}`}>{images}</div>
+
+              <div className={`real-estate-item__info-${tema}`}>
+                <h1>{props.price} €</h1>
+                <h3>{props.adTitle}</h3>
+                <h4>{props.writer}</h4>
               </div>
               <div className={`real-estate-item__buttons-${tema}`}>
                 <button onClick={handleTemplateClick}>Edit</button>

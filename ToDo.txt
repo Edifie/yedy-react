@@ -97,8 +97,34 @@
 
 
 
-+ add shared template music store
++ add shared template music store /DONE
 + add backend error to display on the client side
 + add book store area
 + add mobile version of autumnal /DONE
 + fix team photo in mobile mode on Minimalist /DONE
+
+
+
++ Book store
+    - main template
+    - shared template
+    - update form
+    - base form
+
+    + categories
+        + Book
+            - Novel
+            - Romance
+            - History
+            - Kids
+            - Self-improvement
+        + Course / Exam Books
+            - Exam Books
+            - Textbooks
+            - Test Books
+        + Magazine
+            - Economy
+            - Humor
+            - Fashion
+            - Car 
+            - Motorcycle

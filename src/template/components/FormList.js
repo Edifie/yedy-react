@@ -162,6 +162,57 @@ const FormList = (props) => {
           ))}
         </ul>
       );
+
+    case "Book Store":
+      return (
+        <ul className={`form-list-${tema}`}>
+          {props.items.map((template) => (
+            <>
+              {tema && (
+                <FormItem
+                  tema={tema}
+                  showButton={true}
+                  key={template._id}
+                  id={template._id}
+                  price={template.price}
+                  category={template.category}
+                  subCategory={template.subCategory}
+                  adTitle={template.adTitle}
+                  description={template.description}
+                  writer={template.writer}
+                  language={template.language}
+                  publisher={template.publisher}
+                  numberOfPage={template.numberOfPage}
+                  printYear={template.printYear}
+                  images={template.images}
+                  area={area}
+                />
+              )}
+
+              {tema && template.show && (
+                <FormItemDetail
+                  showButton={true}
+                  key={template._id}
+                  id={template._id}
+                  price={template.price}
+                  category={template.category}
+                  subCategory={template.subCategory}
+                  adTitle={template.adTitle}
+                  description={template.description}
+                  writer={template.writer}
+                  language={template.language}
+                  publisher={template.publisher}
+                  numberOfPage={template.numberOfPage}
+                  printYear={template.printYear}
+                  images={template.images}
+                  tema={tema}
+                  area={area}
+                />
+              )}
+            </>
+          ))}
+        </ul>
+      );
   }
 };
 

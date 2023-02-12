@@ -133,6 +133,105 @@ const SharedFormItem = (props) => {
           </li>
         </>
       );
+
+    case "Music Store":
+      return (
+        <>
+          {drawerIsOpen && <Backdrop onClick={closeDrawerHandler}></Backdrop>}
+
+          <SideDrawerTemplate show={drawerIsOpen} onClick={closeDrawerHandler}>
+            <div className="check-if-exists">
+              <FormItemDetail
+                showButton={true}
+                key={props._id}
+                id={props._id}
+                price={props.price}
+                category={props.category}
+                subCategory={props.subCategory}
+                brand={props.brand}
+                adTitle={props.adTitle}
+                description={props.description}
+                images={props.images}
+                tema={tema}
+                area={area}
+              />
+            </div>
+          </SideDrawerTemplate>
+
+          <li className={`real-estate-item-${tema}`}>
+            <Card className={`real-estate-item__content-${tema}`}>
+              <div className={`real-estate-item__image-${tema}`}>{images}</div>
+
+              <div className={`real-estate-item__info-${tema}`}>
+                <h1>{props.price} €</h1>
+                <h3>{props.adTitle}</h3>
+                <h4>{props.subCategory}</h4>
+              </div>
+              <div className={`real-estate-item__buttons-${tema}`}>
+                <hr></hr>
+                <button
+                  id={`real-estate-item__buttonDetail-${tema}`}
+                  onClick={openDrawerHandler}
+                >
+                  Details
+                </button>
+              </div>
+            </Card>
+          </li>
+        </>
+      );
+
+    case "Book Store":
+      return (
+        <>
+          {drawerIsOpen && <Backdrop onClick={closeDrawerHandler}></Backdrop>}
+
+          <SideDrawerTemplate show={drawerIsOpen} onClick={closeDrawerHandler}>
+            <div className="check-if-exists">
+              <FormItemDetail
+                showButton={true}
+                key={props._id}
+                id={props._id}
+                price={props.price}
+                category={props.category}
+                subCategory={props.subCategory}
+                adTitle={props.adTitle}
+                description={props.description}
+                writer={props.writer}
+                language={props.language}
+                publisher={props.publisher}
+                numberOfPage={props.numberOfPage}
+                printYear={props.printYear}
+                images={props.images}
+                tema={tema}
+                area={area}
+              />
+            </div>
+          </SideDrawerTemplate>
+
+          <li className={`real-estate-item-${tema}`}>
+            <Card className={`real-estate-item__content-${tema}`}>
+              <div className={`real-estate-item__image-${tema}`}>{images}</div>
+
+              <div className={`real-estate-item__info-${tema}`}>
+                <h1>{props.price} €</h1>
+                <h3>{props.adTitle}</h3>
+                <h4>{props.writer}</h4>
+              </div>
+              <div className={`real-estate-item__buttons-${tema}`}>
+                <br />
+                <hr></hr>
+                <button
+                  id={`real-estate-item__buttonDetail-${tema}`}
+                  onClick={openDrawerHandler}
+                >
+                  Details
+                </button>
+              </div>
+            </Card>
+          </li>
+        </>
+      );
   }
 };
 
