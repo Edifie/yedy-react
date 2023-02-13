@@ -232,6 +232,55 @@ const SharedFormItem = (props) => {
           </li>
         </>
       );
+    case "Jewellery Store":
+      return (
+        <>
+          {drawerIsOpen && <Backdrop onClick={closeDrawerHandler}></Backdrop>}
+
+          <SideDrawerTemplate show={drawerIsOpen} onClick={closeDrawerHandler}>
+            <div className="check-if-exists">
+              <FormItemDetail
+                showButton={true}
+                key={props._id}
+                id={props._id}
+                price={props.price}
+                category={props.category}
+                subCategory={props.subCategory}
+                adTitle={props.adTitle}
+                description={props.description}
+                brand={props.brand}
+                metal={props.metal}
+                color={props.color}
+                gems={props.gems}
+                images={props.images}
+                tema={tema}
+                area={area}
+              />
+            </div>
+          </SideDrawerTemplate>
+
+          <li className={`real-estate-item-${tema}`}>
+            <Card className={`real-estate-item__content-${tema}`}>
+              <div className={`real-estate-item__image-${tema}`}>{images}</div>
+
+              <div className={`real-estate-item__info-${tema}`}>
+                <h1>{props.price} €</h1>
+                <h3>{props.adTitle}</h3>
+                <h4>{props.metal}</h4>
+              </div>
+              <div className={`real-estate-item__buttons-${tema}`}>
+                <hr></hr>
+                <button
+                  id={`real-estate-item__buttonDetail-${tema}`}
+                  onClick={openDrawerHandler}
+                >
+                  Details
+                </button>
+              </div>
+            </Card>
+          </li>
+        </>
+      );
   }
 };
 

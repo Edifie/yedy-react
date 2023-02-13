@@ -128,3 +128,31 @@
             - Fashion
             - Car 
             - Motorcycle
+
+
++   jewellery Store
+    - main template
+    - shared template
+    - update form
+    - base form
+
+    
+    + categories
+        +  Ring
+            - Metal
+            - Color
+            - Gems
+        + Bracelet
+            - Metal
+            - Color
+            - Gems
+        + Necklace
+            - Metal
+            - Color
+            - Gems
+        + Earring
+            - Metal
+            - Color
+            - Gems
+
+    - Checkboxes for metal and color

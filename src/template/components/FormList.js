@@ -213,6 +213,52 @@ const FormList = (props) => {
           ))}
         </ul>
       );
+    case "Jewellery Store":
+      return (
+        <ul className={`form-list-${tema}`}>
+          {props.items.map((template) => (
+            <>
+              {tema && (
+                <FormItem
+                  tema={tema}
+                  showButton={true}
+                  key={template._id}
+                  id={template._id}
+                  price={template.price}
+                  category={template.category}
+                  adTitle={template.adTitle}
+                  description={template.description}
+                  brand={template.brand}
+                  metal={template.metal}
+                  color={template.color}
+                  gems={template.gems}
+                  images={template.images}
+                  area={area}
+                />
+              )}
+
+              {tema && template.show && (
+                <FormItemDetail
+                  showButton={true}
+                  key={template._id}
+                  id={template._id}
+                  price={template.price}
+                  category={template.category}
+                  adTitle={template.adTitle}
+                  description={template.description}
+                  brand={template.brand}
+                  metal={template.metal}
+                  color={template.color}
+                  gems={template.gems}
+                  images={template.images}
+                  tema={tema}
+                  area={area}
+                />
+              )}
+            </>
+          ))}
+        </ul>
+      );
   }
 };
 

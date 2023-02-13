@@ -156,6 +156,18 @@
   background-color: #52362b;
 }
 
+.silver {
+  background: linear-gradient(45deg, silver, white);
+}
+
+.gold {
+  background: linear-gradient(45deg, gold, white);
+}
+
+.rosegold {
+  background: linear-gradient(to right, #ffc1c1, #ffe4e1);
+}
+
 @media (max-width: 922px) {
   .base-form-real-estate__main {
     width: 100%; /* sets the width to 100% on screens smaller than 600px */

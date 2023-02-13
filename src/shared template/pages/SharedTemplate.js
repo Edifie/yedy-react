@@ -16,6 +16,7 @@ const SharedRealEstate = () => {
   const [loadedTemplatesSC, setLoadedTemplatesSC] = useState([]);
   const [loadedTemplatesMS, setLoadedTemplatesMS] = useState([]);
   const [loadedTemplatesBS, setLoadedTemplatesBS] = useState([]);
+  const [loadedTemplatesJS, setLoadedTemplatesJS] = useState([]);
   const [tema, setTema] = useState(null);
   const [loadedUser, setLoadedUser] = useState(null);
   const [pageId, setPageId] = useState(null);
@@ -123,6 +124,25 @@ const SharedRealEstate = () => {
     }
   };
 
+  const getTemplatesJS = async () => {
+    try {
+      const pageId = await getCustomUrl();
+      const res = await axios({
+        method: "GET",
+        url: `http://localhost:8080/api/JS/template/${pageId}`,
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization: "Bearer " + localStorage.getItem("token"),
+        },
+      });
+
+      setLoadedTemplatesJS(res.data.templates);
+      console.log("Res.data.templatesRE -->", res.data.templates);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const getUserById = async () => {
     await axios({
       method: "GET",
@@ -164,6 +184,7 @@ const SharedRealEstate = () => {
     getTemplatesBS();
     getTemplatesSC();
     getTemplatesMS();
+    getTemplatesJS();
   }, []);
 
   if (!sectionData) {
@@ -290,6 +311,16 @@ const SharedRealEstate = () => {
             loadedTemplatesBS ? (
               <SharedFormList
                 items={loadedTemplatesBS}
+                tema={tema}
+                area={area}
+              />
+            ) : (
+              "Loading"
+            )
+          ) : area === "Jewellery Store" ? (
+            loadedTemplatesJS ? (
+              <SharedFormList
+                items={loadedTemplatesJS}
                 tema={tema}
                 area={area}
               />

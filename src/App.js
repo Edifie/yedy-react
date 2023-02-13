@@ -28,6 +28,8 @@ import SessionExpiredCheck from "./shared/components/Session/SessionExpiredCheck
 import UpdateSellClothes from "./template/pages/UpdateSellClothes";
 import BaseFormBookStore from "./template/pages/BaseFormBookStore";
 import UpdateBookStore from "./template/pages/UpdateBookStore";
+import BaseFormJewelleryStore from "./template/pages/BaseFormJewelleryStore";
+import UpdateJewelleryStore from "./template/pages/UpdateJewelleryStore";
 
 const App = () => {
   // See Notion - React/Router-dom-v6 for Router usage in version 6
@@ -88,6 +90,17 @@ const App = () => {
             element={<UpdateBookStore />}
           />
 
+          {/**************************************************************************************/}
+
+          {/* JEWELLERY STORE */}
+          <Route
+            path="/pages/:pageId/formJS"
+            element={<BaseFormJewelleryStore />}
+          />
+          <Route
+            path="/pages/:pageId/JS/:templateId"
+            element={<UpdateJewelleryStore />}
+          />
           {/**************************************************************************************/}
 
           {/* SHARED TEMPLATES */}

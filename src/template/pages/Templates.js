@@ -16,6 +16,7 @@ const TemplateRealEstate = () => {
   const [loadedTemplatesSC, setLoadedTemplatesSC] = useState([]);
   const [loadedTemplatesMS, setLoadedTemplatesMS] = useState([]);
   const [loadedTemplatesBS, setLoadedTemplatesBS] = useState([]);
+  const [loadedTemplatesJS, setLoadedTemplatesJS] = useState([]);
   const [loadedPages, setLoadedPages] = useState([]);
   const [loadedUser, setLoadedUser] = useState(null);
   const [sectionData, setSectionData] = useState(null);
@@ -96,6 +97,23 @@ const TemplateRealEstate = () => {
       });
   };
 
+  const getTemplatesJS = async () => {
+    await axios({
+      method: "GET",
+      url: `http://localhost:8080/api/JS/template/${pageId}`,
+      headers: {
+        "Content-Type": "multipart/form-data",
+        Authorization: "Bearer " + localStorage.getItem("token"),
+      },
+    })
+      .then((res) => {
+        setLoadedTemplatesJS(res.data.templates);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   const getPageById = async () => {
     await axios({
       method: "GET",
@@ -149,6 +167,7 @@ const TemplateRealEstate = () => {
     getTemplatesRE();
     getTemplatesMS();
     getTemplatesBS();
+    getTemplatesJS();
     getPageById();
     getUserById();
     getTemplatesSC();
@@ -168,7 +187,9 @@ const TemplateRealEstate = () => {
       window.location = `/pages/${pageId}/formBS`;
     } else if (area === "Music Store") {
       window.location = `/pages/${pageId}/formMS`;
-    } else {
+    } else if (area === "Jewellery Store") {
+      window.location = `/pages/${pageId}/formJS`;
+    }else {
       <div>
         <h1>Wrong form navigation.</h1>
       </div>;
@@ -316,6 +337,12 @@ const TemplateRealEstate = () => {
           ) : area === "Book Store" ? (
             loadedTemplatesBS ? (
               <FormList items={loadedTemplatesBS} tema={tema} area={area} />
+            ) : (
+              "Loading"
+            )
+          ) : area === "Jewellery Store" ? (
+            loadedTemplatesBS ? (
+              <FormList items={loadedTemplatesJS} tema={tema} area={area} />
             ) : (
               "Loading"
             )

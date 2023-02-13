@@ -22,6 +22,7 @@ const NewPage = () => {
       .min(2, "URL should be at least two characters.")
       .max(35, "URL name cannot pass to 35 characters.")
       .required("Cannot leave blank this field."),
+    area: Yup.string().required("This field is required"),
   });
 
   const token = localStorage.getItem("token");
@@ -62,7 +63,7 @@ const NewPage = () => {
     <div>
       <Formik
         initialValues={{
-          area: "Real Estate",
+          area: "",
           name: "",
           tema: "Boho",
           url: "",
@@ -82,6 +83,28 @@ const NewPage = () => {
                 </div>
 
                 <div className="box item2">
+                  <div className="radio">
+                    <div className="textarea--form">
+                      <Field as="select" name="area">
+                        <option
+                          value=""
+                          disabled
+                          label="Select an area"
+                        ></option>
+                        <option value="Book Store">Book Store</option>
+                        <option value="Jewellery Store">Jewellery Store</option>
+                        <option value="Music Store">Music Store</option>
+                        <option value="Real Estate">Real Estate</option>
+                        <option value="Sell Clothes">Sell Clothes</option>
+                      </Field>
+                      {errors.area && touched.area ? (
+                        <div className="error--form">{errors.area}</div>
+                      ) : null}
+                    </div>
+                  </div>
+                </div>
+
+                {/* <div className="box item2">
                   <div className="radio">
                     <label>
                       <Field
@@ -115,6 +138,7 @@ const NewPage = () => {
                     </label>
                   </div>
                 </div>
+                 */}
 
                 <div className="box item3">
                   <img src={area} alt="tema" />
