@@ -306,7 +306,7 @@ const FormItemDetail = (props) => {
                   </tr>
 
                   <tr>
-                    <th>Gems Year</th>
+                    <th>Gems</th>
                     <td clas>{props.gems} </td>
                   </tr>
 

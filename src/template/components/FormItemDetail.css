@@ -65,6 +65,7 @@
   text-align: left;
   padding: 8px;
   padding-left: 2rem;
+  text-transform: capitalize;
 }
 
 .form-item-detail__table-Minimalist tr:nth-child(even) {

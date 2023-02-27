@@ -108,6 +108,7 @@
 .real-estate-item__info-Minimalist h3 {
   font-size: 18px;
   font-weight: 500;
+  line-height: 25px;
 }
 .real-estate-item__info-Minimalist h4 {
   font-size: 15px;
@@ -125,7 +126,7 @@
 .real-estate-item__image-Minimalist img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit:contain;
 }
 
 .real-estate-item__buttons-Minimalist button {
